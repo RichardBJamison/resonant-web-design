@@ -1079,62 +1079,74 @@
     }
 
     .phone-row {
-      min-height: 320px;
+      min-height: 360px;
       position: relative;
     }
 
     .phone-frame {
       position: absolute;
-      width: 150px;
-      height: 292px;
-      border: 8px solid #0b0d10;
-      border-radius: 28px;
+      width: 168px;
+      height: 363px;
+      border: 7px solid #0b0d10;
+      border-radius: 32px;
       background: #0b0d10;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.42);
+      box-shadow:
+        0 28px 64px rgba(0, 0, 0, 0.48),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.06);
       overflow: hidden;
     }
 
     .phone-frame::before {
       content: '';
       position: absolute;
-      top: 8px;
+      top: 10px;
       left: 50%;
-      width: 42px;
+      width: 46px;
       height: 5px;
       transform: translateX(-50%);
       border-radius: 99px;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.22);
       z-index: 2;
+      pointer-events: none;
+    }
+
+    .phone-frame::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 38%,
+        transparent 72%,
+        rgba(0, 0, 0, 0.12) 100%
+      );
+      z-index: 2;
+      pointer-events: none;
     }
 
     .phone-frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: top center;
       display: block;
+      filter: saturate(1.04) contrast(1.03);
     }
 
     .phone-frame--front {
-      right: 26px;
-      top: 2px;
+      right: 18px;
+      top: 0;
       z-index: 2;
-      transform: rotate(4deg);
-    }
-
-    .phone-frame--front img {
-      object-position: 47% top;
+      transform: rotate(5deg);
     }
 
     .phone-frame--back {
-      right: 142px;
-      top: 42px;
+      right: 148px;
+      top: 36px;
       z-index: 1;
-      opacity: 0.88;
-      transform: rotate(-7deg) scale(0.9);
-    }
-
-    .phone-frame--back img {
-      object-position: center top;
+      opacity: 0.92;
+      transform: rotate(-8deg) scale(0.92);
     }
 
     /* ========================================
@@ -1686,7 +1698,7 @@
       }
 
       .phone-row {
-        min-height: 280px;
+        min-height: 340px;
       }
 
       .services-grid {
