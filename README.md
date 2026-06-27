@@ -14,13 +14,19 @@ Open:
 http://127.0.0.1:4173/
 ```
 
-## Temporary Public URL
+## Public URLs
+
+**GitHub Pages (stable temp):**
+
+```text
+https://richardbjamiosn.github.io/resonant-web-design/
+```
+
+**Localtunnel (machine must stay on):**
 
 ```text
 https://resonant-web-design.loca.lt/
 ```
-
-This URL is served through a localtunnel process and stays live only while the local server and tunnel are running on this machine.
 
 ## Build Summary
 
@@ -34,4 +40,6 @@ This URL is served through a localtunnel process and stays live only while the l
 
 ## Deployment Notes
 
-GitHub CLI is installed, but the saved GitHub token for `RichardBJamiosn` is invalid. Permanent GitHub Pages hosting is blocked until `gh auth login -h github.com` is completed.
+- Repo: https://github.com/RichardBJamiosn/resonant-web-design
+- GitHub Pages enabled from `main` branch root.
+- Add a custom domain in repo Settings → Pages when ready.
