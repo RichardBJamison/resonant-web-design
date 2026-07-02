@@ -149,16 +149,14 @@
   </div>
 
   <section class="hero" id="hero">
-    <img class="hero-bg" src="assets/img/resonant-studio-hero.png" alt="">
     <div class="hero-scrim" aria-hidden="true"></div>
     <div class="hero-inner">
       <div class="hero-content">
-        <p class="hero-eyebrow">SaaS websites, service sites, and web systems</p>
         <h1 class="hero-title">
-          Websites with<br><span class="accent">a pulse.</span>
+          Find your <span class="accent">pulse.</span>
         </h1>
         <p class="hero-subtitle">
-          Resonant Web Design builds the strategy, pages, automations, SEO foundation, and launch stack behind web experiences that feel custom because they are.
+          Resonant Web Design builds custom marketing design, aggressive SEO, social media integration, AI phone and chat, automations, and the business systems behind modern web growth.
         </p>
         <div class="hero-ctas">
           <a href="#work" class="btn btn-primary">
@@ -166,32 +164,63 @@
           </a>
           <a href="#contact" class="btn btn-secondary">Start a Project</a>
         </div>
-        <div class="hero-metrics" aria-label="Project capabilities">
-          <div>
+        <div class="hero-capabilities" aria-label="Resonant Web Design growth capabilities">
+          <div class="capability-card">
             <strong>01</strong>
-            <span>Custom design</span>
+            <span>1:1 marketing design</span>
+            <small>Custom campaigns and conversion strategy.</small>
           </div>
-          <div>
+          <div class="capability-card">
             <strong>02</strong>
-            <span>Production build</span>
+            <span>Aggressive SEO</span>
+            <small>Search foundations, content, and local ranking moves.</small>
           </div>
-          <div>
+          <div class="capability-card">
             <strong>03</strong>
-            <span>SEO and care</span>
+            <span>Social media integration</span>
+            <small>Every platform connected to the site and funnel.</small>
+          </div>
+          <div class="capability-card">
+            <strong>04</strong>
+            <span>AI phone systems</span>
+            <small>Call handling, routing, booking, and follow-up.</small>
+          </div>
+          <div class="capability-card">
+            <strong>05</strong>
+            <span>AI chat flows</span>
+            <small>Qualify visitors and capture leads after hours.</small>
+          </div>
+          <div class="capability-card">
+            <strong>06</strong>
+            <span>Business integrations</span>
+            <small>CRM, forms, automations, analytics, and ops tools.</small>
           </div>
         </div>
       </div>
 
-      <aside class="hero-proof" aria-label="Landing page project stack">
-        <span class="proof-kicker">Launch Stack</span>
-        <h2>Creative front-end, practical back-end.</h2>
-        <ul>
-          <li>Multi-page service architecture</li>
-          <li>Portfolio and case-study pages</li>
-          <li>Forms, automations, analytics</li>
-          <li>Hosting, domains, maintenance</li>
-        </ul>
-      </aside>
+      <div class="hero-visual">
+        <div class="hero-device" aria-hidden="true">
+          <div class="device-bar"></div>
+          <div class="device-pane device-pane--large"></div>
+          <div class="device-pane device-pane--top"></div>
+          <div class="device-pane device-pane--left"></div>
+          <div class="device-pane device-pane--right"></div>
+          <div class="device-line device-line--one"></div>
+          <div class="device-line device-line--two"></div>
+          <div class="device-line device-line--three"></div>
+        </div>
+
+        <aside class="hero-proof" aria-label="Landing page project stack">
+          <span class="proof-kicker">Launch Stack</span>
+          <h2>Creative front-end, operational back-end.</h2>
+          <ul>
+            <li>Marketing pages, funnels, and offers</li>
+            <li>SEO, content, and social systems</li>
+            <li>AI phone, chat, and follow-up</li>
+            <li>CRM, automations, analytics, ops tools</li>
+          </ul>
+        </aside>
+      </div>
     </div>
     <div class="waveform-container">
       <canvas id="waveform"></canvas>
@@ -200,17 +229,6 @@
 
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track" id="ticker-track">
-      <span class="ticker-item">Landing Pages</span>
-      <span class="ticker-item">Service Pages</span>
-      <span class="ticker-item">Portfolio Pages</span>
-      <span class="ticker-item">SaaS Interfaces</span>
-      <span class="ticker-item">Next.js</span>
-      <span class="ticker-item">React</span>
-      <span class="ticker-item">WordPress</span>
-      <span class="ticker-item">Cloudflare</span>
-      <span class="ticker-item">Vercel</span>
-      <span class="ticker-item">SEO</span>
-      <span class="ticker-item">Branding</span>
       <span class="ticker-item">E-Commerce</span>
       <span class="ticker-item">Hosting</span>
       <span class="ticker-item">Landing Pages</span>
@@ -219,13 +237,14 @@
       <span class="ticker-item">SaaS Interfaces</span>
       <span class="ticker-item">Next.js</span>
       <span class="ticker-item">React</span>
-      <span class="ticker-item">WordPress</span>
-      <span class="ticker-item">Cloudflare</span>
-      <span class="ticker-item">Vercel</span>
-      <span class="ticker-item">SEO</span>
-      <span class="ticker-item">Branding</span>
       <span class="ticker-item">E-Commerce</span>
       <span class="ticker-item">Hosting</span>
+      <span class="ticker-item">Landing Pages</span>
+      <span class="ticker-item">Service Pages</span>
+      <span class="ticker-item">Portfolio Pages</span>
+      <span class="ticker-item">SaaS Interfaces</span>
+      <span class="ticker-item">Next.js</span>
+      <span class="ticker-item">React</span>
     </div>
   </div>
 
@@ -326,74 +345,78 @@
         </a>
       </div>
 
-      <div class="systems-showcase reveal reveal-delay-2" aria-label="Automation and agency systems">
-        <div class="systems-stage" aria-hidden="true">
-          <div class="systems-dashboard">
+      <div class="systems-showcase addons-showcase reveal reveal-delay-2" aria-label="Agency add-ons and growth systems">
+        <div class="systems-stage addons-stage" aria-hidden="true">
+          <div class="addons-image-wall">
+            <img class="addons-image addons-image--wide" src="assets/img/addons/ai-command-wall.jpeg" alt="">
+            <img class="addons-image addons-image--brochure" src="assets/img/addons/agency-brochure.jpeg" alt="">
+            <img class="addons-image addons-image--mobile" src="assets/img/addons/mobile-ai-interface.jpeg" alt="">
+            <img class="addons-image addons-image--map" src="assets/img/addons/web-design-map.jpeg" alt="">
+            <img class="addons-image addons-image--rankings" src="assets/img/addons/ranking-dashboard-concept.jpeg" alt="">
+            <img class="addons-image addons-image--devices" src="assets/img/addons/responsive-devices.jpeg" alt="">
+          </div>
+
+          <div class="addons-dashboard">
             <div class="systems-dashboard-top">
               <span></span><span></span><span></span>
             </div>
-            <div class="systems-dashboard-grid">
+            <div class="addons-dashboard-header">
+              <span>Agency Command Center</span>
+              <strong>Growth dashboard</strong>
+            </div>
+            <div class="addons-metrics">
               <div>
-                <span>Leads</span>
-                <strong>42</strong>
+                <span>New Traffic</span>
+                <strong>+48%</strong>
               </div>
               <div>
-                <span>Booked</span>
-                <strong>18</strong>
+                <span>Rankings</span>
+                <strong>23</strong>
               </div>
               <div>
-                <span>Calls</span>
-                <strong>31</strong>
-              </div>
-              <div>
-                <span>Revenue Path</span>
+                <span>Lead Sources</span>
                 <strong>Live</strong>
               </div>
             </div>
-            <div class="systems-chart">
+            <div class="addons-growth-chart">
               <span style="height: 38%;"></span>
-              <span style="height: 64%;"></span>
-              <span style="height: 52%;"></span>
-              <span style="height: 78%;"></span>
-              <span style="height: 88%;"></span>
+              <span style="height: 46%;"></span>
+              <span style="height: 62%;"></span>
+              <span style="height: 68%;"></span>
+              <span style="height: 83%;"></span>
+              <span style="height: 96%;"></span>
             </div>
           </div>
 
-          <div class="systems-phone systems-phone--left">
-            <div class="systems-phone-screen">
-              <span>AI Reception</span>
-              <p>New quote request</p>
-              <strong>Forward to sales</strong>
-            </div>
+          <div class="addons-mobile-card">
+            <span>Mobile + AI</span>
+            <p>Leads, replies, reminders, and booking tools travel with the owner.</p>
           </div>
 
-          <div class="systems-phone systems-phone--right">
-            <div class="systems-phone-screen booking">
-              <span>Booking</span>
-              <p>Patio estimate</p>
-              <strong>Thu 2:30 PM</strong>
-            </div>
-          </div>
-
-          <div class="systems-chat">
-            <span>Website Chat</span>
-            <p>Ask a question, qualify the lead, book the next step.</p>
+          <div class="addons-watch-card">
+            <span>Voice Integration</span>
+            <strong>Apple Watch ready</strong>
           </div>
         </div>
 
-        <div class="systems-copy">
+        <div class="systems-copy addons-copy">
           <p class="systems-kicker">Beyond The Website</p>
-          <h3>Websites that can answer, route, book, track, and report.</h3>
-          <p>Once the site is live, we can connect the operational layer behind it: chatbots, AI answering services, AI scheduling, call forwarding, analytics, and an agency admin view that shows where leads are coming from.</p>
+          <h3>Every upgrade around their business, in one command center.</h3>
+          <p>Mobile add-ons, AI follow-up, voice commands to Apple Watch, social campaigns, and a sharp agency dashboard. They see new traffic, new rankings, new leads, and where to push next.</p>
+          <div class="addons-proof">
+            <span>Most important</span>
+            <strong>They can see their traffic and rankings move.</strong>
+          </div>
           <div class="systems-capabilities">
-            <span>Chatbots</span>
-            <span>AI Answering</span>
-            <span>AI Scheduling</span>
-            <span>Forwarding</span>
+            <span>Mobile Add-Ons</span>
+            <span>AI Follow-Up</span>
+            <span>Voice Integration</span>
+            <span>Apple Watch</span>
+            <span>Agency Dashboard</span>
             <span>Analytics</span>
-            <span>Admin Dashboard</span>
-            <span>Mobile Sales Tools</span>
-            <span>Restaurant Booking</span>
+            <span>Social Campaigns</span>
+            <span>Traffic Reports</span>
+            <span>Ranking Reports</span>
           </div>
         </div>
       </div>

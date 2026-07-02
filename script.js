@@ -14,11 +14,11 @@
        ======================================== */
     function animateHero() {
       const elements = [
-        { el: document.querySelector('.hero-eyebrow'), delay: 200 },
         { el: document.querySelector('.hero-title'), delay: 400 },
         { el: document.querySelector('.hero-subtitle'), delay: 600 },
         { el: document.querySelector('.hero-ctas'), delay: 800 },
-        { el: document.querySelector('.hero-metrics'), delay: 1000 },
+        { el: document.querySelector('.hero-visual'), delay: 900 },
+        { el: document.querySelector('.hero-capabilities'), delay: 1000 },
       ];
 
       elements.forEach(({ el, delay }) => {
@@ -126,26 +126,32 @@
         ctx.clearRect(0, 0, w, h);
 
         const waves = [
-          { amplitude: 25, frequency: 0.008, speed: 0.0008, color: 'rgba(232, 93, 48, 0.15)', offset: 0 },
-          { amplitude: 18, frequency: 0.012, speed: 0.0012, color: 'rgba(232, 93, 48, 0.10)', offset: 2 },
-          { amplitude: 12, frequency: 0.006, speed: 0.001, color: 'rgba(45, 155, 131, 0.08)', offset: 4 },
+          { amplitude: 34, frequency: 0.009, speed: 0.0008, color: 'rgba(31, 247, 242, 0.26)', offset: 0, width: 1.2 },
+          { amplitude: 26, frequency: 0.012, speed: 0.001, color: 'rgba(122, 190, 255, 0.16)', offset: 2.2, width: 1 },
+          { amplitude: 18, frequency: 0.016, speed: 0.0013, color: 'rgba(240, 82, 216, 0.14)', offset: 4.4, width: 1 },
         ];
 
         waves.forEach(wave => {
-          ctx.beginPath();
-          ctx.moveTo(0, h);
+          for (let line = -5; line <= 5; line += 1) {
+            ctx.beginPath();
 
-          for (let x = 0; x <= w; x += 2) {
-            const y = h / 2
-              + Math.sin(x * wave.frequency + time * wave.speed + wave.offset) * wave.amplitude
-              + Math.sin(x * wave.frequency * 0.5 + time * wave.speed * 1.3) * wave.amplitude * 0.4;
-            ctx.lineTo(x, y);
+            for (let x = 0; x <= w; x += 3) {
+              const center = h * 0.55 + line * 11;
+              const y = center
+                + Math.sin(x * wave.frequency + time * wave.speed + wave.offset + line * 0.22) * wave.amplitude
+                + Math.sin(x * wave.frequency * 0.52 + time * wave.speed * 1.3) * wave.amplitude * 0.38;
+
+              if (x === 0) {
+                ctx.moveTo(x, y);
+              } else {
+                ctx.lineTo(x, y);
+              }
+            }
+
+            ctx.strokeStyle = wave.color;
+            ctx.lineWidth = wave.width;
+            ctx.stroke();
           }
-
-          ctx.lineTo(w, h);
-          ctx.closePath();
-          ctx.fillStyle = wave.color;
-          ctx.fill();
         });
 
         animationId = requestAnimationFrame(() => drawWave(time + 16));
