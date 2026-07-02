@@ -1062,14 +1062,31 @@
     }
 
     .work-shot--roofing img {
-      object-position: center top;
-      filter: saturate(1.05) contrast(1.06) brightness(0.92);
+      width: min(82%, 460px);
+      object-position: center center;
+      filter: saturate(1.02) contrast(1.06) brightness(0.98);
     }
 
     .work-shot--roofing::before {
       background:
-        linear-gradient(135deg, rgba(180, 60, 40, 0.28), transparent 55%),
-        linear-gradient(180deg, transparent 40%, rgba(12, 15, 20, 0.45));
+        linear-gradient(135deg, rgba(14, 35, 64, 0.16), transparent 55%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(12, 15, 20, 0.3));
+    }
+
+    .portfolio-preview-phone {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      z-index: 3;
+      padding: 0.45rem 0.7rem;
+      border-radius: 6px;
+      background: rgba(12, 15, 20, 0.76);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: var(--text-light);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      line-height: 1;
+      letter-spacing: 0.04em;
     }
 
     .work-shot-header {
