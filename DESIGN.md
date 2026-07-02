@@ -19,7 +19,7 @@ The landing page top follows the provided July 2026 reference: dark technical st
 - Navigation floats over the dark hero with a neon outline CTA.
 - Hero copy sits left-of-center with a single-line headline at large viewports: `Find your pulse.`
 - Right art is code-native glass UI: tilted device slab behind a launch-stack proof card.
-- Capability cards describe the wider offer: one-on-one marketing design, aggressive SEO, social media integration, AI phone/chat, automations, and business integrations.
+- Capability cards stay close to the three-tile reference composition while describing the wider offer: one-on-one marketing design, SEO plus social growth, and business integrations including AI phone/chat, automations, CRM, analytics, and ops tools.
 - The waveform is ambient and line-based, not a filled illustration.
 - The bottom ticker is a dark band with cyan uppercase service labels and dot separators.
 
