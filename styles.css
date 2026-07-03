@@ -871,6 +871,14 @@
       z-index: 1;
     }
 
+    .inner-hero picture {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
     .inner-hero img {
       position: absolute;
       inset: 0;
@@ -1161,6 +1169,12 @@
 
     .portfolio-card:not(.featured) .portfolio-preview {
       height: 260px;
+    }
+
+    .portfolio-preview picture {
+      display: block;
+      width: 100%;
+      height: 100%;
     }
 
     .portfolio-preview img {

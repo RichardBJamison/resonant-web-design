@@ -1,0 +1,7 @@
+name = "rwd-www-redirect"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[[routes]]
+pattern = "www.resonantwebdesign.com/*"
+zone_name = "resonantwebdesign.com"
