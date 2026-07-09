@@ -4,8 +4,8 @@
     :root {
       --bg-light: #FAFAF8;
       --bg-tinted: #F0F0EC;
-      --bg-dark: #141820;
-      --bg-darker: #0C0F14;
+      --bg-dark: #141820;   /* primary night surface: portfolio, FAQ, contact, footer */
+      --bg-darker: #0C0F14; /* deeper accents only (cards, overlays) */
       --text-primary: #1A1A1A;
       --text-secondary: #5A6474;
       --text-light: #E8E6E1;
@@ -734,7 +734,7 @@
        TICKER — continuous GPU marquee (not stepped)
        ======================================== */
     .ticker {
-      background: #000;
+      background: var(--bg-dark);
       padding: 0.94rem 0 0.98rem;
       overflow: hidden;
       position: relative;
@@ -779,7 +779,7 @@
 
     .ticker-spacer {
       height: clamp(0.98rem, 1.87vw, 1.66rem);
-      background: #000;
+      background: var(--bg-dark);
     }
 
     .ticker-item {
@@ -1266,6 +1266,7 @@
     }
 
     .home-faq {
+      /* Same night black as portfolio + contact */
       background: var(--bg-dark);
       color: #fff;
     }
@@ -2626,7 +2627,8 @@
        CONTACT
        ======================================== */
     .contact-section {
-      background: #000;
+      /* Match portfolio / FAQ night surface — not pure #000 */
+      background: var(--bg-dark);
       color: #fff;
       text-align: center;
       padding-top: 8rem;
@@ -2715,7 +2717,7 @@
        FOOTER
        ======================================== */
     .footer {
-      background: var(--bg-darker);
+      background: var(--bg-dark);
       color: var(--text-muted);
       padding: 4rem 3rem;
     }
