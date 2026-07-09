@@ -9,6 +9,8 @@ Resonant Web Design is a selective web design and development studio led by Rich
 - Hosting, maintenance, and launch systems
 - Support for service businesses, SaaS, and portfolio sites
 - Landscaping website design and local SEO page architecture
+- Restaurant website design, hospitality SEO, booking flows, and operational marketing
+- Hospitality systems perspective through Open Source Barware and Intelligent Hospitality Systems
 
 ## Positioning
 
@@ -24,6 +26,9 @@ Resonant Web Design is a selective web design and development studio led by Rich
 - Custom Web Design: https://resonantwebdesign.com/services/custom-web-design/
 - SEO Foundations: https://resonantwebdesign.com/services/seo-foundations/
 - Landscaping Website Design: https://resonantwebdesign.com/industries/landscaping-web-design/
+- Restaurant Website Design and Hospitality Marketing: https://resonantwebdesign.com/industries/restaurants-hospitality-web-design/
+- Open Source Barware: https://opensourcebarware.com/
+- Intelligent Hospitality Systems: https://intelligenthospitalitysystems.com/
 
 ## Contact
 

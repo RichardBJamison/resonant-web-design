@@ -116,7 +116,9 @@
           "Business Automation",
           "Launch Systems",
           "Hosting and Care",
-          "Landscaping Website Design"
+          "Landscaping Website Design",
+          "Restaurant Website Design",
+          "Hospitality Marketing"
         ],
         "provider": {
           "@id": "https://resonantwebdesign.com/#organization"
@@ -124,7 +126,60 @@
         "areaServed": {
           "@type": "Country",
           "name": "United States"
-        }
+        },
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "SEO and Marketing",
+            "price": "699",
+            "priceCurrency": "USD",
+            "description": "SEO, Google Maps support, AI optimization, social media, and conversion-focused marketing."
+          },
+          {
+            "@type": "Offer",
+            "name": "Web Development",
+            "price": "999",
+            "priceCurrency": "USD",
+            "description": "High-performance website design and development for growing service businesses."
+          },
+          {
+            "@type": "Offer",
+            "name": "High-Level Development",
+            "price": "6999",
+            "priceCurrency": "USD",
+            "description": "Advanced web systems, AI phone, restaurant inventory management, OpenTable integrations, ordering, and operational workflows."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://resonantwebdesign.com/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What services does Resonant Web Design offer?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Resonant offers web design, web development, SEO, hospitality marketing, system integrations, AI phone and chat workflows, analytics, social media support, and operational web systems."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What do Resonant websites start at?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SEO and marketing starts at $699, growth web development starts at $999, and high-level development systems start at $6,999."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can Resonant help restaurants and bars?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Resonant builds restaurant websites, hospitality SEO, OpenTable integrations, online ordering paths, AI phone systems, social media support, and inventory or operations systems connected to Open Source Barware and Intelligent Hospitality Systems."
+            }
+          }
+        ]
       }
     ]
   }
@@ -167,7 +222,7 @@
           Find your <span class="accent">pulse.</span>
         </h1>
         <p class="hero-subtitle">
-          Resonant Web Design builds 1:1 marketing design, aggressive SEO, social and AI systems, automations, and integrations behind web experiences that grow real businesses.
+          Ohio web design, SEO, hospitality marketing, and business systems for service companies that need the website to bring in work and move information after the lead arrives.
         </p>
         <div class="hero-ctas">
           <a href="#work" class="btn btn-primary">
@@ -221,23 +276,40 @@
   </section>
 
   <div class="ticker" aria-hidden="true">
-    <div class="ticker-track" id="ticker-track">
-      <span class="ticker-item">E-Commerce</span>
-      <span class="ticker-item">Hosting</span>
-      <span class="ticker-item">Landing Pages</span>
-      <span class="ticker-item">Service Pages</span>
-      <span class="ticker-item">Portfolio Pages</span>
-      <span class="ticker-item">SaaS Interfaces</span>
-      <span class="ticker-item">Next.js</span>
-      <span class="ticker-item">React</span>
-      <span class="ticker-item">E-Commerce</span>
-      <span class="ticker-item">Hosting</span>
-      <span class="ticker-item">Landing Pages</span>
-      <span class="ticker-item">Service Pages</span>
-      <span class="ticker-item">Portfolio Pages</span>
-      <span class="ticker-item">SaaS Interfaces</span>
-      <span class="ticker-item">Next.js</span>
-      <span class="ticker-item">React</span>
+    <div class="ticker-track ticker-track--top" id="ticker-track">
+      <span class="ticker-item ticker-item--purple">#JAVASCRIPT</span>
+      <span class="ticker-item">#CSS</span>
+      <span class="ticker-item">#HTML</span>
+      <span class="ticker-item ticker-item--purple">#PHP</span>
+      <span class="ticker-item">#BACKEND</span>
+      <span class="ticker-item">#API</span>
+      <span class="ticker-item ticker-item--purple">#NODEJS</span>
+      <span class="ticker-item">#CMS</span>
+      <span class="ticker-item">#WORDPRESS</span>
+      <span class="ticker-item ticker-item--purple">#JAVASCRIPT</span>
+      <span class="ticker-item">#CSS</span>
+      <span class="ticker-item">#HTML</span>
+      <span class="ticker-item ticker-item--purple">#PHP</span>
+      <span class="ticker-item">#BACKEND</span>
+      <span class="ticker-item">#API</span>
+      <span class="ticker-item ticker-item--purple">#NODEJS</span>
+      <span class="ticker-item">#CMS</span>
+      <span class="ticker-item">#WORDPRESS</span>
+    </div>
+    <div class="ticker-spacer"></div>
+    <div class="ticker-track ticker-track--bottom">
+      <span class="ticker-item ticker-item--cyan">#ANIMATION</span>
+      <span class="ticker-item">#RESPONSIVE</span>
+      <span class="ticker-item">#DESIGN</span>
+      <span class="ticker-item ticker-item--cyan">#LOGO</span>
+      <span class="ticker-item">#INTERFACES</span>
+      <span class="ticker-item">#GRAPHICS</span>
+      <span class="ticker-item ticker-item--cyan">#ANIMATION</span>
+      <span class="ticker-item">#RESPONSIVE</span>
+      <span class="ticker-item">#DESIGN</span>
+      <span class="ticker-item ticker-item--cyan">#LOGO</span>
+      <span class="ticker-item">#INTERFACES</span>
+      <span class="ticker-item">#GRAPHICS</span>
     </div>
   </div>
 
@@ -324,11 +396,11 @@
           </div>
           <div class="portfolio-info">
             <h3 class="portfolio-name">Open Source Barware <span class="arrow">↗</span></h3>
-            <p class="portfolio-desc">Free bar inventory system built by bartenders and tested in a real restaurant. No subscriptions, no upsells — a full toolkit that works.</p>
+            <p class="portfolio-desc">Free bar inventory system built by bartenders and tested in a real restaurant. Voice-walk counts, variance tracking, optional invoice photo reading, no subscriptions, no vendor lock-in.</p>
             <div class="portfolio-tags">
               <span class="portfolio-tag">Open Source</span>
-              <span class="portfolio-tag">SaaS</span>
-              <span class="portfolio-tag">Next.js</span>
+              <span class="portfolio-tag">Hospitality</span>
+              <span class="portfolio-tag">Inventory</span>
             </div>
           </div>
         </a>
@@ -353,7 +425,21 @@
         </a>
       </div>
 
-      <div class="systems-showcase reveal reveal-delay-2" aria-label="Automation and agency systems">
+      <div class="systems-showcase reveal reveal-delay-2" aria-label="Restaurant and hospitality marketing systems">
+        <div class="systems-copy">
+          <p class="systems-kicker">Hospitality Stack</p>
+          <h3>Restaurant marketing tied to real operating systems.</h3>
+          <p>Resonant can build the website, local SEO, menu/service pages, booking flow, and follow-up layer around the operational proof behind <a href="https://opensourcebarware.com" target="_blank" rel="noopener">Open Source Barware</a> and <a href="https://intelligenthospitalitysystems.com" target="_blank" rel="noopener">Intelligent Hospitality Systems</a>.</p>
+          <div class="systems-capabilities">
+            <span>Restaurant Websites</span>
+            <span>Bar Inventory</span>
+            <span>Local SEO</span>
+            <span>Booking Flow</span>
+            <span>Vendor-Agnostic Ops</span>
+            <span>Analytics</span>
+          </div>
+          <a href="/industries/restaurants-hospitality-web-design/" class="btn btn-primary">Explore Restaurant Marketing</a>
+        </div>
         <div class="systems-stage" aria-hidden="true">
           <div class="systems-dashboard">
             <div class="systems-dashboard-top">
@@ -361,175 +447,131 @@
             </div>
             <div class="systems-dashboard-grid">
               <div>
-                <span>Leads</span>
-                <strong>42</strong>
+                <span>Inventory</span>
+                <strong>$0</strong>
               </div>
               <div>
-                <span>Booked</span>
-                <strong>18</strong>
+                <span>Steps</span>
+                <strong>3</strong>
               </div>
               <div>
-                <span>Calls</span>
-                <strong>31</strong>
+                <span>Vendor Lock</span>
+                <strong>No</strong>
               </div>
               <div>
-                <span>Revenue Path</span>
+                <span>Ops Layer</span>
                 <strong>Live</strong>
               </div>
             </div>
             <div class="systems-chart">
-              <span style="height: 38%;"></span>
-              <span style="height: 64%;"></span>
               <span style="height: 52%;"></span>
-              <span style="height: 78%;"></span>
-              <span style="height: 88%;"></span>
+              <span style="height: 72%;"></span>
+              <span style="height: 48%;"></span>
+              <span style="height: 84%;"></span>
+              <span style="height: 90%;"></span>
             </div>
           </div>
 
           <div class="systems-phone systems-phone--left">
             <div class="systems-phone-screen">
-              <span>AI Reception</span>
-              <p>New quote request</p>
-              <strong>Forward to sales</strong>
+              <span>Open Source Barware</span>
+              <p>Count. Reconcile. Process.</p>
+              <strong>Free forever</strong>
             </div>
           </div>
 
           <div class="systems-phone systems-phone--right">
             <div class="systems-phone-screen booking">
-              <span>Booking</span>
-              <p>Patio estimate</p>
-              <strong>Thu 2:30 PM</strong>
+              <span>IHS</span>
+              <p>One interface for every vendor.</p>
+              <strong>Unified command</strong>
             </div>
           </div>
 
           <div class="systems-chat">
-            <span>Website Chat</span>
-            <p>Ask a question, qualify the lead, book the next step.</p>
-          </div>
-        </div>
-
-        <div class="systems-copy">
-          <p class="systems-kicker">Beyond The Website</p>
-          <h3>Websites that can answer, route, book, track, and report.</h3>
-          <p>Once the site is live, we can connect the operational layer behind it: chatbots, AI answering services, AI scheduling, call forwarding, analytics, and an agency admin view that shows where leads are coming from.</p>
-          <div class="systems-capabilities">
-            <span>Chatbots</span>
-            <span>AI Answering</span>
-            <span>AI Scheduling</span>
-            <span>Forwarding</span>
-            <span>Analytics</span>
-            <span>Admin Dashboard</span>
-            <span>Mobile Sales Tools</span>
-            <span>Restaurant Booking</span>
+            <span>Venue Growth</span>
+            <p>Website, search, booking, inventory, and reporting aligned around the floor.</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section class="section" id="services">
-    <div class="section-inner">
-      <p class="section-eyebrow reveal">What We Do</p>
-      <h2 class="section-title reveal reveal-delay-1">
-        The whole web stack,<br>shaped around the offer.
-      </h2>
-      <p class="section-subtitle reveal reveal-delay-2">
-        Landing pages, deep service pages, SaaS front ends, automations, analytics, search, and care plans. Built as one system instead of disconnected pieces.
-      </p>
+      <div class="pricing-section pricing-section--in-work" id="pricing">
+        <h2 class="pricing-title reveal">Services</h2>
+        <div class="pricing-grid">
+          <article class="pricing-card reveal reveal-delay-1">
+            <span class="pricing-pill">SEO &amp; Marketing</span>
+            <div class="pricing-copy">
+              <h3>Get new clients</h3>
+              <p>Revenue-driven strategies combining technical SEO, Google Maps support, AI optimization, social media, and conversion-focused content to bring ready-to-buy customers.</p>
+            </div>
+            <div class="pricing-price">
+              <span>Starting at</span>
+              <strong>$699</strong>
+              <em>/mo</em>
+            </div>
+            <a href="mailto:me@richardbjamison.com?subject=Resonant%20SEO%20and%20Marketing" class="pricing-button">Unlock Revenue</a>
+          </article>
 
-      <div class="services-grid">
-        <div class="service-card reveal reveal-delay-1">
-          <div class="service-icon design">◆</div>
-          <h3>Web Design</h3>
-          <p>Custom visual identity grounded in your brand and audience. Not pulled from a template library — built from your story.</p>
-          <a href="/services/custom-web-design/" class="service-link">Explore custom web design</a>
+          <article class="pricing-card reveal reveal-delay-2">
+            <span class="pricing-pill pricing-pill--dark">Web Development</span>
+            <div class="pricing-copy">
+              <h3>Grow your business</h3>
+              <p>High-performance websites, service pages, landing pages, analytics, local lead paths, booking flows, and launch support built around your offer.</p>
+            </div>
+            <div class="pricing-price">
+              <span>Starting at</span>
+              <strong>$999</strong>
+            </div>
+            <a href="mailto:me@richardbjamison.com?subject=Resonant%20Web%20Development" class="pricing-button">Design Performance</a>
+          </article>
+
+          <article class="pricing-card reveal reveal-delay-3">
+            <span class="pricing-pill pricing-pill--accent">Enterprise</span>
+            <div class="pricing-copy">
+              <h3>High-level development</h3>
+              <p>Advanced systems for serious operators: restaurant full inventory management, phone AI, OpenTable integrations, social media, online ordering, dashboards, APIs, and workflow automation.</p>
+            </div>
+            <div class="pricing-price">
+              <span>Starting at</span>
+              <strong>$6,999</strong>
+            </div>
+            <a href="mailto:me@richardbjamison.com?subject=Resonant%20High-Level%20Development" class="pricing-button">Engineer Solution</a>
+          </article>
         </div>
-        <div class="service-card reveal reveal-delay-2">
-          <div class="service-icon dev">◇</div>
-          <h3>Development</h3>
-          <p>Fast, responsive, production-ready code. Next.js, React, WordPress — whatever the project needs, built to perform.</p>
-          <a href="/services/custom-web-design/" class="service-link">See the build process</a>
-        </div>
-        <div class="service-card reveal reveal-delay-3">
-          <div class="service-icon seo">○</div>
-          <h3>SEO &amp; Content</h3>
-          <p>Found by the right people, ranked where it matters. Technical SEO, content strategy, and analytics that tell you something useful.</p>
-          <a href="/services/seo-foundations/" class="service-link">Explore SEO foundations</a>
-        </div>
-        <div class="service-card reveal reveal-delay-4">
-          <div class="service-icon hosting">□</div>
-          <h3>System Integrations</h3>
-          <p>APIs, automations, AI phone and chat, forms, CRM handoffs, analytics, and internal tools connected to the site.</p>
-          <a href="/services/system-integrations/" class="service-link">Explore integrations</a>
+
+        <div class="partner-banner reveal reveal-delay-2">
+          <div>
+            <strong>Know a brand that needs our services?</strong>
+            <p>Earn $200 - $5000 cash for each referral that becomes a client.</p>
+          </div>
+          <a href="mailto:me@richardbjamison.com?subject=Resonant%20Referral%20Partner" class="partner-button">Become A Partner</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section page-system" id="page-system">
-    <div class="section-inner page-system-inner">
-      <div>
-        <p class="section-eyebrow reveal">Built Deep</p>
-        <h2 class="section-title reveal reveal-delay-1">
-          A landing page is only the front door.
-        </h2>
-        <p class="section-subtitle reveal reveal-delay-2">
-          Resonant sites are planned as page systems: a sharp first impression, then the deeper service, proof, and conversion paths serious buyers expect.
-        </p>
+  <section class="compact-stack section" id="services">
+    <span id="process" class="section-anchor" aria-hidden="true"></span>
+    <div class="section-inner compact-stack-inner">
+      <div class="compact-stack-copy reveal">
+        <p class="section-eyebrow">What We Do</p>
+        <h2>One web stack, shaped around the offer.</h2>
+        <p>Strategy, design, SEO, development, integrations, analytics, and launch support handled as one connected system.</p>
       </div>
-      <div class="page-map reveal reveal-delay-2">
-        <div class="page-map-row active">
-          <span>01</span>
-          <strong>Home</strong>
-          <em>positioning, proof, primary CTA</em>
-        </div>
-        <div class="page-map-row">
-          <span>02</span>
-          <strong><a href="/services/custom-web-design/">Custom Web Design</a></strong>
-          <em>strategy, design, development, launch</em>
-        </div>
-        <div class="page-map-row">
-          <span>03</span>
-          <strong><a href="/services/seo-foundations/">SEO Foundations</a></strong>
-          <em>technical structure, content map, analytics</em>
-        </div>
-        <div class="page-map-row">
-          <span>04</span>
-          <strong><a href="/services/system-integrations/">System Integrations</a></strong>
-          <em>APIs, automations, AI phone/chat, CRM, analytics</em>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section class="section process" id="process">
-    <div class="section-inner">
-      <p class="section-eyebrow reveal">How We Work</p>
-      <h2 class="section-title reveal reveal-delay-1">Four steps. No mystery.</h2>
-      <p class="section-subtitle reveal reveal-delay-2">
-        Straightforward process, clear communication at every stage. You always know where your project stands.
-      </p>
+      <div class="compact-stack-panel reveal reveal-delay-1">
+        <div class="compact-service-grid">
+          <a href="/services/custom-web-design/"><strong>Web Design</strong><span>custom identity, page structure, launch</span></a>
+          <a href="/services/seo-foundations/"><strong>SEO &amp; Content</strong><span>technical structure, local search, content map</span></a>
+          <a href="/industries/restaurants-hospitality-web-design/"><strong>Restaurant Marketing</strong><span>hospitality SEO, booking, ordering, inventory proof</span></a>
+          <a href="/services/system-integrations/"><strong>Integrations</strong><span>AI phone/chat, CRM, APIs, analytics</span></a>
+        </div>
 
-      <div class="process-track">
-        <div class="process-step reveal reveal-delay-1">
-          <div class="process-number">1</div>
-          <h3>Discovery</h3>
-          <p>We learn your business, your audience, and what success actually looks like for you.</p>
-        </div>
-        <div class="process-step reveal reveal-delay-2">
-          <div class="process-number">2</div>
-          <h3>Design</h3>
-          <p>Visual concepts rooted in what makes your business different. You see it before we build it.</p>
-        </div>
-        <div class="process-step reveal reveal-delay-3">
-          <div class="process-number">3</div>
-          <h3>Build</h3>
-          <p>Clean code, real content, tested on every device. No placeholder pages or half-finished sections.</p>
-        </div>
-        <div class="process-step reveal reveal-delay-4">
-          <div class="process-number">4</div>
-          <h3>Launch</h3>
-          <p>Go live with confidence. DNS, hosting, analytics — we handle the technical details.</p>
+        <div class="compact-process">
+          <span>01 Discovery</span>
+          <span>02 Design</span>
+          <span>03 Build</span>
+          <span>04 Launch</span>
         </div>
       </div>
     </div>
@@ -557,6 +599,54 @@
             <p>No recycled template dressed up with a new logo. Each site is built around the business, the offer, the buyer, and the long-term search strategy.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-faq section" id="faq">
+    <div class="section-inner home-faq-inner">
+      <h2 class="home-faq-title reveal">FAQ</h2>
+      <div class="home-faq-list reveal reveal-delay-1">
+        <details>
+          <summary>What services does Resonant offer?</summary>
+          <p>Web design, web development, SEO, hospitality marketing, social media support, system integrations, AI phone and chat, analytics, ordering paths, and operational workflows.</p>
+        </details>
+        <details>
+          <summary>How can I call?</summary>
+          <p>Email me@richardbjamison.com to start. If the project is a fit, we can move to a call and map the fastest useful path.</p>
+        </details>
+        <details>
+          <summary>What sets your web design apart?</summary>
+          <p>The site is built around the business model, the offer, the buyer, the search strategy, and the systems that need to work after launch.</p>
+        </details>
+        <details>
+          <summary>Can you provide examples?</summary>
+          <p>Yes. Current examples include Ohio Valley Land Partners, Open Source Barware, Intelligent Hospitality Systems, DJ Landscaping, and lead-generation demos.</p>
+        </details>
+        <details>
+          <summary>How long does it take?</summary>
+          <p>Focused launch pages can move quickly. Full service websites, SEO systems, and integrations depend on content, scope, and how much operational logic is involved.</p>
+        </details>
+        <details>
+          <summary>What is the cost?</summary>
+          <p>SEO and marketing starts at $699/month, growth web development starts at $999, and high-level development starts at $6,999.</p>
+        </details>
+        <details>
+          <summary>Do you offer ongoing support?</summary>
+          <p>Yes. Ongoing support can include SEO cadence, content updates, analytics, care plans, technical changes, integrations, and campaign tracking.</p>
+        </details>
+        <details>
+          <summary>Can you help with SEO?</summary>
+          <p>Yes. SEO is handled from the first planning pass: technical cleanup, page architecture, local search, structured data, internal links, and content strategy.</p>
+        </details>
+        <details>
+          <summary>Do you offer e-commerce?</summary>
+          <p>Yes. That can include product pages, ordering paths, payment flows, inventory-adjacent workflows, and analytics for what sells.</p>
+        </details>
+        <details>
+          <summary>What industries do you work with?</summary>
+          <p>Current focus areas include restaurants, bars, hospitality operators, landscapers, roofers, land and real estate operators, SaaS tools, and serious service businesses.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -611,18 +701,26 @@
     </div>
   </section>
 
-  <section class="section final-cta" id="contact">
+  <section class="contact-section section" id="contact">
     <div class="section-inner">
-      <p class="section-eyebrow reveal">Ready?</p>
-      <h2 class="section-title reveal reveal-delay-1">
-        Let's build something<br>worth talking about.
-      </h2>
-      <p class="section-subtitle reveal reveal-delay-2">
-        Tell us about your project. We'll get back within 24 hours with an honest assessment and a clear path forward.
-      </p>
-      <a href="mailto:me@richardbjamison.com?subject=Resonant%20Web%20Design%20%E2%80%94%20Project%20Inquiry" class="btn btn-primary reveal reveal-delay-3">
-        Start a Conversation <span class="btn-arrow">→</span>
-      </a>
+      <h2 class="contact-title reveal">Contact Us</h2>
+      <form class="contact-form reveal reveal-delay-1" action="mailto:me@richardbjamison.com" method="post" enctype="text/plain">
+        <label class="sr-only" for="contact-name">Name</label>
+        <input id="contact-name" name="name" type="text" placeholder="Name" autocomplete="name">
+
+        <div class="contact-row">
+          <label class="sr-only" for="contact-phone">Phone</label>
+          <input id="contact-phone" name="phone" type="tel" placeholder="Phone" autocomplete="tel">
+
+          <label class="sr-only" for="contact-email">Email</label>
+          <input id="contact-email" name="email" type="email" placeholder="Email" autocomplete="email">
+        </div>
+
+        <label class="sr-only" for="contact-message">Write Message</label>
+        <textarea id="contact-message" name="message" placeholder="Write Message" rows="3"></textarea>
+
+        <button type="submit">Get A Call</button>
+      </form>
     </div>
   </section>
 
@@ -638,7 +736,8 @@
           <li><a href="/services/custom-web-design/">Custom Web Design</a></li>
           <li><a href="/services/seo-foundations/">SEO Foundations</a></li>
           <li><a href="/services/system-integrations/">System Integrations</a></li>
-          <li><a href="#services">Hosting &amp; Care</a></li>
+          <li><a href="/industries/restaurants-hospitality-web-design/">Restaurant Marketing</a></li>
+          <li><a href="/industries/landscaping-web-design/">Landscaping Websites</a></li>
         </ul>
       </div>
       <div class="footer-col">

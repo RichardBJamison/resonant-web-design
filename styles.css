@@ -250,6 +250,18 @@
       transition: width 0.1s linear;
     }
 
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     /* ========================================
        HERO
        ======================================== */
@@ -722,44 +734,63 @@
        TICKER
        ======================================== */
     .ticker {
-      background: #131a24;
-      padding: 0.7rem 0;
+      background: #000;
+      padding: 0.94rem 0 0.98rem;
       overflow: hidden;
       position: relative;
-      border-top: 1px solid rgba(244, 251, 255, 0.08);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-      box-shadow: inset 0 1px 0 rgba(31, 247, 242, 0.08);
+      z-index: 5;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     }
 
     .ticker-track {
       display: flex;
       width: max-content;
-      animation: tickerScroll 30s linear infinite;
+      animation: tickerScroll 36s linear infinite;
+      will-change: transform;
+    }
+
+    .ticker-track--bottom {
+      transform: translateX(-18%);
+      animation-name: tickerScrollReverse;
+      animation-duration: 34s;
+    }
+
+    .ticker-spacer {
+      height: clamp(0.98rem, 1.87vw, 1.66rem);
+      background: #000;
     }
 
     .ticker-item {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.78rem;
-      color: var(--cyan);
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-size: clamp(3.6rem, 4.46vw, 4.46rem);
+      line-height: 0.86;
+      color: rgba(255, 255, 255, 0.58);
       white-space: nowrap;
-      padding: 0 2.25rem;
-      letter-spacing: 0.05em;
+      padding: 0 1.8rem;
+      letter-spacing: 0;
       text-transform: uppercase;
-      text-shadow: 0 0 14px rgba(31, 247, 242, 0.28);
     }
 
-    .ticker-item::after {
-      content: '•';
-      margin-left: 2.25rem;
-      opacity: 0.9;
-      font-size: 0.7rem;
-      vertical-align: middle;
+    .ticker-item--purple {
+      color: #ff4fd8;
+      text-shadow: 0 0 18px rgba(255, 79, 216, 0.28);
+    }
+
+    .ticker-item--cyan {
+      color: #26eee7;
+      text-shadow: 0 0 18px rgba(38, 238, 231, 0.28);
     }
 
     @keyframes tickerScroll {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
+    }
+
+    @keyframes tickerScrollReverse {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
     }
 
     /* ========================================
@@ -1091,6 +1122,323 @@
 
     .dark-band .proof-card h3 {
       color: var(--text-light);
+    }
+
+    .rich-copy a,
+    .systems-copy a {
+      color: var(--accent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.18em;
+    }
+
+    /* ========================================
+       COMPACT STACK
+       ======================================== */
+    .compact-stack {
+      background: var(--bg-light);
+      padding-top: 3.6rem;
+      padding-bottom: 3.6rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .section-anchor {
+      display: block;
+      position: relative;
+      top: -5rem;
+      visibility: hidden;
+    }
+
+    .compact-stack-inner {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.38fr) minmax(0, 0.62fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .compact-stack-copy h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4.5vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: 0;
+      margin: 0.8rem 0 1rem;
+      max-width: 520px;
+    }
+
+    .compact-stack-copy p:not(.section-eyebrow) {
+      color: var(--text-secondary);
+      max-width: 440px;
+      line-height: 1.62;
+    }
+
+    .compact-stack-panel {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .compact-service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .compact-service-grid a {
+      min-height: 104px;
+      padding: 1rem;
+      border: 1px solid var(--border-light);
+      background: rgba(255, 255, 255, 0.68);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text-primary);
+      display: grid;
+      align-content: start;
+      gap: 0.35rem;
+    }
+
+    .compact-service-grid strong {
+      font-size: 0.96rem;
+      line-height: 1.15;
+    }
+
+    .compact-service-grid span {
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .compact-process {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.6rem;
+    }
+
+    .compact-process span {
+      border: 1px solid var(--border-light);
+      background: rgba(255, 255, 255, 0.52);
+      border-radius: 999px;
+      padding: 0.7rem 0.75rem;
+      color: var(--text-primary);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* ========================================
+       PRICING + FAQ
+       ======================================== */
+    .pricing-section {
+      background: transparent;
+      color: #fff;
+    }
+
+    .home-faq {
+      background: var(--bg-dark);
+      color: #fff;
+    }
+
+    .pricing-title {
+      font-family: var(--font-body);
+      font-size: clamp(4.5rem, 8vw, 7rem);
+      line-height: 0.86;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      margin-bottom: 3.5rem;
+    }
+
+    .pricing-section--in-work {
+      margin-top: 3.5rem;
+      padding-top: 0.5rem;
+      background: transparent;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2rem;
+    }
+
+    .pricing-card {
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 2rem;
+      background: #f7f7f5;
+      color: #050505;
+      border-radius: 8px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .pricing-pill {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 42px;
+      padding: 0.4rem 1.35rem;
+      border: 1.5px solid rgba(0, 0, 0, 0.64);
+      border-radius: 999px;
+      color: #333;
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .pricing-pill--dark {
+      background: #2b2b2b;
+      color: #f7f7f5;
+      border-color: #2b2b2b;
+    }
+
+    .pricing-pill--accent {
+      background: #c9ff08;
+      color: #1d1d1d;
+      border-color: rgba(0, 0, 0, 0.64);
+    }
+
+    .pricing-copy h3 {
+      font-family: var(--font-body);
+      font-size: clamp(1.35rem, 2vw, 1.8rem);
+      line-height: 1.05;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+    }
+
+    .pricing-copy p {
+      color: #1e1e1e;
+      font-size: 1.03rem;
+      line-height: 1.45;
+    }
+
+    .pricing-price span {
+      display: block;
+      font-size: 1.2rem;
+      line-height: 1;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .pricing-price strong {
+      display: inline-block;
+      font-size: clamp(4.4rem, 7vw, 6rem);
+      line-height: 0.92;
+      letter-spacing: 0;
+      font-weight: 800;
+    }
+
+    .pricing-price em {
+      font-style: normal;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .pricing-button,
+    .partner-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 66px;
+      border-radius: 999px;
+      background: #000;
+      color: #fff;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 0;
+      padding: 1rem 1.5rem;
+      text-align: center;
+    }
+
+    .partner-banner {
+      margin: 3.25rem auto 0;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 8px;
+      min-height: 132px;
+      padding: 1.9rem 2rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .partner-banner strong {
+      display: block;
+      font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+      line-height: 1.15;
+    }
+
+    .partner-banner p {
+      margin-top: 0.35rem;
+      color: rgba(255, 255, 255, 0.62);
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      line-height: 1.24;
+    }
+
+    .partner-button {
+      min-width: 300px;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .home-faq-inner {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.28fr) minmax(0, 0.72fr);
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .home-faq-title {
+      position: sticky;
+      top: 6rem;
+      font-family: var(--font-body);
+      font-size: clamp(4.75rem, 9vw, 8rem);
+      line-height: 0.82;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .home-faq-list {
+      display: grid;
+    }
+
+    .home-faq-list details {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.68);
+      padding: 1.2rem 0 1.3rem;
+    }
+
+    .home-faq-list summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: clamp(1.9rem, 4vw, 3.25rem);
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .home-faq-list summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .home-faq-list summary::before {
+      content: '+';
+      display: inline-block;
+      width: 1.2em;
+      color: #fff;
+    }
+
+    .home-faq-list details[open] summary::before {
+      content: '-';
+    }
+
+    .home-faq-list p {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin: 1rem 0 0 3.4rem;
+      max-width: 720px;
     }
 
     /* Reveal animation */
@@ -2241,43 +2589,92 @@
     }
 
     /* ========================================
-       FINAL CTA
+       CONTACT
        ======================================== */
-    .final-cta {
+    .contact-section {
+      background: #000;
+      color: #fff;
       text-align: center;
-      padding: 8rem 3rem;
-      position: relative;
-      overflow: hidden;
+      padding-top: 8rem;
+      padding-bottom: 8rem;
     }
 
-    .final-cta::before {
-      content: '';
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: rgba(232, 93, 48, 0.04);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      filter: blur(80px);
+    .contact-title {
+      font-family: var(--font-body);
+      font-size: clamp(4.8rem, 9vw, 8rem);
+      line-height: 0.86;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      margin-bottom: 3.5rem;
     }
 
-    .final-cta .section-title {
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      max-width: 700px;
-      margin: 0 auto 1rem;
-      position: relative;
+    .contact-form {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 2.5rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.075);
+      display: grid;
+      gap: 1.6rem;
     }
 
-    .final-cta .section-subtitle {
-      margin: 0 auto 2.5rem;
-      text-align: center;
+    .contact-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.6rem;
     }
 
-    .final-cta .btn {
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      border: 0;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.07);
+      color: #fff;
+      font: inherit;
+      font-size: 1.2rem;
+      font-weight: 700;
+      padding: 1.25rem 1.35rem;
+      outline: 1px solid transparent;
+      transition: background 0.25s ease, outline-color 0.25s ease;
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 86px;
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      background: rgba(255, 255, 255, 0.11);
+      outline-color: rgba(255, 255, 255, 0.38);
+    }
+
+    .contact-form button {
+      justify-self: center;
+      min-width: 210px;
+      min-height: 76px;
+      border: 0;
+      border-radius: 999px;
+      background: #fff;
+      color: #000;
+      font: inherit;
       font-size: 1.05rem;
-      padding: 1rem 2.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 1rem 2.3rem;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .contact-form button:hover {
+      transform: translateY(-2px);
+      background: #c9ff08;
     }
 
     /* ========================================
@@ -2552,6 +2949,15 @@
         grid-template-columns: 1fr;
       }
 
+      .compact-stack-inner,
+      .compact-service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .compact-process {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .offer-grid,
       .proof-grid,
       .faq-grid {
@@ -2579,11 +2985,51 @@
         gap: 2rem;
       }
 
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-card {
+        min-height: auto;
+      }
+
+      .partner-banner {
+        grid-template-columns: 1fr;
+      }
+
+      .partner-button {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .home-faq-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .home-faq-title {
+        position: static;
+      }
+
+      .compact-stack {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+      }
+
       .trust-points {
         grid-template-columns: 1fr;
       }
 
-      .final-cta { padding: 5rem 1.5rem; }
+      .contact-section { padding: 5rem 1.5rem; }
+
+      .contact-row {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-form {
+        padding: 1.25rem;
+      }
+
       .footer { padding: 3rem 1.5rem; }
 
       .footer-inner {
@@ -2614,6 +3060,47 @@
 
       .hero-title {
         font-size: clamp(3rem, 17vw, 3.8rem);
+      }
+
+      .ticker {
+        padding: 0.8rem 0 0.85rem;
+      }
+
+      .ticker-item {
+        font-size: clamp(2.72rem, 11.9vw, 3.74rem);
+        padding: 0 1rem;
+      }
+
+      .ticker-spacer {
+        height: 0.85rem;
+      }
+
+      .pricing-section,
+      .home-faq {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .pricing-title,
+      .contact-title,
+      .home-faq-title {
+        font-size: 3.8rem;
+      }
+
+      .pricing-card {
+        padding: 1.25rem;
+      }
+
+      .pricing-price strong {
+        font-size: 4rem;
+      }
+
+      .home-faq-list summary {
+        font-size: 1.75rem;
+      }
+
+      .home-faq-list p {
+        margin-left: 2.1rem;
       }
 
       .hero-capabilities {
