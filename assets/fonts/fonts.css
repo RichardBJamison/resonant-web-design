@@ -1,8 +1,8 @@
-/* Critical self-hosted fonts — lean set only (perf) */
+/* Self-hosted static fonts (not variable) — one face = one file */
 @font-face {
   font-family: 'DM Sans';
   font-style: normal;
-  font-weight: 300 600;
+  font-weight: 400;
   font-display: swap;
   src: url('./rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqYu28qmR9A.woff2') format('woff2');
 }
@@ -10,7 +10,64 @@
 @font-face {
   font-family: 'Syne';
   font-style: normal;
-  font-weight: 400 800;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./8vIH7w4qzmVxq2JB80z-.woff2') format('woff2');
+}
+
+/* Fallback weights map to same static files so the browser doesn't faux-bold */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('./rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqYu28qmR9A.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqYu28qmR9A.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqYu28qmR9A.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Syne';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./8vIH7w4qzmVxq2JB80z-.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Syne';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./8vIH7w4qzmVxq2JB80z-.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Syne';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./8vIH7w4qzmVxq2JB80z-.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Syne';
+  font-style: normal;
+  font-weight: 800;
   font-display: swap;
   src: url('./8vIH7w4qzmVxq2JB80z-.woff2') format('woff2');
 }
@@ -18,7 +75,15 @@
 @font-face {
   font-family: 'JetBrains Mono';
   font-style: normal;
-  font-weight: 400 500;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKDxLWxSsl.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
   font-display: swap;
   src: url('./tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKDxLWxSsl.woff2') format('woff2');
 }
