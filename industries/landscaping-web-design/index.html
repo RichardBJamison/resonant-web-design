@@ -8,13 +8,22 @@
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="author" content="Richard B. Jamison">
   <meta name="theme-color" content="#0C0F14">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K7RCVL5RFQ"></script>
+  <!-- Google Analytics — deferred until after load (perf) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-K7RCVL5RFQ');
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-K7RCVL5RFQ';
+        s.async = true;
+        s.onload = function () {
+          gtag('js', new Date());
+          gtag('config', 'G-K7RCVL5RFQ', { send_page_view: true });
+        };
+        document.head.appendChild(s);
+      }, 1800);
+    });
   </script>
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
@@ -35,9 +44,9 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqYu28qmR9A.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/8vIH7w4qzmVxq2JB80z-.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/styles.css?v=20260709-1609" as="style">
+  <link rel="preload" href="/styles.css?v=20260709-perf1" as="style">
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
-  <link rel="stylesheet" href="/styles.css?v=20260709-1609">
+  <link rel="stylesheet" href="/styles.css?v=20260709-perf1">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -139,10 +148,7 @@
 
   <main>
     <section class="inner-hero">
-      <picture>
-        <source srcset="/assets/img/work-dj-landscaping.webp" type="image/webp">
-        <img src="/assets/img/work-dj-landscaping.png" alt="Landscaping website homepage screenshot" fetchpriority="high" decoding="async">
-      </picture>
+      <img src="/assets/img/work-dj-landscaping.webp" alt="Landscaping website homepage screenshot" fetchpriority="high" decoding="async" loading="lazy">
       <div class="inner-hero-content">
         <div class="inner-hero-copy">
           <p class="breadcrumb"><a href="/">Home</a> / Landscaping Websites</p>
@@ -279,6 +285,6 @@
     </div>
   </footer>
 
-  <script src="/script.js?v=20260709-1609" defer></script>
+  <script src="/script.js?v=20260709-perf1" defer></script>
 </body>
 </html>

@@ -51,13 +51,19 @@
     const scrollProgress = document.getElementById('scroll-progress');
     if (!scrollProgress) return;
 
+    let ticking = false;
     window.addEventListener(
       'scroll',
       () => {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        scrollProgress.style.width = progress + '%';
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+          scrollProgress.style.width = progress + '%';
+          ticking = false;
+        });
       },
       { passive: true }
     );
@@ -128,9 +134,10 @@
 
     function resizeCanvas() {
       const container = canvas.parentElement;
-      canvas.width = container.offsetWidth * window.devicePixelRatio;
-      canvas.height = container.offsetHeight * window.devicePixelRatio;
-      ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      canvas.width = container.offsetWidth * dpr;
+      canvas.height = container.offsetHeight * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
     function drawWave(time) {
@@ -145,28 +152,26 @@
         { amplitude: 18, frequency: 0.016, speed: 0.0013, color: 'rgba(240, 82, 216, 0.14)', offset: 4.4, width: 1 },
       ];
 
+      // Lighter draw: fewer lines + larger x step; cap DPR for mobile perf
       waves.forEach((wave) => {
-        for (let line = -5; line <= 5; line += 1) {
+        for (let line = -2; line <= 2; line += 1) {
           ctx.beginPath();
-
-          for (let x = 0; x <= w; x += 3) {
-            const center = h * 0.55 + line * 11;
+          for (let x = 0; x <= w; x += 6) {
+            const center = h * 0.55 + line * 14;
             const y =
               center +
               Math.sin(x * wave.frequency + time * wave.speed + wave.offset + line * 0.22) * wave.amplitude +
               Math.sin(x * wave.frequency * 0.52 + time * wave.speed * 1.3) * wave.amplitude * 0.38;
-
             if (x === 0) ctx.moveTo(x, y);
             else ctx.lineTo(x, y);
           }
-
           ctx.strokeStyle = wave.color;
           ctx.lineWidth = wave.width;
           ctx.stroke();
         }
       });
 
-      animationId = requestAnimationFrame(() => drawWave(time + 16));
+      animationId = requestAnimationFrame(() => drawWave(time + 32));
     }
 
     function startWaveform() {

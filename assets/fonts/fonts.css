@@ -1,95 +1,24 @@
-@font-face {
-  font-family: 'DM Sans';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url('./rP2rp2ywxg089UriCZaSExd86J3t9jz86Mvy4qCRAL19DksVat-JDW3wRmYJp8I5.woff') format('woff');
-}
-
+/* Critical self-hosted fonts — lean set only (perf) */
 @font-face {
   font-family: 'DM Sans';
   font-style: normal;
-  font-weight: 300;
+  font-weight: 300 600;
   font-display: swap;
   src: url('./rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqYu28qmR9A.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'DM Sans';
+  font-family: 'Syne';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 400 800;
   font-display: swap;
-  src: url('./rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqYu28qmR9A.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('./rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqYu28qmR9A.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('./rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqYu28qmR9A.woff2') format('woff2');
+  src: url('./8vIH7w4qzmVxq2JB80z-.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'JetBrains Mono';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 400 500;
   font-display: swap;
   src: url('./tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKDxLWxSsl.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('./tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKDxLWxSsl.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Syne';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('./8vIH7w4qzmVxq2JB80z-.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Syne';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('./8vIH7w4qzmVxq2JB80z-.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Syne';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('./8vIH7w4qzmVxq2JB80z-.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Syne';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('./8vIH7w4qzmVxq2JB80z-.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Syne';
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url('./8vIH7w4qzmVxq2JB80z-.woff2') format('woff2');
 }

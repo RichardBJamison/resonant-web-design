@@ -3164,3 +3164,17 @@
         padding: 1.1rem;
       }
     }
+
+
+/* === PERF: below-fold content-visibility === */
+.work-section,
+.pricing-section,
+.compact-stack,
+.systems-showcase,
+.trust-band,
+.faq-section,
+.contact-section,
+.site-footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 800px;
+}

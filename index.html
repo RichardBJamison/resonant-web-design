@@ -9,14 +9,22 @@
   <meta name="author" content="Richard B. Jamison">
   <meta name="theme-color" content="#0C0F14">
   <meta name="application-name" content="Resonant Web Design">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K7RCVL5RFQ"></script>
+  <!-- Google Analytics — deferred until after load (perf) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-K7RCVL5RFQ');
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-K7RCVL5RFQ';
+        s.async = true;
+        s.onload = function () {
+          gtag('js', new Date());
+          gtag('config', 'G-K7RCVL5RFQ', { send_page_view: true });
+        };
+        document.head.appendChild(s);
+      }, 1800);
+    });
   </script>
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
@@ -39,9 +47,9 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="assets/fonts/rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqYu28qmR9A.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/8vIH7w4qzmVxq2JB80z-.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="styles.css?v=20260709-1609" as="style">
+  <link rel="preload" href="styles.css?v=20260709-perf1" as="style">
   <link rel="stylesheet" href="assets/fonts/fonts.css">
-  <link rel="stylesheet" href="styles.css?v=20260709-1609">
+  <link rel="stylesheet" href="styles.css?v=20260709-perf1">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -326,10 +334,7 @@
       <div class="portfolio-grid">
         <a class="portfolio-card featured reveal reveal-delay-2" href="https://ohiovalleylandpartners.com" target="_blank" rel="noopener">
           <div class="portfolio-preview work-shot work-shot--ovlp">
-            <picture>
-              <source srcset="assets/img/work-ovlp.webp" type="image/webp">
-              <img src="assets/img/work-ovlp.png" alt="Ohio Valley Land Partners homepage screenshot" loading="lazy" decoding="async">
-            </picture>
+            <img src="assets/img/work-ovlp.webp" alt="Ohio Valley Land Partners homepage screenshot" loading="lazy" decoding="async">
             <div class="work-shot-header">
               <span>Featured Build</span>
               <strong>Ohio Valley Land Partners</strong>
@@ -350,10 +355,7 @@
 
         <a class="portfolio-card reveal reveal-delay-2" href="https://dj-landscaping-mockup.vercel.app" target="_blank" rel="noopener">
           <div class="portfolio-preview work-shot work-shot--dj">
-            <picture>
-              <source srcset="assets/img/work-dj-landscaping.webp" type="image/webp">
-              <img src="assets/img/work-dj-landscaping.png" alt="DJ Landscaping homepage screenshot" loading="lazy" decoding="async">
-            </picture>
+            <img src="assets/img/work-dj-landscaping.webp" alt="DJ Landscaping homepage screenshot" loading="lazy" decoding="async">
             <div class="portfolio-preview-overlay"><span>Landscaping · Lead Gen</span></div>
           </div>
           <div class="portfolio-info">
@@ -369,10 +371,7 @@
 
         <a class="portfolio-card reveal reveal-delay-3" href="https://richardbjamison.com" target="_blank" rel="noopener">
           <div class="portfolio-preview work-shot work-shot--richard">
-            <picture>
-              <source srcset="assets/img/work-richard-portfolio.webp" type="image/webp">
-              <img src="assets/img/work-richard-portfolio.png" alt="Richard B Jamison portfolio homepage screenshot" loading="lazy" decoding="async">
-            </picture>
+            <img src="assets/img/work-richard-portfolio.webp" alt="Richard B Jamison portfolio homepage screenshot" loading="lazy" decoding="async">
             <div class="portfolio-preview-overlay"><span>Personal Portfolio · Creative Direction</span></div>
           </div>
           <div class="portfolio-info">
@@ -388,10 +387,7 @@
 
         <a class="portfolio-card portfolio-card--bottom-left reveal reveal-delay-1" href="https://opensourcebarware.com" target="_blank" rel="noopener">
           <div class="portfolio-preview work-shot work-shot--osb">
-            <picture>
-              <source srcset="assets/img/work-open-source-barware-finished.webp" type="image/webp">
-              <img src="assets/img/work-open-source-barware-finished.png" alt="Open Source Barware homepage screenshot" loading="lazy" decoding="async">
-            </picture>
+            <img src="assets/img/work-open-source-barware-finished.webp" alt="Open Source Barware homepage screenshot" loading="lazy" decoding="async">
             <div class="portfolio-preview-overlay"><span>SaaS · Bar Inventory</span></div>
           </div>
           <div class="portfolio-info">
@@ -407,10 +403,7 @@
 
         <a class="portfolio-card reveal reveal-delay-2" href="https://cleveland-roofing-demo.vercel.app" target="_blank" rel="noopener">
           <div class="portfolio-preview work-shot work-shot--roofing">
-            <picture>
-              <source srcset="assets/img/work-roofing-demo-finished.webp" type="image/webp">
-              <img src="assets/img/work-roofing-demo-finished.png" alt="Your Logo Here Roofing website screenshot" loading="lazy" decoding="async">
-            </picture>
+            <img src="assets/img/work-roofing-demo-finished.webp" alt="Your Logo Here Roofing website screenshot" loading="lazy" decoding="async">
             <div class="portfolio-preview-overlay"><span>Roofing · Lead Generation</span></div>
           </div>
           <div class="portfolio-info">
@@ -763,6 +756,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20260709-1609" defer></script>
+  <script src="script.js?v=20260709-perf1" defer></script>
 </body>
 </html>
