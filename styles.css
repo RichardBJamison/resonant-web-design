@@ -1191,8 +1191,10 @@
 
     .compact-stack-copy h2 {
       font-family: var(--font-display);
-      font-size: clamp(2.4rem, 4.5vw, 4rem);
-      line-height: 0.95;
+      font-weight: 800;
+      /* Match site section-title scale */
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
       letter-spacing: 0;
       margin: 0.8rem 0 1rem;
       max-width: 520px;
@@ -1272,13 +1274,14 @@
     }
 
     .pricing-title {
-      font-family: var(--font-body);
-      font-size: clamp(4.5rem, 8vw, 7rem);
-      line-height: 0.86;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
       text-align: center;
-      text-transform: uppercase;
+      text-transform: none;
       letter-spacing: 0;
-      margin-bottom: 3.5rem;
+      margin-bottom: 2.5rem;
     }
 
     .pricing-section--in-work {
@@ -1428,11 +1431,12 @@
     .home-faq-title {
       position: sticky;
       top: 6rem;
-      font-family: var(--font-body);
-      font-size: clamp(4.75rem, 9vw, 8rem);
-      line-height: 0.82;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
       letter-spacing: 0;
-      text-transform: uppercase;
+      text-transform: none;
     }
 
     .home-faq-list {
@@ -1440,16 +1444,17 @@
     }
 
     .home-faq-list details {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.68);
-      padding: 1.2rem 0 1.3rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 1rem 0 1.05rem;
     }
 
     .home-faq-list summary {
       cursor: pointer;
       list-style: none;
-      font-size: clamp(1.9rem, 4vw, 3.25rem);
-      line-height: 1.08;
-      font-weight: 800;
+      font-family: var(--font-body);
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      line-height: 1.35;
+      font-weight: 600;
       letter-spacing: 0;
     }
 
@@ -1470,10 +1475,10 @@
 
     .home-faq-list p {
       color: rgba(255, 255, 255, 0.72);
-      font-size: 1.05rem;
-      line-height: 1.6;
-      margin: 1rem 0 0 3.4rem;
-      max-width: 720px;
+      font-size: 0.98rem;
+      line-height: 1.65;
+      margin: 0.75rem 0 0 1.5rem;
+      max-width: 640px;
     }
 
     /* Reveal animation */
@@ -2504,9 +2509,9 @@
     .trust-copy h2 {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-size: clamp(2rem, 4vw, 3.2rem);
       letter-spacing: 0;
-      line-height: 1.05;
+      line-height: 1.1;
       max-width: 760px;
       margin-bottom: 1.35rem;
     }
@@ -2636,12 +2641,13 @@
     }
 
     .contact-title {
-      font-family: var(--font-body);
-      font-size: clamp(4.8rem, 9vw, 8rem);
-      line-height: 0.86;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
       letter-spacing: 0;
-      text-transform: uppercase;
-      margin-bottom: 3.5rem;
+      text-transform: none;
+      margin-bottom: 2.5rem;
     }
 
     .contact-form {
@@ -3119,8 +3125,10 @@
 
       .pricing-title,
       .contact-title,
-      .home-faq-title {
-        font-size: 3.8rem;
+      .home-faq-title,
+      .compact-stack-copy h2,
+      .trust-copy h2 {
+        font-size: clamp(1.85rem, 7.5vw, 2.4rem);
       }
 
       .pricing-card {
@@ -3128,11 +3136,11 @@
       }
 
       .pricing-price strong {
-        font-size: 4rem;
+        font-size: 3rem;
       }
 
       .home-faq-list summary {
-        font-size: 1.75rem;
+        font-size: 1.1rem;
       }
 
       .home-faq-list p {
