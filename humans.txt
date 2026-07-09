@@ -9,5 +9,5 @@ Hosting: GitHub Pages / custom domain
 SEO: Technical foundations, structured data, service pages, industry pages, content architecture
 
 /* CONTACT */
-Email: Me@RichardBJamison.com
+Email: me@richardbjamison.com
 Web: https://resonantwebdesign.com/
