@@ -2,18 +2,14 @@
   var v = document.getElementById("integrations-hero-video");
   if (!v) return;
 
-  var CRUISE = 0.65, EASE = 4, MINRATE = 0.04;
+  var CRUISE = 0.65;
   var HOLD_MS = 3000;
-  var HOLD_DIST = 0.08;
+  var ZONE = 0.1;
+  var NUDGE = 0.06;
   var BOOM = 0, D = 0;
   var holding = false;
   var holdTimer = null;
-  var holdLatch = { start: false, mid: false, end: false };
-
-  function smoothstep(x) {
-    if (x < 0) x = 0; else if (x > 1) x = 1;
-    return x * x * (3 - 2 * x);
-  }
+  var phase = "";
 
   function setRate(rate) {
     try {
@@ -36,48 +32,43 @@
     }
   }
 
-  function resetLatches() {
-    holdLatch.start = false;
-    holdLatch.mid = false;
-    holdLatch.end = false;
-  }
-
-  function beginHold() {
-    if (holding) return true;
+  function holdAt(time, nextPhase, resumeAt) {
+    if (holding) return;
     holding = true;
+    phase = nextPhase + "-holding";
     clearHoldTimer();
     v.pause();
+    v.currentTime = time;
+
     holdTimer = window.setTimeout(function () {
       holdTimer = null;
       holding = false;
-      setRate(MINRATE);
+      phase = nextPhase;
+
+      if (nextPhase === "start-hold") {
+        v.currentTime = 0;
+        holdAt(0, "forward", 0);
+        return;
+      }
+
+      if (typeof resumeAt === "number") v.currentTime = resumeAt;
+      setRate(CRUISE);
       play();
     }, HOLD_MS);
-    return true;
   }
 
-  function maybeHold(t) {
-    if (holding || !BOOM) return false;
+  function checkTurns() {
+    if (!BOOM || holding || D <= 0) return;
+    var t = v.currentTime;
 
-    var d = Math.min(t, Math.abs(t - D), BOOM - t);
-    if (d > HOLD_DIST) return false;
-
-    if (!holdLatch.start && t < 0.5) {
-      holdLatch.start = true;
-      return beginHold();
+    if (phase === "forward" && t >= D - ZONE) {
+      holdAt(D, "reverse", Math.min(D + NUDGE, BOOM - ZONE));
+      return;
     }
 
-    if (!holdLatch.mid && Math.abs(t - D) < 0.5) {
-      holdLatch.mid = true;
-      return beginHold();
+    if (phase === "reverse" && t >= BOOM - ZONE) {
+      holdAt(Math.max(0, BOOM - 0.04), "start-hold");
     }
-
-    if (!holdLatch.end && BOOM - t < 0.5) {
-      holdLatch.end = true;
-      return beginHold();
-    }
-
-    return false;
   }
 
   function setup() {
@@ -85,26 +76,14 @@
     BOOM = v.duration || 0;
     if (!BOOM) return;
     D = BOOM / 2;
-    resetLatches();
-    setRate(MINRATE);
-    play();
+    v.loop = false;
+    holdAt(0, "forward", 0);
   }
 
   function frame() {
-    if (D > 0) {
-      var t = v.currentTime;
-
-      if (holdLatch.end && t < 0.3) {
-        resetLatches();
-      }
-
-      if (!maybeHold(t)) {
-        if (!holding) {
-          var d = Math.min(t, Math.abs(t - D), BOOM - t);
-          var rate = MINRATE + (CRUISE - MINRATE) * smoothstep(d / EASE);
-          if (Math.abs(v.playbackRate - rate) > 0.001) setRate(rate);
-        }
-      }
+    checkTurns();
+    if (!holding && (phase === "forward" || phase === "reverse")) {
+      if (Math.abs(v.playbackRate - CRUISE) > 0.001) setRate(CRUISE);
     }
     requestAnimationFrame(frame);
   }
@@ -115,6 +94,10 @@
   v.addEventListener("canplay", function () {
     v.classList.add("ready");
     play();
+  });
+
+  v.addEventListener("ended", function () {
+    if (phase === "reverse") holdAt(Math.max(0, BOOM - 0.04), "start-hold");
   });
 
   document.addEventListener("visibilitychange", function () {

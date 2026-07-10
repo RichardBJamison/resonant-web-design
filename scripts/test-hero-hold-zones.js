@@ -1,59 +1,52 @@
 function simulate() {
-  var HOLD_DIST = 0.08;
+  var ZONE = 0.1;
   var half = 10.04;
   var boom = 20.08;
+  var phase = 'forward';
   var holding = false;
-  var holdLatch = { start: false, mid: false, end: false };
   var holds = [];
 
-  function resetLatches() {
-    holdLatch.start = false;
-    holdLatch.mid = false;
-    holdLatch.end = false;
-  }
-
-  function beginHold() {
-    if (holding) return true;
+  function holdAt(type) {
+    if (holding) return;
     holding = true;
+    holds.push(type);
     holding = false;
-    return true;
+    if (type === 'start-hold') {
+      phase = 'forward';
+      return;
+    }
+    if (type === 'mid') {
+      phase = 'reverse';
+      return;
+    }
+    if (type === 'end') {
+      phase = 'start-hold';
+      holdAt('start');
+      return;
+    }
+    phase = 'forward';
   }
 
-  function maybeHold(t) {
-    if (holding) return false;
-    var d = Math.min(t, Math.abs(t - half), boom - t);
-    if (d > HOLD_DIST) return false;
-
-    if (!holdLatch.start && t < 0.5) {
-      holdLatch.start = true;
-      holds.push('start');
-      return beginHold();
-    }
-    if (!holdLatch.mid && Math.abs(t - half) < 0.5) {
-      holdLatch.mid = true;
-      holds.push('mid');
-      return beginHold();
-    }
-    if (!holdLatch.end && boom - t < 0.5) {
-      holdLatch.end = true;
-      holds.push('end');
-      return beginHold();
-    }
-    return false;
-  }
+  holdAt('start');
 
   for (var t = 0; t <= boom; t += 0.2) {
-    if (holdLatch.end && t < 0.3) resetLatches();
-    maybeHold(t);
+    if (holding) continue;
+    if (phase === 'forward' && t >= half - ZONE) {
+      holdAt('mid');
+      continue;
+    }
+    if (phase === 'reverse' && t >= boom - ZONE) {
+      holdAt('end');
+      break;
+    }
   }
-  maybeHold(boom - 0.01);
 
-  if (holds.length !== 3) {
-    console.error('FAIL: expected 3 holds (start, mid, end), got', holds);
+  if (holds.length !== 4) {
+    console.error('FAIL: expected 4 holds (start, mid, end, start), got', holds);
     process.exit(1);
   }
 
-  if (holds[0] === 'start' && holds[1] === 'mid' && holds[2] === 'end') {
+  if (holds[0] === 'start' && holds[1] === 'mid' && holds[2] === 'end' && holds[3] === 'start') {
     console.log('PASS:', holds.join(', '));
     return;
   }

@@ -14,11 +14,12 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-function hasIhsRateCore(source) {
+function hasHoldThenCruiseCore(source) {
   return (
-    source.includes('var CRUISE = 0.65, EASE = 4, MINRATE = 0.04') &&
-    source.includes('smoothstep(d / EASE)') &&
-    source.includes('Math.min(t, Math.abs(t - D), BOOM - t)')
+    source.includes('var CRUISE = 0.65') &&
+    source.includes('HOLD_MS = 3000') &&
+    source.includes('holdAt(0, "forward"') &&
+    !source.includes('smoothstep')
   );
 }
 
@@ -38,9 +39,8 @@ const zoneTest = spawnSync('node', ['scripts/test-hero-hold-zones.js'], {
 assert(zoneTest.status === 0, `zone hold unit test failed: ${zoneTest.stdout}${zoneTest.stderr}`);
 
 const source = readFileSync('/Users/macbook15/resonant-by-design/assets/js/integrations-hero-video.js', 'utf8');
-assert(hasIhsRateCore(source), 'IHS smoothstep rate core must remain intact');
-assert(source.includes('HOLD_MS = 3000'), '3 second holds must be configured');
-console.log('PASS: IHS rate core preserved with hold layer');
+assert(hasHoldThenCruiseCore(source), 'controller must use 3s holds then constant cruise');
+console.log('PASS: hold-then-cruise controller configured');
 console.log(zoneTest.stdout.trim());
 
 const browser = await puppeteer.launch({
@@ -71,7 +71,7 @@ try {
   });
   console.log('Opening hold:', opening);
   assert(opening.paused === true, 'opening turnaround should be paused');
-  assert(opening.loop === true, 'native loop keeps playback reliable like IHS');
+  assert(opening.loop === false, 'loop is manual so each turnaround can hold 3 seconds');
 
   const openingSamples = [];
   const openingStart = Date.now();
@@ -108,17 +108,21 @@ try {
     }));
   }
   const moving = motionSamples.filter((s) => !s.paused && s.currentTime > afterOpening.currentTime);
-  assert(moving.length >= 3, 'video should keep moving with IHS easing between holds');
-  console.log('PASS: motion continues between holds');
+  assert(moving.length >= 3, 'video should keep moving between holds');
+  const cruiseRates = motionSamples.filter((s) => !s.paused).map((s) => s.rate);
+  const steadyCruise = cruiseRates.every((rate) => Math.abs(rate - 0.65) < 0.02);
+  assert(steadyCruise, 'playback should stay at constant cruise rate between holds');
+  const delta = motionSamples[motionSamples.length - 1].currentTime - afterOpening.currentTime;
+  assert(delta > 0.8, 'constant cruise should advance smoothly, not crawl');
+  console.log('PASS: constant cruise motion between holds');
 
   const autoplay = await page.evaluate(() => {
     const video = document.getElementById('integrations-hero-video');
     return { autoplay: video.autoplay, loop: video.loop, muted: video.muted };
   });
   assert(autoplay.autoplay === true, 'autoplay must be enabled for reliable hero playback');
-  assert(autoplay.loop === true, 'native loop must be enabled like IHS');
   assert(autoplay.muted === true, 'video must stay muted for autoplay');
-  console.log('PASS: autoplay/loop/muted attrs match IHS');
+  console.log('PASS: autoplay and muted attrs set');
 
   console.log('PASS: browser verified opening hold and motion between holds');
 } finally {
