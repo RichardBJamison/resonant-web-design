@@ -4,14 +4,11 @@
 
   var CRUISE = 0.65, EASE = 4, MINRATE = 0.04;
   var HOLD_MS = 3000;
-  var HOLD_EPS = 0.06;
-  var NUDGE = 0.08;
+  var HOLD_DIST = 0.08;
   var BOOM = 0, D = 0;
   var holding = false;
-  var midHeld = false;
-  var endLatched = false;
-  var ready = false;
-  var lastT = -1;
+  var holdTimer = null;
+  var holdLatch = { start: false, mid: false, end: false };
 
   function smoothstep(x) {
     if (x < 0) x = 0; else if (x > 1) x = 1;
@@ -32,87 +29,84 @@
     if (p && p.catch) p.catch(function () {});
   }
 
-  function holdAt(time, resumeFrom, afterHold) {
-    if (holding) return;
-    holding = true;
-    v.pause();
-    v.currentTime = time;
+  function clearHoldTimer() {
+    if (holdTimer) {
+      clearTimeout(holdTimer);
+      holdTimer = null;
+    }
+  }
 
-    window.setTimeout(function () {
+  function resetLatches() {
+    holdLatch.start = false;
+    holdLatch.mid = false;
+    holdLatch.end = false;
+  }
+
+  function beginHold() {
+    if (holding) return true;
+    holding = true;
+    clearHoldTimer();
+    v.pause();
+    holdTimer = window.setTimeout(function () {
+      holdTimer = null;
       holding = false;
-      if (typeof resumeFrom === "number") v.currentTime = resumeFrom;
       setRate(MINRATE);
       play();
-      if (afterHold) afterHold();
     }, HOLD_MS);
+    return true;
   }
 
-  function holdAtStart(afterHold) {
-    holdAt(0, NUDGE, afterHold);
-  }
+  function maybeHold(t) {
+    if (holding || !BOOM) return false;
 
-  function holdAtMid() {
-    if (midHeld || holding) return;
-    midHeld = true;
-    holdAt(D, Math.min(D + NUDGE, BOOM - HOLD_EPS));
-  }
-
-  function holdAtEnd(force) {
-    if (holding || endLatched || !BOOM) return;
-    if (!force && v.currentTime < BOOM - HOLD_EPS) return;
-    endLatched = true;
-    holdAtStart(function () {
-      midHeld = false;
-      endLatched = false;
-    });
-  }
-
-  function checkTurns() {
-    if (!ready || holding || D <= 0) return;
-
-    var t = v.currentTime;
-
-    if (t >= BOOM - HOLD_EPS) {
-      holdAtEnd();
-      return;
-    }
-
-    if (!midHeld && t >= D - HOLD_EPS && t <= D + HOLD_EPS) {
-      holdAtMid();
-    }
-
-    lastT = t;
-  }
-
-  function applyRate() {
-    if (v.dataset.allowFastTest === '1') return;
-    if (!ready || holding || D <= 0) return;
-    var t = v.currentTime;
     var d = Math.min(t, Math.abs(t - D), BOOM - t);
-    var rate = MINRATE + (CRUISE - MINRATE) * smoothstep(d / EASE);
-    if (Math.abs(v.playbackRate - rate) > 0.001) setRate(rate);
-  }
+    if (d > HOLD_DIST) return false;
 
-  function frame() {
-    checkTurns();
-    applyRate();
-    requestAnimationFrame(frame);
+    if (!holdLatch.start && t < 0.5) {
+      holdLatch.start = true;
+      return beginHold();
+    }
+
+    if (!holdLatch.mid && Math.abs(t - D) < 0.5) {
+      holdLatch.mid = true;
+      return beginHold();
+    }
+
+    if (!holdLatch.end && BOOM - t < 0.5) {
+      holdLatch.end = true;
+      return beginHold();
+    }
+
+    return false;
   }
 
   function setup() {
-    if (ready) return;
+    if (BOOM) return;
     BOOM = v.duration || 0;
     if (!BOOM) return;
-
     D = BOOM / 2;
-    ready = true;
-    midHeld = false;
-    endLatched = false;
-    lastT = -1;
-    v.loop = false;
-    v.pause();
-    v.currentTime = 0;
-    holdAtStart();
+    resetLatches();
+    setRate(MINRATE);
+    play();
+  }
+
+  function frame() {
+    if (D > 0) {
+      var t = v.currentTime;
+
+      if (holdLatch.end && t < 0.3) {
+        resetLatches();
+      }
+
+      if (!maybeHold(t)) {
+        if (!holding) {
+          var d = Math.min(t, Math.abs(t - D), BOOM - t);
+          var rate = MINRATE + (CRUISE - MINRATE) * smoothstep(d / EASE);
+          if (Math.abs(v.playbackRate - rate) > 0.001) setRate(rate);
+        }
+      }
+    }
+    requestAnimationFrame(frame);
   }
 
   if (v.readyState >= 1) setup();
@@ -120,20 +114,13 @@
 
   v.addEventListener("canplay", function () {
     v.classList.add("ready");
-    if (!holding) play();
-  });
-
-  v.addEventListener("ended", function () {
-    holdAtEnd(true);
+    play();
   });
 
   document.addEventListener("visibilitychange", function () {
-    if (!document.hidden && !holding) play();
+    if (!document.hidden) play();
   });
 
-  window.addEventListener("pageshow", function () {
-    if (!holding) play();
-  });
-
+  window.addEventListener("pageshow", play);
   requestAnimationFrame(frame);
 })();

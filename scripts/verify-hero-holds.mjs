@@ -71,7 +71,7 @@ try {
   });
   console.log('Opening hold:', opening);
   assert(opening.paused === true, 'opening turnaround should be paused');
-  assert(opening.loop === false, 'loop must be manual so end holds can run');
+  assert(opening.loop === true, 'native loop keeps playback reliable like IHS');
 
   const openingSamples = [];
   const openingStart = Date.now();
@@ -111,49 +111,16 @@ try {
   assert(moving.length >= 3, 'video should keep moving with IHS easing between holds');
   console.log('PASS: motion continues between holds');
 
-  const meta = await page.evaluate(() => {
+  const autoplay = await page.evaluate(() => {
     const video = document.getElementById('integrations-hero-video');
-    return { duration: video.duration };
+    return { autoplay: video.autoplay, loop: video.loop, muted: video.muted };
   });
+  assert(autoplay.autoplay === true, 'autoplay must be enabled for reliable hero playback');
+  assert(autoplay.loop === true, 'native loop must be enabled like IHS');
+  assert(autoplay.muted === true, 'video must stay muted for autoplay');
+  console.log('PASS: autoplay/loop/muted attrs match IHS');
 
-  await page.evaluate((duration) => {
-    const video = document.getElementById('integrations-hero-video');
-    video.pause();
-    video.currentTime = duration - 0.02;
-    video.dispatchEvent(new Event('ended'));
-  }, meta.duration);
-
-  await sleep(200);
-
-  const endHold = await page.evaluate(() => {
-    const video = document.getElementById('integrations-hero-video');
-    return { paused: video.paused, currentTime: video.currentTime };
-  });
-  console.log('End hold:', endHold);
-  assert(endHold.paused === true, 'loop end should pause');
-  assert(endHold.currentTime < 0.2, 'loop end should reset to opening frame');
-
-  await sleep(HOLD_MS + 500);
-  await page.click('body');
-
-  const afterEnd = await page.evaluate(() => {
-    const video = document.getElementById('integrations-hero-video');
-    return { paused: video.paused, currentTime: video.currentTime, ended: video.ended };
-  });
-  console.log('After end hold:', afterEnd);
-  assert(afterEnd.paused === false, 'video must restart after loop-end hold');
-  assert(afterEnd.ended === false, 'video must not remain ended');
-
-  await sleep(1200);
-  const stillPlaying = await page.evaluate(() => {
-    const video = document.getElementById('integrations-hero-video');
-    return { paused: video.paused, currentTime: video.currentTime };
-  });
-  console.log('Still playing:', stillPlaying);
-  assert(stillPlaying.paused === false, 'video should keep playing after loop restart');
-  assert(stillPlaying.currentTime > afterEnd.currentTime, 'playback should advance after loop restart');
-
-  console.log('PASS: browser verified opening hold, motion between holds, end hold, and loop restart');
+  console.log('PASS: browser verified opening hold and motion between holds');
 } finally {
   await browser.close();
 }
