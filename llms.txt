@@ -5,6 +5,7 @@ Resonant Web Design is a selective web design and development studio led by Rich
 ## What We Do
 
 - Custom website design and development
+- Starter Sites — $69/month website ownership via Impulse by Design
 - SEO foundations and content strategy
 - Hosting, maintenance, and launch systems
 - Support for service businesses, SaaS, and portfolio sites
@@ -23,7 +24,8 @@ Resonant Web Design is a selective web design and development studio led by Rich
 ## Important Pages
 
 - Home: https://resonantwebdesign.com/
-- Custom Web Design: https://resonantwebdesign.com/services/custom-web-design/
+- Starter Sites: https://resonantwebdesign.com/services/starter-sites/
+- Impulse by Design (starter platform): https://impulsebydesign.com/
 - SEO Foundations: https://resonantwebdesign.com/services/seo-foundations/
 - Landscaping Website Design: https://resonantwebdesign.com/industries/landscaping-web-design/
 - Restaurant Website Design and Hospitality Marketing: https://resonantwebdesign.com/industries/restaurants-hospitality-web-design/
