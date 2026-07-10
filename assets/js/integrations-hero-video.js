@@ -4,12 +4,12 @@
 
   var CRUISE = 0.65;
   var HOLD_MS = 3000;
-  var ZONE = 0.1;
-  var NUDGE = 0.06;
-  var BOOM = 0, D = 0;
+  var BOOM = 0;
+  var D = 0;
+  var leg = "idle";
   var holding = false;
   var holdTimer = null;
-  var phase = "";
+  var lastT = -1;
 
   function setRate(rate) {
     try {
@@ -32,43 +32,70 @@
     }
   }
 
-  function holdAt(time, nextPhase, resumeAt) {
+  function beginHold(resume) {
     if (holding) return;
     holding = true;
-    phase = nextPhase + "-holding";
+    leg = "hold";
     clearHoldTimer();
     v.pause();
-    v.currentTime = time;
+    lastT = v.currentTime;
 
     holdTimer = window.setTimeout(function () {
       holdTimer = null;
       holding = false;
-      phase = nextPhase;
-
-      if (nextPhase === "start-hold") {
-        v.currentTime = 0;
-        holdAt(0, "forward", 0);
-        return;
-      }
-
-      if (typeof resumeAt === "number") v.currentTime = resumeAt;
-      setRate(CRUISE);
-      play();
+      resume();
     }, HOLD_MS);
   }
 
-  function checkTurns() {
+  function startForwardLeg() {
+    leg = "forward";
+    lastT = -1;
+    if (v.currentTime > 0.2) v.currentTime = 0;
+    setRate(CRUISE);
+    play();
+  }
+
+  function startReverseLeg() {
+    leg = "reverse";
+    lastT = v.currentTime;
+    setRate(CRUISE);
+    play();
+  }
+
+  function startCycle() {
+    v.currentTime = 0;
+    beginHold(startForwardLeg);
+  }
+
+  function finishCycle() {
+    beginHold(function () {
+      v.currentTime = 0;
+      startCycle();
+    });
+  }
+
+  function onTick() {
     if (!BOOM || holding || D <= 0) return;
+
     var t = v.currentTime;
 
-    if (phase === "forward" && t >= D - ZONE) {
-      holdAt(D, "reverse", Math.min(D + NUDGE, BOOM - ZONE));
+    if (leg === "forward" && lastT < D && t >= D) {
+      beginHold(startReverseLeg);
       return;
     }
 
-    if (phase === "reverse" && t >= BOOM - ZONE) {
-      holdAt(Math.max(0, BOOM - 0.04), "start-hold");
+    if (leg === "reverse" && lastT < BOOM - 0.05 && t >= BOOM - 0.05) {
+      finishCycle();
+      return;
     }
+
+    lastT = t;
+  }
+
+  function onEnded() {
+    if (holding) return;
+    if (leg === "forward") beginHold(startReverseLeg);
+    else finishCycle();
   }
 
   function setup() {
@@ -77,33 +104,33 @@
     if (!BOOM) return;
     D = BOOM / 2;
     v.loop = false;
-    holdAt(0, "forward", 0);
+    startCycle();
   }
 
+  v.addEventListener("timeupdate", onTick);
+  v.addEventListener("ended", onEnded);
+
   function frame() {
-    checkTurns();
-    if (!holding && (phase === "forward" || phase === "reverse")) {
-      if (Math.abs(v.playbackRate - CRUISE) > 0.001) setRate(CRUISE);
-    }
+    onTick();
     requestAnimationFrame(frame);
   }
+  requestAnimationFrame(frame);
 
   if (v.readyState >= 1) setup();
   else v.addEventListener("loadedmetadata", setup);
 
   v.addEventListener("canplay", function () {
     v.classList.add("ready");
+    if (!BOOM) setup();
+    else if (!holding && leg === "idle") startCycle();
     play();
   });
 
-  v.addEventListener("ended", function () {
-    if (phase === "reverse") holdAt(Math.max(0, BOOM - 0.04), "start-hold");
-  });
-
   document.addEventListener("visibilitychange", function () {
-    if (!document.hidden) play();
+    if (!document.hidden && !holding) play();
   });
 
-  window.addEventListener("pageshow", play);
-  requestAnimationFrame(frame);
+  window.addEventListener("pageshow", function () {
+    if (!holding) play();
+  });
 })();

@@ -18,8 +18,8 @@ function hasHoldThenCruiseCore(source) {
   return (
     source.includes('var CRUISE = 0.65') &&
     source.includes('HOLD_MS = 3000') &&
-    source.includes('holdAt(0, "forward"') &&
-    !source.includes('smoothstep')
+    source.includes('lastT < D && t >= D') &&
+    source.includes('beginHold(startReverseLeg)')
   );
 }
 
@@ -71,7 +71,7 @@ try {
   });
   console.log('Opening hold:', opening);
   assert(opening.paused === true, 'opening turnaround should be paused');
-  assert(opening.loop === false, 'loop is manual so each turnaround can hold 3 seconds');
+  assert(opening.loop === false, 'loop must be manual for precise turnaround holds');
 
   const openingSamples = [];
   const openingStart = Date.now();
@@ -116,13 +116,14 @@ try {
   assert(delta > 0.8, 'constant cruise should advance smoothly, not crawl');
   console.log('PASS: constant cruise motion between holds');
 
-  const autoplay = await page.evaluate(() => {
+  const attrs = await page.evaluate(() => {
     const video = document.getElementById('integrations-hero-video');
     return { autoplay: video.autoplay, loop: video.loop, muted: video.muted };
   });
-  assert(autoplay.autoplay === true, 'autoplay must be enabled for reliable hero playback');
-  assert(autoplay.muted === true, 'video must stay muted for autoplay');
-  console.log('PASS: autoplay and muted attrs set');
+  assert(attrs.autoplay === false, 'script must own playback start to avoid racing native loop');
+  assert(attrs.loop === false, 'loop must stay manual');
+  assert(attrs.muted === true, 'video must stay muted');
+  console.log('PASS: script-controlled playback attrs');
 
   console.log('PASS: browser verified opening hold and motion between holds');
 } finally {
