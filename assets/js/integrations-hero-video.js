@@ -70,7 +70,7 @@
   function finishCycle() {
     beginHold(function () {
       v.currentTime = 0;
-      startCycle();
+      startForwardLeg();
     });
   }
 
