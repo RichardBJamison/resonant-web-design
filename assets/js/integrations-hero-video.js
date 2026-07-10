@@ -2,18 +2,21 @@
   var video = document.getElementById('integrations-hero-video');
   if (!video) return;
 
-  var CRUISE = 0.088;
-  var EASE_MAX = 0.0304;
+  var CRUISE = 0.0704;
+  var EASE_MAX = 0.02432;
   var EASE = 4;
-  var MINRATE = 0.0048;
-  var HOLD_MS = 2000;
-  var TURN_EPS = 0.08;
+  var MINRATE = 0.00384;
+  var HOLD_MS = 3000;
+  var END_EPS = 0.06;
+  var MID_EPS = 0.08;
+  var NUDGE = 0.12;
+
   var boom = 0;
   var half = 0;
-  var active = false;
+  var ready = false;
   var holding = false;
-  var lastT = -1;
-  var hasStarted = false;
+  var midHeld = false;
+  var endLatched = false;
 
   function play() {
     if (holding) return;
@@ -30,7 +33,7 @@
   }
 
   function applyRate() {
-    if (!active || half <= 0 || holding) return;
+    if (!ready || half <= 0 || holding) return;
     var t = video.currentTime;
     var distance = Math.min(t, Math.abs(t - half), boom - t);
     var rate = rateForDistance(distance);
@@ -39,78 +42,83 @@
     }
   }
 
-  function beginHold(turn) {
+  function holdAt(time, resumeFrom, afterHold) {
     if (holding) return;
     holding = true;
     video.pause();
+    video.currentTime = time;
 
     window.setTimeout(function () {
       holding = false;
-      if (turn === 'mid') {
-        video.currentTime = Math.min(half + 0.12, boom - 0.02);
-      } else {
-        video.currentTime = 0.12;
+      if (typeof resumeFrom === 'number') {
+        video.currentTime = resumeFrom;
       }
       video.playbackRate = EASE_MAX;
       applyRate();
       play();
+      if (afterHold) afterHold();
     }, HOLD_MS);
   }
 
-  function checkTurnaroundHold() {
-    if (!active || half <= 0 || holding) return;
+  function holdAtStart(afterHold) {
+    holdAt(0, NUDGE, afterHold);
+  }
 
+  function holdAtMid() {
+    if (midHeld || holding) return;
+    midHeld = true;
+    holdAt(half, Math.min(half + NUDGE, boom - END_EPS));
+  }
+
+  function holdAtEnd() {
+    if (holding || endLatched) return;
+    endLatched = true;
+    holdAtStart(function () {
+      midHeld = false;
+      endLatched = false;
+    });
+  }
+
+  function onTimeUpdate() {
+    if (!ready || holding) return;
     var t = video.currentTime;
 
-    if (!hasStarted) {
-      if (t > 0.2) {
-        hasStarted = true;
-      } else {
-        lastT = t;
-        return;
-      }
-    }
-
-    if (lastT < 0) {
-      lastT = t;
+    if (t >= boom - END_EPS) {
+      holdAtEnd();
       return;
     }
 
-    if (lastT < half - TURN_EPS && t >= half - TURN_EPS) {
-      video.currentTime = half;
-      beginHold('mid');
-      lastT = t;
-      return;
+    if (!midHeld && t >= half - MID_EPS) {
+      holdAtMid();
     }
-
-    if (lastT > boom - 0.3 && t < TURN_EPS + 0.1) {
-      beginHold('start');
-      lastT = t;
-      return;
-    }
-
-    lastT = t;
   }
 
   function setup() {
-    if (active) return true;
+    if (ready) return true;
     boom = video.duration;
     if (!boom || !isFinite(boom)) return false;
+
     half = boom / 2;
-    active = true;
-    lastT = -1;
-    hasStarted = false;
+    ready = true;
+    midHeld = false;
+    video.loop = false;
+    video.pause();
+    video.currentTime = 0;
     video.playbackRate = EASE_MAX;
-    applyRate();
-    play();
+    holdAtStart();
     return true;
   }
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    video.loop = true;
     video.playbackRate = 1;
     play();
     return;
   }
+
+  video.loop = false;
+  video.addEventListener('timeupdate', onTimeUpdate);
+  video.addEventListener('ended', holdAtEnd);
 
   ['loadedmetadata', 'loadeddata', 'canplay'].forEach(function (eventName) {
     video.addEventListener(eventName, setup);
@@ -119,7 +127,6 @@
   if (video.readyState >= 1) setup();
 
   requestAnimationFrame(function loop() {
-    checkTurnaroundHold();
     applyRate();
     requestAnimationFrame(loop);
   });
@@ -127,6 +134,7 @@
   document.addEventListener('visibilitychange', function () {
     if (!document.hidden && !holding) play();
   });
+
   window.addEventListener('pageshow', function () {
     if (!holding) play();
   });
