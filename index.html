@@ -47,9 +47,10 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="assets/fonts/rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqYu28qmR9A.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/8vIH7w4qzmVxq2JB80z-.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="styles.css?v=20260709-port3" as="style">
+  <link rel="preload" href="styles.css?v=20260711-capflip" as="style">
   <link rel="stylesheet" href="assets/fonts/fonts.css">
-  <link rel="stylesheet" href="styles.css?v=20260709-port3">
+  <link rel="stylesheet" href="styles.css?v=20260711-capflip">
+  <link rel="stylesheet" href="assets/css/hero-cap-flip.css?v=20260711-capflip2">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -237,19 +238,49 @@
           </a>
           <a href="/start/" class="btn btn-secondary">Start a Project</a>
         </div>
-        <div class="hero-capabilities" aria-label="Resonant Web Design growth capabilities">
-          <div class="capability-card">
-            <strong>01</strong>
-            <span>1:1 marketing design</span>
-          </div>
-          <div class="capability-card">
-            <strong>02</strong>
-            <span>SEO + social growth</span>
-          </div>
-          <div class="capability-card">
-            <strong>03</strong>
-            <span>Business integrations</span>
-          </div>
+        <div class="hero-capabilities hero-capabilities--flip" id="hero-capabilities-flip" aria-label="Resonant Web Design growth capabilities">
+          <!--
+            Cascade flip: after scroll, labels shift down one slot
+            01 front: marketing → back: SEO
+            02 front: SEO → back: integrations
+            03 front: integrations → back: marketing
+          -->
+          <article class="capability-flip" data-flip-index="0">
+            <div class="capability-flip-inner">
+              <div class="capability-flip-face capability-flip-face--start capability-card capability-card--marketing">
+                <strong>01</strong>
+                <span>1:1 marketing design</span>
+              </div>
+              <div class="capability-flip-face capability-flip-face--end capability-card capability-card--seo" aria-hidden="true">
+                <strong>01</strong>
+                <span>SEO + social growth</span>
+              </div>
+            </div>
+          </article>
+          <article class="capability-flip" data-flip-index="1">
+            <div class="capability-flip-inner">
+              <div class="capability-flip-face capability-flip-face--start capability-card capability-card--seo">
+                <strong>02</strong>
+                <span>SEO + social growth</span>
+              </div>
+              <div class="capability-flip-face capability-flip-face--end capability-card capability-card--integrations" aria-hidden="true">
+                <strong>02</strong>
+                <span>Business integrations</span>
+              </div>
+            </div>
+          </article>
+          <article class="capability-flip" data-flip-index="2">
+            <div class="capability-flip-inner">
+              <div class="capability-flip-face capability-flip-face--start capability-card capability-card--integrations">
+                <strong>03</strong>
+                <span>Business integrations</span>
+              </div>
+              <div class="capability-flip-face capability-flip-face--end capability-card capability-card--marketing" aria-hidden="true">
+                <strong>03</strong>
+                <span>1:1 marketing design</span>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
 
@@ -725,6 +756,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20260709-port3" defer></script>
+  <script src="script.js?v=20260711-capflip" defer></script>
+  <script src="assets/js/hero-cap-flip.js?v=20260711-capflip2" defer></script>
 </body>
 </html>
