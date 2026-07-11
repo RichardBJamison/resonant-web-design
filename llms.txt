@@ -27,11 +27,12 @@ Resonant Web Design is a selective web design and development studio led by Rich
 - Home: https://resonantwebdesign.com/
 - Start a Project (sales fit router): https://resonantwebdesign.com/start/
 - Starter Sites: https://resonantwebdesign.com/services/starter-sites/
-- Impulse by Design (starter platform): https://impulsebydesign.com/
+- Impulse by Design (starter product of Resonant; Cleveland small-business lane): https://impulsebydesign.com/
 - SEO Foundations: https://resonantwebdesign.com/services/seo-foundations/
 - System Integrations: https://resonantwebdesign.com/services/system-integrations/
-- Landscaping Website Design: https://resonantwebdesign.com/industries/landscaping-web-design/
-- Restaurant Website Design and Hospitality Marketing: https://resonantwebdesign.com/industries/restaurants-hospitality-web-design/
+- AI Phone Systems: https://resonantwebdesign.com/services/system-integrations/ai-phone/
+- Landscaping Website Design (Ohio): https://resonantwebdesign.com/industries/landscaping-web-design/
+- Restaurant, Hotel & Venue Web Design (Ohio hospitality): https://resonantwebdesign.com/industries/restaurants-hospitality-web-design/
 - Open Source Barware: https://opensourcebarware.com/
 - Intelligent Hospitality Systems: https://intelligenthospitalitysystems.com/
 
