@@ -25,6 +25,7 @@ Resonant Web Design is a selective web design and development studio led by Rich
 ## Important Pages
 
 - Home: https://resonantwebdesign.com/
+- Start a Project (sales fit router): https://resonantwebdesign.com/start/
 - Starter Sites: https://resonantwebdesign.com/services/starter-sites/
 - Impulse by Design (starter platform): https://impulsebydesign.com/
 - SEO Foundations: https://resonantwebdesign.com/services/seo-foundations/

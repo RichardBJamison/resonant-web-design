@@ -1,0 +1,149 @@
+/* =========================================================
+   Integration Layers — vertical flip cards (sandbox)
+   Capture → Route → Report
+   Back first; scroll reveals front via rotateX only
+   ========================================================= */
+
+.proof-grid--flip {
+  perspective: 1400px;
+  align-items: stretch;
+}
+
+.proof-flip {
+  position: relative;
+  min-height: 240px;
+  /* Preserve layout height while faces are absolute */
+  height: 100%;
+}
+
+.proof-flip-inner {
+  position: relative;
+  width: 100%;
+  min-height: 240px;
+  height: 100%;
+  transform-style: preserve-3d;
+  /* Scroll-scrubbed via JS (no snap transition) — slow, continuous turn */
+  transition: none;
+  /* Start showing the BACK face */
+  transform: rotateX(0deg);
+  will-change: transform;
+}
+
+/* Class still toggled at end of scrub for styling hooks */
+.proof-flip.is-flipped .proof-flip-inner {
+  /* transform set inline by scroll script */
+}
+
+.proof-flip-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 1.35rem;
+  border: 1px solid var(--border-dark);
+  background: var(--surface-dark-card, rgba(255, 255, 255, 0.04));
+  border-radius: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-sizing: border-box;
+}
+
+/* BACK: number top-left, word centered */
+.proof-flip-face--back {
+  transform: rotateX(0deg);
+  justify-content: center;
+  align-items: stretch;
+}
+
+.proof-flip-face--back .proof-flip-num {
+  position: absolute;
+  top: 1.35rem;
+  left: 1.35rem;
+  margin: 0;
+}
+
+.proof-flip-word {
+  margin: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.65rem, 2.8vw, 2.15rem);
+  line-height: 1.05;
+  letter-spacing: 0;
+  color: var(--text-light, #e8e6e1);
+  text-align: center;
+  padding: 2rem 0.5rem 0.5rem;
+}
+
+/* FRONT: full content (matches original proof-card) */
+.proof-flip-face--front {
+  transform: rotateX(180deg);
+  justify-content: flex-start;
+}
+
+.proof-flip-num {
+  display: block;
+  font-family: var(--font-mono);
+  color: var(--accent, #e85d30);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
+}
+
+.proof-flip-face--front h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.12;
+  letter-spacing: 0;
+  margin: 0 0 0.8rem;
+  color: var(--text-light, #e8e6e1);
+}
+
+.proof-flip-face--front p {
+  margin: 0;
+  color: var(--text-muted, #8891a0);
+  line-height: 1.65;
+  font-size: 0.98rem;
+}
+
+/* Soft edge while mid-flip */
+.proof-flip.is-flipping .proof-flip-face {
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+}
+
+/* Reduced motion: show front content immediately, no 3D */
+@media (prefers-reduced-motion: reduce) {
+  .proof-flip-inner {
+    transition: none !important;
+    transform: rotateX(180deg) !important;
+  }
+
+  .proof-flip-face--back {
+    display: none;
+  }
+
+  .proof-flip-face--front {
+    position: relative;
+    transform: none;
+    backface-visibility: visible;
+  }
+}
+
+@media (max-width: 900px) {
+  .proof-grid--flip {
+    perspective: 1000px;
+  }
+
+  .proof-flip,
+  .proof-flip-inner {
+    min-height: 210px;
+  }
+
+  .proof-flip-word {
+    font-size: 1.55rem;
+  }
+}
