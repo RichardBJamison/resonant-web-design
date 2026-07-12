@@ -275,3 +275,77 @@
     initWaveform();
   });
 })();
+(() => {
+  const canUseCursor =
+    window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 992px)").matches &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!canUseCursor || document.querySelector(".ambient-cursor")) return;
+
+  const cursor = document.createElement("div");
+  cursor.className = "ambient-cursor";
+  cursor.setAttribute("aria-hidden", "true");
+  cursor.innerHTML =
+    '<svg viewBox="0 0 36 36" focusable="false"><circle cx="18" cy="18" r="16" pathLength="100"></circle></svg>';
+  document.body.appendChild(cursor);
+
+  const progressRing = cursor.querySelector("circle");
+  const interactiveSelector =
+    'a, button, input, textarea, select, summary, [role="button"], [tabindex]:not([tabindex="-1"])';
+
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let hasPosition = false;
+  let frameId = 0;
+
+  const render = () => {
+    currentX += (targetX - currentX) * 0.25;
+    currentY += (targetY - currentY) * 0.25;
+    cursor.style.transform =
+      `translate3d(${currentX - 3}px, ${currentY - 3}px, 0)`;
+    frameId = window.requestAnimationFrame(render);
+  };
+
+  const updateProgress = () => {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
+    progressRing.style.strokeDashoffset = String(100 - progress * 100);
+  };
+
+  document.addEventListener(
+    "mousemove",
+    (event) => {
+      targetX = event.clientX;
+      targetY = event.clientY;
+
+      if (!hasPosition) {
+        currentX = targetX;
+        currentY = targetY;
+        hasPosition = true;
+        cursor.classList.add("is-visible");
+        frameId = window.requestAnimationFrame(render);
+      }
+
+      const target = event.target instanceof Element ? event.target : null;
+      cursor.classList.toggle("is-interactive", Boolean(target?.closest(interactiveSelector)));
+    },
+    { passive: true }
+  );
+
+  document.addEventListener("mouseleave", () => cursor.classList.remove("is-visible"));
+  document.addEventListener("mouseenter", () => {
+    if (hasPosition) cursor.classList.add("is-visible");
+  });
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  window.addEventListener(
+    "pagehide",
+    () => {
+      if (frameId) window.cancelAnimationFrame(frameId);
+    },
+    { once: true }
+  );
+
+  updateProgress();
+})();

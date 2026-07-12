@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Phone Systems for Service Businesses | Resonant Web Design</title>
-  <meta name="description" content="AI phone and intake systems for Ohio service businesses: answer, qualify, route, book, and summarize calls — wired to your website, CRM, and follow-up.">
+  <title>AI Phone Systems That Catch Calls You Never Want to Miss | Resonant</title>
+  <meta name="description" content="AI phone systems that catch calls you never want to miss. Answer, qualify, route, and CRM notes — continuous intake for restaurants, multi-location brands, and service operators.">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="author" content="Richard B. Jamison">
   <meta name="theme-color" content="#0C0F14">
@@ -41,9 +41,134 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqYu28qmR9A.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/8vIH7w4qzmVxq2JB80z-.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/styles.css?v=20260711-seo" as="style">
+  <link rel="preload" href="/assets/img/ai-phone-hero-poster.jpg?v=20260711-energy1" as="image">
+  <link rel="preload" href="/styles.css?v=20260711-cursor1" as="style">
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
-  <link rel="stylesheet" href="/styles.css?v=20260711-seo">
+  <link rel="stylesheet" href="/styles.css?v=20260711-cursor1">
+  <style>
+    /* Video hero: continuous energy loop (phone → AI → out) */
+    .ai-phone-page .inner-hero-video {
+      min-height: min(78vh, 700px);
+    }
+    .ai-phone-page .inner-hero-video::after {
+      background:
+        linear-gradient(180deg, rgba(12, 15, 20, 0.28) 0%, rgba(12, 15, 20, 0.2) 38%, rgba(12, 15, 20, 0.94) 100%),
+        linear-gradient(90deg, rgba(12, 15, 20, 0.62), rgba(12, 15, 20, 0.18) 55%, rgba(12, 15, 20, 0.42));
+    }
+    .ai-phone-page .inner-hero-video h1 {
+      max-width: 15ch;
+      font-size: clamp(1.95rem, 4.4vw, 3.35rem);
+      line-height: 1.02;
+      margin-bottom: 0.85rem;
+    }
+    .ai-phone-page .inner-hero-deck {
+      max-width: 42ch;
+      font-size: clamp(0.98rem, 1.7vw, 1.12rem);
+      line-height: 1.55;
+    }
+
+    /* Black flip card in hero */
+    .ai-proof-flip {
+      perspective: 1000px;
+      min-height: 220px;
+      width: 100%;
+      max-width: 340px;
+      margin-left: auto;
+    }
+    .ai-proof-flip-inner {
+      position: relative;
+      min-height: 220px;
+      height: 100%;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+    .ai-proof-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(6, 8, 12, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      padding: 1.2rem 1.25rem 1.3rem;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+    .ai-proof-face--front {
+      transform: rotateX(0deg);
+    }
+    .ai-proof-face--back {
+      transform: rotateX(180deg);
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.5rem 1.25rem;
+      background:
+        linear-gradient(160deg, rgba(31, 247, 242, 0.08), transparent 45%),
+        rgba(4, 6, 10, 0.94);
+      border-color: rgba(31, 247, 242, 0.28);
+    }
+    .ai-proof-face--front ul {
+      list-style: none;
+      display: grid;
+      gap: 0.7rem;
+      margin: 0;
+      padding: 0;
+    }
+    .ai-proof-face--front li {
+      color: rgba(232, 230, 225, 0.86);
+      font-size: 0.92rem;
+      line-height: 1.4;
+      padding-left: 0.95rem;
+      position: relative;
+    }
+    .ai-proof-face--front li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.5em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #1ff7f2;
+      box-shadow: 0 0 8px rgba(31, 247, 242, 0.5);
+    }
+    .ai-proof-tagline {
+      margin: 0;
+      font-family: var(--font-display, Syne, system-ui, sans-serif);
+      font-weight: 800;
+      font-size: clamp(1.55rem, 2.8vw, 1.95rem);
+      line-height: 1.08;
+      letter-spacing: 0;
+      color: #f4fbff;
+      text-shadow: 0 0 24px rgba(31, 247, 242, 0.25);
+      max-width: 12ch;
+    }
+    .ai-proof-tagline em {
+      font-style: normal;
+      color: #1ff7f2;
+    }
+    @media (max-width: 900px) {
+      .ai-phone-page .inner-hero-video {
+        min-height: 78vh;
+      }
+      .ai-proof-flip {
+        max-width: none;
+        margin-left: 0;
+      }
+      .ai-phone-page .inner-hero-video h1 {
+        max-width: none;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ai-proof-flip-inner { transform: none !important; }
+      .ai-proof-face--back { display: none; }
+      .ai-proof-face--front { position: relative; transform: none; }
+    }
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -104,7 +229,7 @@
   }
   </script>
 </head>
-<body>
+<body class="ai-phone-page">
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
   <nav class="nav nav-solid" id="nav">
@@ -130,22 +255,40 @@
   </div>
 
   <main>
-    <section class="inner-hero">
-      <div class="inner-hero-content" style="align-items:end;min-height:52vh;padding-top:8rem">
+    <section class="inner-hero inner-hero-video">
+      <video
+        id="ai-phone-hero-video"
+        class="inner-hero-media"
+        src="/assets/video/ai-phone-hero.mp4?v=20260711-energy1"
+        poster="/assets/img/ai-phone-hero-poster.jpg?v=20260711-energy1"
+        muted
+        playsinline
+        autoplay
+        loop
+        preload="auto"
+        disablepictureinpicture
+        aria-hidden="true"
+      ></video>
+      <div class="inner-hero-content inner-hero-content--bottom">
         <div class="inner-hero-copy">
-          <p class="breadcrumb"><a href="/">Home</a> / <a href="/services/system-integrations/">System Integrations</a> / AI Phone</p>
-          <h1>AI phone systems that catch the work your team is too busy to answer.</h1>
-          <p>For Ohio service businesses that live on the phone: answer, qualify, route, book, and summarize — connected to the website and CRM, not floating as another gadget.</p>
+          <h1>AI phone systems that catch calls you never want to miss.</h1>
+          <p class="inner-hero-deck">Call intelligence in. Routing and CRM out. Continuous intake that flows through the business — not a dead voicemail, not a dead end. We make the AI on your end your customer&rsquo;s friend.</p>
         </div>
-        <aside class="inner-proof" aria-label="AI phone focus">
-          <strong>Intake that matches how the business sells.</strong>
-          <ul>
-            <li>Answer common questions after hours</li>
-            <li>Qualify jobs before a human jumps in</li>
-            <li>Route urgent calls to the right person</li>
-            <li>Write CRM notes and next steps automatically</li>
-          </ul>
-        </aside>
+        <div class="ai-proof-flip" id="ai-proof-flip" aria-label="AI phone capabilities">
+          <div class="ai-proof-flip-inner">
+            <div class="ai-proof-face ai-proof-face--front">
+              <ul>
+                <li>Answers common questions after hours</li>
+                <li>Qualifies leads before a human steps in</li>
+                <li>Routes urgent calls to the right person</li>
+                <li>Creates CRM notes with next steps</li>
+              </ul>
+            </div>
+            <div class="ai-proof-face ai-proof-face--back" aria-hidden="true">
+              <p class="ai-proof-tagline">Never miss that <em>valuable</em> call.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -153,34 +296,34 @@
       <div class="section-inner content-grid">
         <article class="rich-copy">
           <p class="section-eyebrow">System Integrations · AI Phone</p>
-          <h2>Missed calls are not a personality problem. They are a system problem.</h2>
-          <p>When the crew is on a job, in a service window, or mid-shift, the phone still rings. Voicemail is not a sales process. An AI phone layer can hold the line, collect the right details, and push the opportunity into the same path as a web form or chat lead.</p>
-          <p>Resonant builds these systems as part of <a href="/services/system-integrations/">system integrations</a> — not as a disconnected product pitch. The website, forms, CRM, and phone should describe one customer journey.</p>
+          <h2>Missed calls are not a staffing problem. They are a money problem.</h2>
+          <p>Every business that lives on the phone loses revenue when a real human cannot pick up. Voicemail is not a sales process. An AI phone layer answers, qualifies, and keeps the opportunity moving — continuous intake that passes through into booking, CRM, and the right person.</p>
+          <p>If you run a restaurant with OpenTable, online ordering, VIP requests, an executive chef’s line, and more than one location, one generic inbox is not enough. You need rules: who gets the reservation, who gets the vendor call, who gets the private-dining inquiry. The same is true for multi-location trades and service brands. The AI should never “miss” the call — it captures, routes, and logs so the business can act.</p>
+          <p>Resonant builds that as part of <a href="/services/system-integrations/">system integrations</a>, including pass-through into ordering, numbering, CRM, and hospitality stacks when the operation needs it. Website, forms, chat, and phone describe one journey.</p>
 
           <h3>What a serious AI phone setup can do</h3>
           <ul>
-            <li>Greet callers with the business name and service area in plain language.</li>
-            <li>Answer FAQ-level questions: hours, service area, starting prices, prep, booking rules.</li>
-            <li>Qualify: job type, timing, address or city, budget range, urgency.</li>
-            <li>Route: hot leads to a human, routine requests to booking or CRM, after-hours to a clean summary queue.</li>
-            <li>Book when rules allow: calendar slots, buffer times, service windows.</li>
-            <li>Summarize: who called, what they need, what was promised, what to do next.</li>
+            <li>Answer after hours and during peak service without killing the lead.</li>
+            <li>Qualify before a human steps in: need, timing, location, urgency.</li>
+            <li>Route correctly — host stand vs chef vs manager vs field tech vs VIP path.</li>
+            <li>Connect into booking, ordering, and CRM so the handoff is structured, not a voicemail dump.</li>
+            <li>Write notes and next steps so nothing valuable evaporates between shifts.</li>
           </ul>
 
-          <h3>Why it belongs with the website</h3>
-          <p>If the site says one thing and the phone says another, conversion drops. Field names, service names, cities, and next steps should match. Analytics should show call + form + chat as related demand, not three separate mysteries.</p>
+          <h3>Why it belongs with the website and ops tools</h3>
+          <p>If the site says one thing and the phone says another, conversion drops. Names, services, locations, and next steps should match. Analytics should treat call, form, and chat as related demand. For hospitality operators, that can include the same thinking we use around intelligent routing and floor systems — not a gadget bolted onto a broken process.</p>
 
           <h3>Built for operators in Ohio and beyond</h3>
-          <p>Resonant is based in Ohio and works with service companies that need the phone to produce money, not noise. Trades, hospitality venues, local service firms — anyone who loses revenue when a real human cannot pick up — is a natural fit. Larger custom work still starts with understanding the operation; see the <a href="/start/#custom-fit">fit review</a>.</p>
+          <p>Anyone who loses money when the phone rings and nobody can answer is a fit. Multi-location, multi-role, multi-system businesses are where routing pays for itself. Serious builds still start with understanding the operation — then we implement. <a href="/start/#custom-fit">Request a fit review</a>.</p>
         </article>
 
         <aside class="side-panel">
           <h2>Best fit</h2>
-          <p>Businesses that miss calls during peak work and need intake tied to CRM and the website.</p>
+          <p>Operators who cannot afford missed revenue on the phone and need intake tied to CRM, booking, and the right human.</p>
           <ul>
-            <li>Service trades &amp; field teams</li>
-            <li>Restaurants, bars, venues</li>
-            <li>Local multi-location operators</li>
+            <li>Restaurants, bars, hotels, venues</li>
+            <li>Multi-location service brands</li>
+            <li>Trades &amp; field teams on the job</li>
             <li>Teams ready to define routing rules</li>
           </ul>
           <a href="/start/#custom-fit" class="btn btn-primary">Request a fit review</a>
@@ -189,57 +332,16 @@
       </div>
     </section>
 
-    <section class="section dark-band">
+    <section class="contact-section section" id="contact">
       <div class="section-inner">
-        <p class="section-eyebrow">How it connects</p>
-        <h2 class="section-title">Same journey as Capture → Route → Report.</h2>
-        <p class="section-subtitle">AI phone is another capture surface. It still has to route cleanly and report what happened — the same layers as the rest of the integration stack.</p>
-        <div class="proof-grid">
-          <div class="proof-card">
-            <span>01</span>
-            <h3>Capture</h3>
-            <p>Caller intent, contact info, job details, and urgency collected in a structured way — not a rambling voicemail.</p>
-          </div>
-          <div class="proof-card">
-            <span>02</span>
-            <h3>Route</h3>
-            <p>Rules decide human handoff, booking, CRM record, SMS confirm, or after-hours queue.</p>
-          </div>
-          <div class="proof-card">
-            <span>03</span>
-            <h3>Report</h3>
-            <p>Source, outcome, and next step visible next to web leads so the business can manage demand in one place.</p>
-          </div>
+        <h2 class="contact-title">Contact Us</h2>
+        <div class="contact-form" style="text-align:center">
+          <p style="color:rgba(255,255,255,0.78);max-width:34rem;margin:0 auto 1.5rem;line-height:1.6">Tell us about the business, the systems, and the numbers that matter. The fit review is the right first step.</p>
+          <a href="/start/#fit-review" class="btn btn-primary" style="display:inline-flex">Request a fit review</a>
         </div>
-        <p style="margin-top:2rem"><a href="/services/system-integrations/#integration-layers" class="btn btn-secondary">See integration layers</a></p>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-inner">
-        <p class="section-eyebrow">Not a toy</p>
-        <h2 class="section-title">Discovery first. Then force on the build.</h2>
-        <p class="section-subtitle" style="max-width:40rem">We do not bolt an AI agent on a broken intake path. We map what a good call should collect, who owns it, and what “won” looks like in numbers — then we implement.</p>
-        <div class="offer-grid">
-          <div class="offer-card">
-            <span>RULES</span>
-            <h3>Business logic</h3>
-            <p>Service area, minimum job size, emergency vs routine, languages, hours, escalation.</p>
-          </div>
-          <div class="offer-card">
-            <span>WIRE</span>
-            <h3>Systems</h3>
-            <p>CRM, calendar, SMS, website forms, analytics events, and notification paths.</p>
-          </div>
-          <div class="offer-card">
-            <span>MEASURE</span>
-            <h3>Outcomes</h3>
-            <p>Booked jobs, qualified leads, missed-call recovery, speed-to-lead, revenue follow-through.</p>
-          </div>
-        </div>
-        <p style="margin-top:2.5rem"><a href="/start/#fit-review" class="btn btn-primary">Request a Resonant fit review</a></p>
-      </div>
-    </section>
   </main>
 
   <footer class="footer">
@@ -278,6 +380,55 @@
     </div>
   </footer>
 
-  <script src="/script.js?v=20260711-fit-review-globe" defer></script>
+  <script src="/script.js?v=20260712-fit-globe-wave-cursor" defer></script>
+  <script>
+    (function () {
+      var v = document.getElementById('ai-phone-hero-video');
+      if (v) {
+        v.muted = true;
+        var tryPlay = function () {
+          var p = v.play();
+          if (p && typeof p.catch === 'function') p.catch(function () {});
+        };
+        if (v.readyState >= 2) tryPlay();
+        else v.addEventListener('loadeddata', tryPlay, { once: true });
+      }
+
+      /* Hero proof card flip — same spirit as homepage / integration layers */
+      var flip = document.getElementById('ai-proof-flip');
+      if (!flip) return;
+      var inner = flip.querySelector('.ai-proof-flip-inner');
+      var front = flip.querySelector('.ai-proof-face--front');
+      var back = flip.querySelector('.ai-proof-face--back');
+      if (!inner) return;
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var ticking = false;
+      function clamp(n, a, b) { return Math.max(a, Math.min(b, n)); }
+      function update() {
+        ticking = false;
+        var vh = window.innerHeight || document.documentElement.clientHeight;
+        var y = window.scrollY || window.pageYOffset || 0;
+        // Flip while still in hero — first ~0.4–0.55 viewport of scroll
+        var range = Math.max(200, vh * 0.5);
+        var progress = clamp(y / range, 0, 1);
+        // Ease in after a short hold so the front list is readable first
+        var t = progress <= 0.12 ? 0 : progress >= 0.72 ? 1 : (progress - 0.12) / 0.6;
+        var deg = t * 180;
+        inner.style.transform = 'rotateX(' + deg + 'deg)';
+        if (front) front.setAttribute('aria-hidden', t > 0.5 ? 'true' : 'false');
+        if (back) back.setAttribute('aria-hidden', t > 0.5 ? 'false' : 'true');
+      }
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      update();
+    })();
+  </script>
 </body>
 </html>
