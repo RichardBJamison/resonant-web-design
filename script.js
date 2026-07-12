@@ -196,7 +196,7 @@
       if (row) roll(row);
 
       if (queue.length) {
-        queueTimer = window.setTimeout(drainQueue, 130);
+        queueTimer = window.setTimeout(drainQueue, 170);
       } else {
         queueTimer = 0;
       }
