@@ -104,6 +104,55 @@
     });
   }
 
+  function initFitReviewRouting() {
+    document.querySelectorAll('a.btn, a.nav-cta').forEach((link) => {
+      const url = new URL('/start/', window.location.origin);
+      url.searchParams.set('source', 'resonant');
+      url.searchParams.set('from', window.location.pathname || '/');
+      url.hash = 'fit-review';
+      link.href = url.href;
+      link.removeAttribute('target');
+      link.removeAttribute('rel');
+
+      if (link.classList.contains('nav-cta')) {
+        link.textContent = "Let's Talk";
+        link.setAttribute('aria-label', "Let's talk — request a fit review");
+      }
+    });
+  }
+
+  function initHospitalityCobrand() {
+    const globeUrl = '/ihs-globe-nav.png';
+    let favicon = document.querySelector('link[rel="icon"]');
+    if (!favicon) {
+      favicon = document.createElement('link');
+      favicon.rel = 'icon';
+      document.head.appendChild(favicon);
+    }
+    favicon.type = 'image/png';
+    favicon.href = '/favicon-48.png';
+    favicon.sizes = '48x48';
+
+    const nav = document.querySelector('.nav');
+    const logo = nav?.querySelector('.nav-logo');
+    if (nav && logo && !nav.querySelector('.ihs-cobrand')) {
+      let lockup = nav.querySelector('.nav-brand-lockup');
+      if (!lockup) {
+        lockup = document.createElement('div');
+        lockup.className = 'nav-brand-lockup';
+        logo.insertAdjacentElement('beforebegin', lockup);
+        lockup.appendChild(logo);
+      }
+      const cobrand = document.createElement('a');
+      cobrand.className = 'ihs-cobrand';
+      cobrand.href = 'https://intelligenthospitalitysystems.com/';
+      cobrand.setAttribute('aria-label', 'Intelligent Hospitality Systems');
+      cobrand.title = 'Intelligent Hospitality Systems';
+      cobrand.innerHTML = '<img src="' + globeUrl + '" alt="" width="38" height="38">';
+      lockup.appendChild(cobrand);
+    }
+  }
+
   function initReveal() {
     const revealObserver = new IntersectionObserver(
       (entries) => {
@@ -131,18 +180,19 @@
 
     const ctx = canvas.getContext('2d');
     let animationId = null;
+    let renderDpr = 1;
 
     function resizeCanvas() {
       const container = canvas.parentElement;
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-      canvas.width = container.offsetWidth * dpr;
-      canvas.height = container.offsetHeight * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      renderDpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      canvas.width = container.offsetWidth * renderDpr;
+      canvas.height = container.offsetHeight * renderDpr;
+      ctx.setTransform(renderDpr, 0, 0, renderDpr, 0, 0);
     }
 
     function drawWave(time) {
-      const w = canvas.width / window.devicePixelRatio;
-      const h = canvas.height / window.devicePixelRatio;
+      const w = canvas.width / renderDpr;
+      const h = canvas.height / renderDpr;
 
       ctx.clearRect(0, 0, w, h);
 
@@ -214,6 +264,8 @@
   }
 
   onReady(() => {
+    initFitReviewRouting();
+    initHospitalityCobrand();
     requestAnimationFrame(animateHero);
     initScrollProgress();
     initNavScroll();

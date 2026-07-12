@@ -20,8 +20,9 @@
   <meta name="twitter:title" content="Start a Project | Resonant Web Design">
   <meta name="twitter:description" content="Simple site or custom system — pick the right lane. Transparent pricing from $69/month to $6,999+ systems work.">
   <meta name="twitter:image" content="https://resonantwebdesign.com/assets/img/og-image.jpg">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon-ihs.png">
   <link rel="manifest" href="/site.webmanifest">
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -101,6 +102,8 @@
 
     .nav-logo span { font-weight: 600; color: var(--text-2); }
 
+    .nav-brand-lockup { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+
     .nav-links {
       display: flex;
       align-items: center;
@@ -129,6 +132,20 @@
     }
 
     .nav-cta:hover { opacity: 0.9; }
+
+    .nav .ihs-cobrand {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      place-items: center;
+      overflow: hidden;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      box-shadow: 0 0 14px rgba(31, 247, 242, 0.16);
+    }
+    .ihs-cobrand img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 
     /* Layout */
     .section {
@@ -963,13 +980,16 @@
 </head>
 <body>
   <nav class="nav" id="nav">
-    <a href="/" class="nav-logo">Resonant <span>Web Design</span></a>
+    <div class="nav-brand-lockup">
+      <a href="/" class="nav-logo">Resonant <span>Web Design</span></a>
+      <a class="ihs-cobrand" href="https://intelligenthospitalitysystems.com/" aria-label="Intelligent Hospitality Systems" title="Intelligent Hospitality Systems"><img src="/ihs-globe-nav.png" alt="" width="38" height="38"></a>
+    </div>
     <ul class="nav-links">
       <li><a href="/services/system-integrations/">System Integrations</a></li>
       <li><a href="/services/seo-foundations/">SEO</a></li>
       <li><a href="/#work">Work</a></li>
       <li><a href="/services/starter-sites/">Starter Sites</a></li>
-      <li><a href="/start/" class="nav-cta" aria-current="page">Start a Project</a></li>
+      <li><a href="#fit-review" class="nav-cta" aria-current="page">Let&rsquo;s Talk</a></li>
     </ul>
   </nav>
 
@@ -1238,6 +1258,7 @@
           <input type="hidden" name="_captcha" value="false">
           <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
           <input type="hidden" name="source" value="resonantwebdesign.com/start">
+          <input type="hidden" name="entry_context" id="fit-entry-context" value="direct">
 
           <div class="form-grid">
             <label>
@@ -1356,6 +1377,30 @@
   </footer>
 
   <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var source = params.get("source") || "resonant";
+      var plan = params.get("plan") || "";
+      var from = params.get("from") || "";
+      var contextInput = document.getElementById("fit-entry-context");
+      if (contextInput) {
+        contextInput.value = [source, plan ? "plan-" + plan : "", from].filter(Boolean).join(" | ");
+      }
+
+      if (source === "impulse" || plan === "69") {
+        var lane = document.querySelector('input[name="lane"][value="$69/month starter site"]');
+        var budget = document.querySelector('input[name="budget"][value="$69/month"]');
+        if (lane) lane.checked = true;
+        if (budget) budget.checked = true;
+      }
+
+      document.querySelectorAll("a.btn").forEach(function (link) {
+        link.href = "#fit-review";
+        link.removeAttribute("target");
+        link.removeAttribute("rel");
+      });
+    })();
+
     (function () {
       var form = document.getElementById("fit-review-form");
       var statusEl = document.getElementById("fit-form-status");
