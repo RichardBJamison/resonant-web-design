@@ -106,6 +106,8 @@
 
   function initFitReviewRouting() {
     document.querySelectorAll('a.btn, a.nav-cta').forEach((link) => {
+      if (link.dataset.preserveHref === 'true') return;
+
       const url = new URL('/start/', window.location.origin);
       url.searchParams.set('source', 'resonant');
       url.searchParams.set('from', window.location.pathname || '/');
