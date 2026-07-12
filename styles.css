@@ -2407,6 +2407,30 @@
       color: var(--text-light);
     }
 
+    .systems-showcase--art {
+      display: block;
+      min-height: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      overflow: visible;
+      line-height: 0;
+      box-shadow: none;
+    }
+
+    .systems-showcase--art::before {
+      display: none;
+    }
+
+    .systems-showcase--art img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      background: transparent;
+    }
+
     .systems-showcase::before {
       content: '';
       position: absolute;
