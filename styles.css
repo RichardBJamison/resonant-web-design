@@ -4292,13 +4292,48 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
   margin-top: 2rem;
+  perspective: 1400px;
 }
 
 .starter-feature-card {
+  position: relative;
+  min-height: 180px;
+  background: transparent;
+  transform-style: preserve-3d;
+}
+
+.starter-feature-card-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.9s var(--ease-out-expo);
+  will-change: transform;
+}
+
+.starter-feature-card.is-flipped .starter-feature-card-inner {
+  transform: rotateY(180deg);
+}
+
+.starter-feature-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   border: 1px solid var(--border-light);
   background: rgba(255, 255, 255, 0.78);
   padding: 1.35rem;
-  min-height: 180px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.starter-feature-face--front {
+  align-items: center;
+  text-align: center;
+}
+
+.starter-feature-face--back {
+  transform: rotateY(180deg);
 }
 
 .starter-feature-card span {
@@ -4317,6 +4352,12 @@
 .starter-feature-card p {
   color: var(--text-secondary);
   line-height: 1.65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .starter-feature-card-inner { transform: rotateY(180deg); transition: none; }
+  .starter-feature-face--front { display: none; }
+  .starter-feature-face--back { transform: none; }
 }
 
 .starter-ownership-grid {

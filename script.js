@@ -173,6 +173,23 @@
     document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
   }
 
+  function initStarterFeatureFlip() {
+    const root = document.getElementById('starter-feature-flip');
+    if (!root) return;
+    const cards = Array.from(root.querySelectorAll('.starter-feature-card'));
+    if (!cards.length || prefersReducedMotion) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      cards.forEach((card, index) => {
+        window.setTimeout(() => card.classList.add('is-flipped'), index * 170);
+      });
+      observer.disconnect();
+    }, { threshold: 0.3 });
+
+    observer.observe(root);
+  }
+
   function initFaqRollout() {
     if (prefersReducedMotion) return;
 
@@ -387,6 +404,7 @@
     initNavScroll();
     initMobileMenu();
     initReveal();
+    initStarterFeatureFlip();
     initFaqRollout();
     initSmoothScroll();
     initWaveform();
