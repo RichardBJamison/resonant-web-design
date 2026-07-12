@@ -122,7 +122,8 @@
   }
 
   function initHospitalityCobrand() {
-    const globeUrl = '/ihs-globe-nav.png';
+    const mainScript = document.querySelector('script[src*="script.js"]');
+    const globeUrl = new URL('ihs-globe-nav.png', mainScript?.src || document.baseURI).href;
     let favicon = document.querySelector('link[rel="icon"]');
     if (!favicon) {
       favicon = document.createElement('link');
@@ -149,7 +150,7 @@
       cobrand.setAttribute('aria-label', 'Intelligent Hospitality Systems');
       cobrand.title = 'Intelligent Hospitality Systems';
       cobrand.innerHTML = '<img src="' + globeUrl + '" alt="" width="38" height="38">';
-      lockup.appendChild(cobrand);
+      lockup.prepend(cobrand);
     }
   }
 
