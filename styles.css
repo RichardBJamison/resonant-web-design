@@ -93,6 +93,13 @@
       color: var(--cyan);
     }
 
+    .nav-brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+
     .nav.scrolled .nav-logo {
       color: var(--text-primary);
     }
@@ -154,6 +161,32 @@
     .nav.scrolled .nav-links .nav-cta {
       background: var(--text-primary);
       color: var(--bg-light);
+    }
+
+    .nav .ihs-cobrand {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      place-items: center;
+      overflow: hidden;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      box-shadow: 0 0 14px rgba(31, 247, 242, 0.16);
+    }
+
+    .nav .ihs-cobrand img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .nav.scrolled .ihs-cobrand {
+      width: 34px;
+      height: 34px;
+      padding: 0;
     }
 
     .mobile-toggle {

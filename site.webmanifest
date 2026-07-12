@@ -8,19 +8,14 @@
   "theme_color": "#0C0F14",
   "icons": [
     {
-      "src": "/favicon.png",
+      "src": "/ihs-globe-512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/apple-touch-icon.png",
+      "src": "/apple-touch-icon-ihs.png",
       "sizes": "180x180",
       "type": "image/png"
-    },
-    {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
     }
   ]
 }
