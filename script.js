@@ -178,12 +178,26 @@
 
     const rows = Array.from(document.querySelectorAll('.home-faq-list details'));
     if (rows.length < 2) return;
+    const faqTitle = document.querySelector('.home-faq-title');
+    const titleLetters = faqTitle
+      ? {
+          q: faqTitle.querySelector('.faq-letter-q'),
+          a: faqTitle.querySelector('.faq-letter-a'),
+          f: faqTitle.querySelector('.faq-letter-f'),
+        }
+      : null;
 
     const rolled = new WeakSet();
     const queued = new WeakSet();
     const queue = [];
     let ticking = false;
     let queueTimer = 0;
+    let discoveryTimer = 0;
+    let discoveryTicks = 0;
+
+    if (faqTitle && titleLetters) {
+      faqTitle.classList.add('faq-title-armed');
+    }
 
     function roll(row) {
       if (rolled.has(row)) return;
@@ -208,6 +222,11 @@
       queue.push(row);
     }
 
+    function revealTitleLetter(letter) {
+      if (!letter) return;
+      letter.classList.add('is-in-place');
+    }
+
     function update() {
       ticking = false;
       const vh = window.innerHeight || document.documentElement.clientHeight;
@@ -218,6 +237,18 @@
           queueRoll(row);
         }
       });
+
+      if (titleLetters) {
+        if (rows[1]?.getBoundingClientRect().bottom <= vh) {
+          revealTitleLetter(titleLetters.q);
+        }
+        if (rows[3]?.getBoundingClientRect().bottom <= vh) {
+          revealTitleLetter(titleLetters.a);
+        }
+        if (rows[5]?.getBoundingClientRect().bottom <= vh) {
+          revealTitleLetter(titleLetters.f);
+        }
+      }
 
       if (!queueTimer && queue.length) {
         queueTimer = window.setTimeout(drainQueue, 0);
@@ -230,9 +261,31 @@
       window.requestAnimationFrame(update);
     }
 
+    function titleIsComplete() {
+      return !titleLetters || titleLetters.f?.classList.contains('is-in-place');
+    }
+
+    function stopDiscoveryTimer() {
+      if (!discoveryTimer) return;
+      window.clearInterval(discoveryTimer);
+      discoveryTimer = 0;
+    }
+
+    function startDiscoveryTimer() {
+      if (discoveryTimer) return;
+      discoveryTimer = window.setInterval(() => {
+        requestUpdate();
+        discoveryTicks += 1;
+        if (titleIsComplete() || discoveryTicks > 1800) {
+          stopDiscoveryTimer();
+        }
+      }, 160);
+    }
+
     window.addEventListener('scroll', requestUpdate, { passive: true });
     window.addEventListener('resize', requestUpdate, { passive: true });
     requestUpdate();
+    startDiscoveryTimer();
   }
 
   function initWaveform() {

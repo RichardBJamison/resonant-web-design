@@ -1635,12 +1635,28 @@
     .home-faq-title {
       position: sticky;
       top: 6rem;
+      display: flex;
       font-family: var(--font-display);
       font-weight: 800;
       font-size: clamp(2rem, 4vw, 3.2rem);
       line-height: 1.1;
       letter-spacing: 0;
       text-transform: none;
+    }
+
+    .faq-letter {
+      display: inline-block;
+      transform: translateX(-120vw);
+      opacity: 0;
+      transition:
+        opacity 0.24s ease,
+        transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
+    }
+
+    .faq-letter.is-in-place {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     .home-faq-list {
@@ -1681,6 +1697,12 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+      .faq-letter {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
       .home-faq-list details.faq-roll-once {
         animation: none;
       }
