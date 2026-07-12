@@ -136,21 +136,28 @@
 
     const nav = document.querySelector('.nav');
     const logo = nav?.querySelector('.nav-logo');
-    if (nav && logo && !nav.querySelector('.ihs-cobrand')) {
+    if (nav && logo) {
       let lockup = nav.querySelector('.nav-brand-lockup');
       if (!lockup) {
         lockup = document.createElement('div');
         lockup.className = 'nav-brand-lockup';
         logo.insertAdjacentElement('beforebegin', lockup);
         lockup.appendChild(logo);
+      } else if (!lockup.contains(logo)) {
+        lockup.appendChild(logo);
       }
-      const cobrand = document.createElement('a');
-      cobrand.className = 'ihs-cobrand';
-      cobrand.href = 'https://intelligenthospitalitysystems.com/';
-      cobrand.setAttribute('aria-label', 'Intelligent Hospitality Systems');
-      cobrand.title = 'Intelligent Hospitality Systems';
-      cobrand.innerHTML = '<img src="' + globeUrl + '" alt="" width="38" height="38">';
-      lockup.prepend(cobrand);
+      let cobrand = nav.querySelector('.ihs-cobrand');
+      if (!cobrand) {
+        cobrand = document.createElement('a');
+        cobrand.className = 'ihs-cobrand';
+        cobrand.href = 'https://intelligenthospitalitysystems.com/';
+        cobrand.setAttribute('aria-label', 'Intelligent Hospitality Systems');
+        cobrand.title = 'Intelligent Hospitality Systems';
+        cobrand.innerHTML = '<img src="' + globeUrl + '" alt="" width="38" height="38">';
+      }
+      if (!lockup.contains(cobrand) || cobrand.nextElementSibling !== logo) {
+        lockup.insertBefore(cobrand, logo);
+      }
     }
   }
 
