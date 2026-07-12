@@ -3143,9 +3143,9 @@
         width: 100%;
       }
       .waveform-container {
-        top: 5.6rem;
-        height: 230px;
-        opacity: 0.58;
+        top: 3.4rem;
+        height: 185px;
+        opacity: 0.62;
         mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 92%, transparent 100%);
         -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 92%, transparent 100%);
       }
