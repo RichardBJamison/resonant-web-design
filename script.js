@@ -180,18 +180,19 @@
 
     const ctx = canvas.getContext('2d');
     let animationId = null;
+    let renderDpr = 1;
 
     function resizeCanvas() {
       const container = canvas.parentElement;
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-      canvas.width = container.offsetWidth * dpr;
-      canvas.height = container.offsetHeight * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      renderDpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      canvas.width = container.offsetWidth * renderDpr;
+      canvas.height = container.offsetHeight * renderDpr;
+      ctx.setTransform(renderDpr, 0, 0, renderDpr, 0, 0);
     }
 
     function drawWave(time) {
-      const w = canvas.width / window.devicePixelRatio;
-      const h = canvas.height / window.devicePixelRatio;
+      const w = canvas.width / renderDpr;
+      const h = canvas.height / renderDpr;
 
       ctx.clearRect(0, 0, w, h);
 
