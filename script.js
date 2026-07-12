@@ -130,7 +130,7 @@
       document.head.appendChild(favicon);
     }
     favicon.type = 'image/png';
-    favicon.href = '/favicon-48.png';
+    favicon.href = '/ihs-favicon-48.png';
     favicon.sizes = '48x48';
 
     const nav = document.querySelector('.nav');
