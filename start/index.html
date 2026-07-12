@@ -93,16 +93,19 @@
     }
 
     .nav-logo {
+      display: inline-flex;
+      align-items: center;
       font-family: var(--font-d);
       font-weight: 800;
       font-size: 1.15rem;
+      line-height: 1;
       text-decoration: none;
       color: var(--text);
     }
 
     .nav-logo span { font-weight: 600; color: var(--text-2); }
 
-    .nav-brand-lockup { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+    .nav-brand-lockup { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; line-height: 1; }
 
     .nav-links {
       display: flex;
@@ -135,6 +138,7 @@
 
     .nav .ihs-cobrand {
       display: grid;
+      flex: 0 0 auto;
       width: 38px;
       height: 38px;
       padding: 0;

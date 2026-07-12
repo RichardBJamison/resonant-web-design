@@ -79,9 +79,12 @@
     }
 
     .nav-logo {
+      display: inline-flex;
+      align-items: center;
       font-family: var(--font-display);
       font-weight: 800;
       font-size: 1.2rem;
+      line-height: 1;
       color: var(--text-light);
       text-decoration: none;
       letter-spacing: 0;
@@ -98,6 +101,7 @@
       align-items: center;
       gap: 16px;
       flex: 0 0 auto;
+      line-height: 1;
     }
 
     .nav.scrolled .nav-logo {
@@ -165,6 +169,7 @@
 
     .nav .ihs-cobrand {
       display: grid;
+      flex: 0 0 auto;
       width: 38px;
       height: 38px;
       padding: 0;
@@ -2409,6 +2414,9 @@
 
     .systems-showcase--art {
       display: block;
+      width: min(100%, 1080px);
+      max-width: 100%;
+      margin: 2rem auto 0;
       min-height: 0;
       padding: 0;
       border: 0;
@@ -2426,9 +2434,17 @@
     .systems-showcase--art img {
       display: block;
       width: 100%;
+      max-width: 100%;
       height: auto;
       object-fit: contain;
       background: transparent;
+    }
+
+    .portfolio .systems-showcase--art > img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
     }
 
     .systems-showcase::before {
