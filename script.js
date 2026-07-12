@@ -173,6 +173,68 @@
     document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
   }
 
+  function initFaqRollout() {
+    if (prefersReducedMotion) return;
+
+    const rows = Array.from(document.querySelectorAll('.home-faq-list details'));
+    if (rows.length < 2) return;
+
+    const rolled = new WeakSet();
+    const queued = new WeakSet();
+    const queue = [];
+    let ticking = false;
+    let queueTimer = 0;
+
+    function roll(row) {
+      if (rolled.has(row)) return;
+      rolled.add(row);
+      row.classList.add('faq-roll-once');
+    }
+
+    function drainQueue() {
+      const row = queue.shift();
+      if (row) roll(row);
+
+      if (queue.length) {
+        queueTimer = window.setTimeout(drainQueue, 130);
+      } else {
+        queueTimer = 0;
+      }
+    }
+
+    function queueRoll(row) {
+      if (rolled.has(row) || queued.has(row)) return;
+      queued.add(row);
+      queue.push(row);
+    }
+
+    function update() {
+      ticking = false;
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+
+      rows.forEach((row, index) => {
+        const trigger = rows[index + 1] || row;
+        if (trigger.getBoundingClientRect().bottom <= vh) {
+          queueRoll(row);
+        }
+      });
+
+      if (!queueTimer && queue.length) {
+        queueTimer = window.setTimeout(drainQueue, 0);
+      }
+    }
+
+    function requestUpdate() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate, { passive: true });
+    requestUpdate();
+  }
+
   function initWaveform() {
     if (prefersReducedMotion) return;
 
@@ -272,6 +334,7 @@
     initNavScroll();
     initMobileMenu();
     initReveal();
+    initFaqRollout();
     initSmoothScroll();
     initWaveform();
   });
