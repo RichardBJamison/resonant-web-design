@@ -1125,6 +1125,74 @@
       .section-title { max-width: none; }
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://resonantwebdesign.com/#organization",
+        "name": "Resonant Web Design",
+        "url": "https://resonantwebdesign.com/"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://resonantwebdesign.com/start/#webpage",
+        "url": "https://resonantwebdesign.com/start/",
+        "name": "Start a Project | Resonant Web Design",
+        "description": "Choose the right website path: $69/month starter sites through Impulse by Design, or custom Resonant web design, integrations, automation, AI workflows, dashboards, and growth systems.",
+        "isPartOf": { "@id": "https://resonantwebdesign.com/#website" },
+        "publisher": { "@id": "https://resonantwebdesign.com/#organization" }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://resonantwebdesign.com/start/#service",
+        "name": "Resonant Web Design Project Fit Review",
+        "serviceType": "Web design consultation and project scoping",
+        "url": "https://resonantwebdesign.com/start/",
+        "description": "Fit review to route businesses into the right lane: Impulse starter sites or custom Resonant websites, system integrations, automation, AI phone/chat, and growth systems.",
+        "provider": { "@id": "https://resonantwebdesign.com/#organization" },
+        "areaServed": { "@type": "Country", "name": "United States" },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Website paths",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Starter Sites (Impulse by Design)",
+              "price": "69",
+              "priceCurrency": "USD",
+              "url": "https://resonantwebdesign.com/services/starter-sites/"
+            },
+            {
+              "@type": "Offer",
+              "name": "Custom Resonant website and systems work",
+              "url": "https://resonantwebdesign.com/start/#fit-review"
+            }
+          ]
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://resonantwebdesign.com/start/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://resonantwebdesign.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Start a Project",
+            "item": "https://resonantwebdesign.com/start/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <nav class="nav" id="nav">
@@ -1132,26 +1200,20 @@
       <a class="ihs-cobrand" href="https://intelligenthospitalitysystems.com/" aria-label="Intelligent Hospitality Systems" title="Intelligent Hospitality Systems"><img src="/ihs-globe-nav.png" alt="" width="38" height="38"></a>
       <a href="/" class="nav-logo">Resonant <span>Web Design</span></a>
     </div>
-    <ul class="nav-links">
+        <ul class="nav-links">
       <li class="nav-dropdown">
-        <a href="/" class="nav-dropdown-trigger" aria-haspopup="true">Services</a>
+        <a href="/services/seo-foundations/" class="nav-dropdown-trigger" aria-haspopup="true">Services</a>
         <div class="nav-dropdown-menu" role="menu" aria-label="Services">
-          <a href="/services/seo-foundations/" role="menuitem">Search + Growth</a>
-          <a href="/" role="menuitem">Custom Websites</a>
-          <a href="/services/system-integrations/" role="menuitem">Connected Systems</a>
-          <a href="/start/" role="menuitem">Care + Optimization</a>
+          <a href="/services/seo-foundations/" role="menuitem">SEO Foundations</a>
+          <a href="/services/system-integrations/" role="menuitem">System Integrations</a>
+          <a href="/services/system-integrations/ai-phone/" role="menuitem">AI Phone</a>
+          <a href="/services/starter-sites/" role="menuitem">Starter Sites</a>
+          <a href="/industries/landscaping-web-design/" role="menuitem">Landscaping</a>
+          <a href="/industries/restaurants-hospitality-web-design/" role="menuitem">Restaurants + Hospitality</a>
         </div>
       </li>
-      <li><a href="/services/system-integrations/">System Integrations</a></li>
-      <li><a href="/services/starter-sites/">Starter Sites</a></li>
-      <li class="nav-dropdown">
-        <a href="/insights/" class="nav-dropdown-trigger" aria-haspopup="true">Insights</a>
-        <div class="nav-dropdown-menu" role="menu" aria-label="Insights">
-          <a href="/insights/" role="menuitem">Insights</a>
-          <a href="/services/seo-foundations/" role="menuitem">SEO</a>
-          <a href="/#work" role="menuitem">Work</a>
-        </div>
-      </li>
+      <li><a href="/insights/">Insights</a></li>
+      <li><a href="/#work">Work</a></li>
       <li><a href="#fit-review" class="nav-cta" aria-current="page">Let&rsquo;s Talk</a></li>
     </ul>
     <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -1159,12 +1221,14 @@
     </button>
   </nav>
 
-  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-    <a href="/services/seo-foundations/">Search + Growth</a>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <a href="/services/seo-foundations/">SEO Foundations</a>
     <a href="/services/system-integrations/">System Integrations</a>
+    <a href="/services/system-integrations/ai-phone/">AI Phone</a>
     <a href="/services/starter-sites/">Starter Sites</a>
+    <a href="/industries/landscaping-web-design/">Landscaping</a>
+    <a href="/industries/restaurants-hospitality-web-design/">Restaurants + Hospitality</a>
     <a href="/insights/">Insights</a>
-    <a href="/services/seo-foundations/">SEO</a>
     <a href="/#work">Work</a>
     <a href="#fit-review" class="nav-cta" aria-current="page">Let&rsquo;s Talk</a>
   </div>
