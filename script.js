@@ -201,6 +201,38 @@
     observer.observe(root);
   }
 
+  /** Services pricing tiles: first hover/tap flips once and stays (like FAQ once). */
+  function initPricingCardFlip() {
+    const cards = Array.from(document.querySelectorAll('[data-pricing-flip]'));
+    if (!cards.length) return;
+
+    // Always start on the whisper face (hard refresh / navigation)
+    cards.forEach((card) => {
+      card.classList.remove('is-flipped');
+      card.removeAttribute('data-flipped');
+    });
+
+    cards.forEach((card) => {
+      const flipOnce = () => {
+        if (card.classList.contains('is-flipped')) return;
+        card.classList.add('is-flipped');
+        card.setAttribute('data-flipped', 'true');
+      };
+
+      card.addEventListener('mouseenter', flipOnce, { once: true });
+      // Mobile: first tap flips; later taps reach the CTA on the back
+      card.addEventListener(
+        'click',
+        (event) => {
+          if (card.classList.contains('is-flipped')) return;
+          event.preventDefault();
+          flipOnce();
+        },
+        { capture: true }
+      );
+    });
+  }
+
   function initFaqRollout() {
     if (prefersReducedMotion) return;
 
@@ -416,6 +448,7 @@
     initMobileMenu();
     initReveal();
     initStarterFeatureFlip();
+    initPricingCardFlip();
     initFaqRollout();
     initSmoothScroll();
     initWaveform();
