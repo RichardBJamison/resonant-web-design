@@ -123,6 +123,75 @@
 
     .nav-links a:hover { color: var(--text); }
 
+    .nav-dropdown {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-dropdown::before {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: 0.82rem;
+    }
+
+    .nav-dropdown-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.32rem;
+    }
+
+    .nav-dropdown-trigger::after {
+      content: "";
+      width: 0.38rem;
+      height: 0.38rem;
+      border-right: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+      transform: rotate(45deg) translateY(-1px);
+      opacity: 0.76;
+    }
+
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 0.72rem);
+      left: 50%;
+      min-width: 13.5rem;
+      padding: 0.52rem;
+      background: rgba(12, 15, 20, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 0.5rem;
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.22);
+      opacity: 0;
+      visibility: hidden;
+      transform: translate(-50%, -0.35rem);
+      transition: opacity 0.18s var(--ease), transform 0.18s var(--ease), visibility 0.18s;
+    }
+
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, 0);
+    }
+
+    .nav-dropdown-menu a {
+      display: block;
+      padding: 0.64rem 0.72rem;
+      border-radius: 0.36rem;
+      color: rgba(255, 255, 255, 0.88);
+      white-space: nowrap;
+    }
+
+    .nav-dropdown-menu a:hover,
+    .nav-dropdown-menu a:focus {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.09);
+      outline: none;
+    }
+
     .nav-cta {
       display: inline-flex;
       align-items: center;
@@ -150,6 +219,11 @@
       box-shadow: 0 0 14px rgba(31, 247, 242, 0.16);
     }
     .ihs-cobrand img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+
+    .mobile-toggle,
+    .mobile-menu {
+      display: none;
+    }
 
     /* Layout */
     .section {
@@ -954,6 +1028,76 @@
       }
 
       .nav-links { display: none; }
+      .mobile-toggle {
+        display: block;
+        width: 28px;
+        height: 20px;
+        border: 0;
+        background: transparent;
+        position: relative;
+      }
+
+      .mobile-toggle span {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--text);
+        transition: transform 0.25s var(--ease), opacity 0.25s var(--ease), top 0.25s var(--ease);
+      }
+
+      .mobile-toggle span:nth-child(1) { top: 0; }
+      .mobile-toggle span:nth-child(2) { top: 9px; }
+      .mobile-toggle span:nth-child(3) { top: 18px; }
+
+      .mobile-toggle.open span:nth-child(1) {
+        top: 9px;
+        transform: rotate(45deg);
+      }
+
+      .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+
+      .mobile-toggle.open span:nth-child(3) {
+        top: 9px;
+        transform: rotate(-45deg);
+      }
+
+      .mobile-menu {
+        position: fixed;
+        inset: 0;
+        z-index: 45;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1.35rem;
+        padding: 5rem 1.5rem 2rem;
+        background: rgba(250, 250, 248, 0.98);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.25s var(--ease), visibility 0.25s;
+      }
+
+      .mobile-menu.open {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .mobile-menu a {
+        font-family: var(--font-d);
+        font-size: 1.7rem;
+        font-weight: 700;
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      .mobile-menu .nav-cta {
+        margin-top: 0.35rem;
+        font-family: var(--font-b);
+        font-size: 0.95rem !important;
+      }
+
+      body.menu-open { overflow: hidden; }
 
       .hero-ctas .btn,
       .final-ctas .btn,
@@ -989,13 +1133,41 @@
       <a href="/" class="nav-logo">Resonant <span>Web Design</span></a>
     </div>
     <ul class="nav-links">
+      <li class="nav-dropdown">
+        <a href="/" class="nav-dropdown-trigger" aria-haspopup="true">Services</a>
+        <div class="nav-dropdown-menu" role="menu" aria-label="Services">
+          <a href="/services/seo-foundations/" role="menuitem">Search + Growth</a>
+          <a href="/" role="menuitem">Custom Websites</a>
+          <a href="/services/system-integrations/" role="menuitem">Connected Systems</a>
+          <a href="/start/" role="menuitem">Care + Optimization</a>
+        </div>
+      </li>
       <li><a href="/services/system-integrations/">System Integrations</a></li>
-      <li><a href="/services/seo-foundations/">SEO</a></li>
-      <li><a href="/#work">Work</a></li>
       <li><a href="/services/starter-sites/">Starter Sites</a></li>
+      <li class="nav-dropdown">
+        <a href="/insights/" class="nav-dropdown-trigger" aria-haspopup="true">Insights</a>
+        <div class="nav-dropdown-menu" role="menu" aria-label="Insights">
+          <a href="/insights/" role="menuitem">Insights</a>
+          <a href="/services/seo-foundations/" role="menuitem">SEO</a>
+          <a href="/#work" role="menuitem">Work</a>
+        </div>
+      </li>
       <li><a href="#fit-review" class="nav-cta" aria-current="page">Let&rsquo;s Talk</a></li>
     </ul>
+    <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <a href="/services/seo-foundations/">Search + Growth</a>
+    <a href="/services/system-integrations/">System Integrations</a>
+    <a href="/services/starter-sites/">Starter Sites</a>
+    <a href="/insights/">Insights</a>
+    <a href="/services/seo-foundations/">SEO</a>
+    <a href="/#work">Work</a>
+    <a href="#fit-review" class="nav-cta" aria-current="page">Let&rsquo;s Talk</a>
+  </div>
 
   <main>
     <!-- Hero -->
@@ -1402,6 +1574,30 @@
         link.href = "#fit-review";
         link.removeAttribute("target");
         link.removeAttribute("rel");
+      });
+    })();
+
+    (function () {
+      var mobileToggle = document.querySelector(".mobile-toggle");
+      var mobileMenu = document.getElementById("mobile-menu");
+      if (!mobileToggle || !mobileMenu) return;
+
+      mobileToggle.addEventListener("click", function () {
+        var isOpen = mobileMenu.classList.toggle("open");
+        mobileToggle.classList.toggle("open", isOpen);
+        document.body.classList.toggle("menu-open", isOpen);
+        mobileToggle.setAttribute("aria-expanded", String(isOpen));
+        mobileMenu.setAttribute("aria-hidden", String(!isOpen));
+      });
+
+      mobileMenu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          mobileMenu.classList.remove("open");
+          mobileToggle.classList.remove("open");
+          document.body.classList.remove("menu-open");
+          mobileToggle.setAttribute("aria-expanded", "false");
+          mobileMenu.setAttribute("aria-hidden", "true");
+        });
       });
     })();
 

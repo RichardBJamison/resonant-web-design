@@ -9,6 +9,7 @@ Resonant Web Design is a selective web design and development studio led by Rich
 - SEO foundations and content strategy
 - System integrations, APIs, automation, and AI phone/chat workflows
 - Hosting, maintenance, and launch systems
+- Insights publishing system for website strategy, SEO, local search, AI-connected systems, hospitality growth, and service-business growth
 - Support for service businesses, SaaS, and portfolio sites
 - Landscaping website design and local SEO page architecture
 - Restaurant website design, hospitality SEO, booking flows, and operational marketing
@@ -26,6 +27,7 @@ Resonant Web Design is a selective web design and development studio led by Rich
 
 - Home: https://resonantwebdesign.com/
 - Start a Project (sales fit router): https://resonantwebdesign.com/start/
+- Insights (publishing home): https://resonantwebdesign.com/insights/
 - Starter Sites: https://resonantwebdesign.com/services/starter-sites/
 - Impulse by Design (starter product of Resonant; Cleveland small-business lane): https://impulsebydesign.com/
 - SEO Foundations (Ohio service businesses): https://resonantwebdesign.com/services/seo-foundations/

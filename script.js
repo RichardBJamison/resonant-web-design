@@ -92,6 +92,7 @@
       mobileToggle.classList.toggle('open', isOpen);
       document.body.classList.toggle('menu-open', isOpen);
       mobileToggle.setAttribute('aria-expanded', String(isOpen));
+      mobileMenu.setAttribute('aria-hidden', String(!isOpen));
     });
 
     mobileMenu.querySelectorAll('a').forEach((link) => {
@@ -100,6 +101,7 @@
         mobileToggle.classList.remove('open');
         document.body.classList.remove('menu-open');
         mobileToggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
       });
     });
   }

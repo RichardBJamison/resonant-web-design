@@ -130,11 +130,25 @@
       <a href="/" class="nav-logo">Resonant <span class="by">Web Design</span></a>
     </div>
     <ul class="nav-links">
+      <li class="nav-dropdown">
+        <a href="/" class="nav-dropdown-trigger" aria-haspopup="true">Services</a>
+        <div class="nav-dropdown-menu" role="menu" aria-label="Services">
+          <a href="/services/seo-foundations/" role="menuitem">Search + Growth</a>
+          <a href="/" role="menuitem">Custom Websites</a>
+          <a href="/services/system-integrations/" role="menuitem">Connected Systems</a>
+          <a href="/start/" role="menuitem">Care + Optimization</a>
+        </div>
+      </li>
       <li><a href="/services/system-integrations/">System Integrations</a></li>
-      <li><a href="/services/seo-foundations/">SEO</a></li>
-
-      <li><a href="/#work">Work</a></li>
       <li><a href="/services/starter-sites/">Starter Sites</a></li>
+      <li class="nav-dropdown">
+        <a href="/insights/" class="nav-dropdown-trigger" aria-haspopup="true">Insights</a>
+        <div class="nav-dropdown-menu" role="menu" aria-label="Insights">
+          <a href="/insights/" role="menuitem">Insights</a>
+          <a href="/services/seo-foundations/" role="menuitem">SEO</a>
+          <a href="/#work" role="menuitem">Work</a>
+        </div>
+      </li>
       <li><a href="/start/" class="nav-cta">Start a Project</a></li>
     </ul>
     <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -143,11 +157,12 @@
   </nav>
 
   <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <a href="/services/seo-foundations/">Search + Growth</a>
     <a href="/services/system-integrations/">System Integrations</a>
-    <a href="/services/seo-foundations/">SEO</a>
-
-    <a href="/#work">Work</a>
     <a href="/services/starter-sites/">Starter Sites</a>
+    <a href="/insights/">Insights</a>
+    <a href="/services/seo-foundations/">SEO</a>
+    <a href="/#work">Work</a>
     <a href="/start/" class="nav-cta">Start a Project</a>
   </div>
 
