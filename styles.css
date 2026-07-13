@@ -1715,10 +1715,10 @@
       padding: 0;
       border: none;
       cursor: pointer;
-      min-height: 520px;
+      /* Tall enough for longest offer copy without price/button collision */
+      min-height: 620px;
       background: transparent;
       border-radius: 8px;
-      /* Perspective on the stage, not the spinning card */
       perspective: 1200px;
       perspective-origin: 50% 50%;
     }
@@ -1726,21 +1726,15 @@
     .pricing-card-inner {
       position: relative;
       width: 100%;
-      min-height: 520px;
+      min-height: 620px;
       height: 100%;
       transform-style: preserve-3d;
       transform-origin: center center;
       transition: transform 0.7s cubic-bezier(0.4, 0.0, 0.2, 1);
       will-change: transform;
-      /* Start flat — full 180° spin on flip */
       transform: rotateY(0deg);
     }
 
-    /*
-     * Full flip left → right:
-     * entire card rotates 180° around its vertical center
-     * (not origin-left door/fold)
-     */
     .pricing-card--flip.is-flipped .pricing-card-inner {
       transform: rotateY(-180deg);
       transform-origin: center center;
@@ -1751,7 +1745,7 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      min-height: 520px;
+      min-height: 620px;
       background: #f7f7f5;
       color: #050505;
       border-radius: 8px;
@@ -1762,6 +1756,7 @@
       -webkit-backface-visibility: hidden;
       -webkit-font-smoothing: antialiased;
       transform-style: preserve-3d;
+      overflow: hidden;
     }
 
     /* Front: facing camera at rest */
@@ -1777,48 +1772,70 @@
       gap: 0;
     }
 
-    /* Back: pre-rotated so a -180° parent spin lands it face-forward */
+    /* Back: stacked layout — pill → copy → price → button (no overlap) */
     .pricing-card-face--back {
       display: flex;
       flex-direction: column;
       align-items: stretch;
       justify-content: flex-start;
+      gap: 1.15rem;
       transform: rotateY(180deg) translateZ(1px);
       z-index: 1;
-      gap: 0;
     }
 
     .pricing-card-face--back .pricing-pill {
       align-self: flex-start;
-      flex-shrink: 0;
-      margin: 0 0 1.75rem;
+      flex: 0 0 auto;
+      margin: 0;
     }
 
     .pricing-card-face--back .pricing-copy {
-      flex: 1 1 auto;
+      flex: 0 1 auto;
+      margin: 0;
       min-height: 0;
-      margin: 0 0 1.5rem;
     }
 
     .pricing-card-face--back .pricing-copy h3 {
-      margin: 0 0 0.9rem;
+      margin: 0 0 0.75rem;
     }
 
     .pricing-card-face--back .pricing-copy p {
       margin: 0;
     }
 
+    /* Price block owns its space; never sits on body copy or button */
     .pricing-card-face--back .pricing-price {
-      flex-shrink: 0;
-      margin: 0 0 1.35rem;
+      flex: 0 0 auto;
+      margin: 0;
+      padding-top: 0.35rem;
+      position: relative;
+      z-index: 1;
+      line-height: 1;
+    }
+
+    .pricing-card-face--back .pricing-price span {
+      margin-bottom: 0.35rem;
+    }
+
+    .pricing-card-face--back .pricing-price strong {
+      display: block;
+      line-height: 0.95;
+    }
+
+    .pricing-card-face--back .pricing-price em {
+      display: inline-block;
+      margin-left: 0.15rem;
+      vertical-align: baseline;
     }
 
     .pricing-card-face--back .pricing-button {
-      flex-shrink: 0;
+      flex: 0 0 auto;
       align-self: stretch;
       width: 100%;
       margin: 0;
       margin-top: auto;
+      position: relative;
+      z-index: 1;
     }
 
     /* Small deliberate whisper — just under top edge, centered */
@@ -3781,10 +3798,17 @@
 
       .pricing-grid {
         grid-template-columns: 1fr;
+        gap: 1.25rem;
       }
 
-      .pricing-card {
+      .pricing-card:not(.pricing-card--flip) {
         min-height: auto;
+      }
+
+      .pricing-card--flip,
+      .pricing-card--flip .pricing-card-inner,
+      .pricing-card--flip .pricing-card-face {
+        min-height: 580px;
       }
 
       .partner-banner {
@@ -3883,12 +3907,20 @@
         font-size: clamp(1.85rem, 7.5vw, 2.4rem);
       }
 
-      .pricing-card {
+      .pricing-card:not(.pricing-card--flip) {
         padding: 1.25rem;
+      }
+
+      .pricing-card--flip .pricing-card-face {
+        padding: 1.35rem 1.25rem 1.5rem;
       }
 
       .pricing-price strong {
         font-size: 3rem;
+      }
+
+      .pricing-card-face--back .pricing-price strong {
+        font-size: clamp(2.75rem, 12vw, 3.25rem);
       }
 
       .home-faq-list summary {

@@ -201,9 +201,9 @@
     observer.observe(root);
   }
 
-  /** Services pricing tiles: first hover/tap flips once and stays (like FAQ once).
-   *  When the last ~30% of the card row is on screen, any still-unflipped card flips
-   *  so visitors cannot scroll past without seeing the offer face.
+  /** Services pricing tiles: hover/tap flip once; scroll auto-flip so nothing is skipped.
+   *  Desktop: when 70% of the row is visible, flip remaining.
+   *  Mobile/stacked: when each card’s top reaches 50% viewport height, that card flips.
    */
   function initPricingCardFlip() {
     const cards = Array.from(document.querySelectorAll('[data-pricing-flip]'));
@@ -226,13 +226,17 @@
       cards.forEach((card) => flipCard(card));
     };
 
+    const allFlipped = () => cards.every((card) => card.classList.contains('is-flipped'));
+
     cards.forEach((card) => {
       card.addEventListener('mouseenter', () => flipCard(card), { once: true });
-      // Mobile: first tap flips; later taps reach the CTA on the back
+      // Tap still works as a manual override; does not block scroll auto-flip
       card.addEventListener(
         'click',
         (event) => {
           if (card.classList.contains('is-flipped')) return;
+          // Only intercept if they tapped the card body, not an already-visible CTA
+          if (event.target.closest('a')) return;
           event.preventDefault();
           flipCard(card);
         },
@@ -240,21 +244,47 @@
       );
     });
 
-    // Scroll guard: once ≥70% of the three-card row is visible (last 30% on screen), flip rest
+    // Desktop row guard (side-by-side): 70% of grid visible → flip any left
     if (grid && 'IntersectionObserver' in window) {
-      const guard = new IntersectionObserver(
+      const rowGuard = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting && entry.intersectionRatio >= 0.7) {
               flipAllRemaining();
-              guard.disconnect();
+              rowGuard.disconnect();
             }
           });
         },
         { threshold: [0.7, 0.85, 1] }
       );
-      guard.observe(grid);
+      rowGuard.observe(grid);
     }
+
+    // Per-card mid-screen flip (critical on mobile where cards stack and 70% never hits)
+    // When the top of a card reaches 50% of viewport height, flip it.
+    let scrollTicking = false;
+    const flipAtMidViewport = () => {
+      scrollTicking = false;
+      if (allFlipped()) {
+        window.removeEventListener('scroll', onScroll, { passive: true });
+        window.removeEventListener('resize', onScroll);
+        return;
+      }
+      const mid = (window.innerHeight || document.documentElement.clientHeight) * 0.5;
+      cards.forEach((card) => {
+        if (card.classList.contains('is-flipped')) return;
+        const top = card.getBoundingClientRect().top;
+        if (top <= mid) flipCard(card);
+      });
+    };
+    const onScroll = () => {
+      if (scrollTicking) return;
+      scrollTicking = true;
+      window.requestAnimationFrame(flipAtMidViewport);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    flipAtMidViewport();
   }
 
   function initFaqRollout() {
