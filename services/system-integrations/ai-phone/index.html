@@ -43,9 +43,9 @@
   <link rel="preload" href="/assets/fonts/rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqYu28qmR9A.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/8vIH7w4qzmVxq2JB80z-.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/img/ai-phone-hero-poster.jpg?v=20260711-energy1" as="image">
-  <link rel="preload" href="/styles.css?v=20260713-nav-seo2" as="style">
+  <link rel="preload" href="/styles.css?v=20260713-aiphone-hand1" as="style">
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
-  <link rel="stylesheet" href="/styles.css?v=20260713-nav-seo2">
+  <link rel="stylesheet" href="/styles.css?v=20260713-aiphone-hand1">
   <style>
     /* Video hero: continuous energy loop (phone → AI → out) */
     .ai-phone-page .inner-hero-video {
@@ -156,12 +156,24 @@
       .ai-phone-page .inner-hero-video {
         min-height: 78vh;
       }
+      /* Shift crop left so the hand sits centered on mobile */
+      .ai-phone-page .inner-hero-video .inner-hero-media {
+        object-fit: cover;
+        object-position: 22% 50%;
+      }
       .ai-proof-flip {
         max-width: none;
         margin-left: 0;
       }
       .ai-phone-page .inner-hero-video h1 {
         max-width: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .ai-phone-page .inner-hero-video .inner-hero-media {
+        /* Slightly more left on narrow phones */
+        object-position: 18% 48%;
       }
     }
     @media (prefers-reduced-motion: reduce) {
