@@ -202,9 +202,11 @@
   }
 
   /**
-   * Services pricing flip — strict split:
-   * Desktop (>768): hover flips one card; when any card TOP hits 50vh → flip all remaining.
-   * Mobile (≤768): NEVER bulk-flip. Each card flips alone when ≥50% of THAT card is visible.
+   * Services pricing flip:
+   * - Desktop: hover flips that card early.
+   * - All viewports: as user scrolls DOWN, cards move UP. If a card is still unflipped
+   *   when half of it has left the TOP of the screen (50% off-screen upward), flip THAT card.
+   * - Never bulk-flip on entry / mid-screen.
    */
   function initPricingCardFlip() {
     const cards = Array.from(document.querySelectorAll('[data-pricing-flip]'));
@@ -221,29 +223,18 @@
       card.setAttribute('data-flipped', 'true');
     };
 
-    const flipAllRemaining = () => {
-      cards.forEach((card) => flipCard(card));
-    };
-
     const allFlipped = () => cards.every((c) => c.classList.contains('is-flipped'));
 
-    // Match CSS stack breakpoint only — do not use hover/pointer heuristics
-    const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
-
-    // Desktop hover (one card)
+    // Desktop: pointer can flip early (one card)
     cards.forEach((card) => {
-      card.addEventListener('mouseenter', () => {
-        if (isMobile()) return;
-        flipCard(card);
-      });
+      card.addEventListener('mouseenter', () => flipCard(card));
     });
 
-    // Mobile tap still allowed early (optional)
+    // Tap still allowed as optional early flip
     cards.forEach((card) => {
       card.addEventListener(
         'click',
         (event) => {
-          if (!isMobile()) return;
           if (card.classList.contains('is-flipped')) return;
           if (event.target.closest('a')) return;
           event.preventDefault();
@@ -253,71 +244,17 @@
       );
     });
 
-    let mobileObserver = null;
     let ticking = false;
 
-    const teardownMobile = () => {
-      if (mobileObserver) {
-        mobileObserver.disconnect();
-        mobileObserver = null;
-      }
-    };
-
-    const setupMobile = () => {
-      teardownMobile();
-      if (!('IntersectionObserver' in window)) return;
-
-      // Per-card only — never flip siblings
-      mobileObserver = new IntersectionObserver(
-        (entries) => {
-          if (!isMobile()) return;
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            // ≥50% of this card visible
-            if (entry.intersectionRatio >= 0.5) {
-              flipCard(entry.target);
-            }
-          });
-        },
-        {
-          root: null,
-          rootMargin: '0px',
-          threshold: [0, 0.25, 0.5, 0.75, 1],
-        }
-      );
-      cards.forEach((card) => mobileObserver.observe(card));
-    };
-
-    const runDesktopScroll = () => {
-      if (isMobile() || allFlipped()) return;
-      const mid = (window.innerHeight || document.documentElement.clientHeight) * 0.5;
-      const anyTopAtMid = cards.some((card) => {
-        if (card.classList.contains('is-flipped')) {
-          // already flipped cards still count for "any card top past mid" if we want
-          // only unflipped? Spec: when their card top hits 50% — then flip any not flipped
-          return false;
-        }
-        return card.getBoundingClientRect().top <= mid;
-      });
-      // Also: if a flipped card's top already passed mid and others remain, flip them
-      const anyCardTopPastMid = cards.some((card) => card.getBoundingClientRect().top <= mid);
-      if (anyTopAtMid || (anyCardTopPastMid && cards.some((c) => !c.classList.contains('is-flipped')))) {
-        flipAllRemaining();
-      }
-    };
-
-    const runMobileScrollFallback = () => {
-      if (!isMobile() || allFlipped()) return;
-      const vh = window.innerHeight || document.documentElement.clientHeight;
-      cards.forEach((card) => {
-        if (card.classList.contains('is-flipped')) return;
-        const r = card.getBoundingClientRect();
-        const visible = Math.min(r.bottom, vh) - Math.max(r.top, 0);
-        // Only this card — 50% of its own height visible
-        if (r.height > 0 && visible / r.height >= 0.5) {
-          flipCard(card);
-        }
-      });
+    /**
+     * Half the card has scrolled off the TOP of the viewport:
+     * card midpoint is at or above the top edge (top + height/2 <= 0)
+     * i.e. 50% of the card is already off-screen upward.
+     */
+    const isHalfOffTop = (card) => {
+      const r = card.getBoundingClientRect();
+      if (r.height <= 0) return false;
+      return r.top + r.height * 0.5 <= 0;
     };
 
     const onScroll = () => {
@@ -325,27 +262,20 @@
       ticking = true;
       window.requestAnimationFrame(() => {
         ticking = false;
-        if (isMobile()) runMobileScrollFallback();
-        else runDesktopScroll();
+        cards.forEach((card) => {
+          if (card.classList.contains('is-flipped')) return;
+          // Only flip as the card is leaving upward — not while entering from below
+          if (isHalfOffTop(card)) flipCard(card);
+        });
         if (allFlipped()) {
           window.removeEventListener('scroll', onScroll);
-          teardownMobile();
+          window.removeEventListener('resize', onScroll);
         }
       });
     };
 
-    const onResize = () => {
-      if (isMobile()) {
-        if (!mobileObserver) setupMobile();
-      } else {
-        teardownMobile();
-      }
-      onScroll();
-    };
-
-    if (isMobile()) setupMobile();
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onResize);
+    window.addEventListener('resize', onScroll);
     onScroll();
   }
 
