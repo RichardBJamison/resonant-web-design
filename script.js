@@ -202,9 +202,9 @@
   }
 
   /**
-   * Services pricing flip:
-   * - Desktop: mouseover flips that card; when any card’s top hits 50vh, flip ALL remaining.
-   * - Mobile: each card flips when ~50% of it is visible in the viewport.
+   * Services pricing flip — strict split:
+   * Desktop (>768): hover flips one card; when any card TOP hits 50vh → flip all remaining.
+   * Mobile (≤768): NEVER bulk-flip. Each card flips alone when ≥50% of THAT card is visible.
    */
   function initPricingCardFlip() {
     const cards = Array.from(document.querySelectorAll('[data-pricing-flip]'));
@@ -227,23 +227,23 @@
 
     const allFlipped = () => cards.every((c) => c.classList.contains('is-flipped'));
 
-    const isMobileLayout = () =>
-      window.matchMedia('(max-width: 768px), (hover: none) and (pointer: coarse)').matches;
+    // Match CSS stack breakpoint only — do not use hover/pointer heuristics
+    const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
 
-    // Desktop pointer
+    // Desktop hover (one card)
     cards.forEach((card) => {
       card.addEventListener('mouseenter', () => {
-        if (isMobileLayout()) return;
+        if (isMobile()) return;
         flipCard(card);
       });
     });
 
-    // Mobile: optional tap if they want it early (does not replace scroll rule)
+    // Mobile tap still allowed early (optional)
     cards.forEach((card) => {
       card.addEventListener(
         'click',
         (event) => {
-          if (!isMobileLayout()) return;
+          if (!isMobile()) return;
           if (card.classList.contains('is-flipped')) return;
           if (event.target.closest('a')) return;
           event.preventDefault();
@@ -253,82 +253,100 @@
       );
     });
 
+    let mobileObserver = null;
     let ticking = false;
 
-    const onScrollDesktop = () => {
-      if (allFlipped()) return;
-      const mid = (window.innerHeight || document.documentElement.clientHeight) * 0.5;
-      // When any card’s top reaches mid-screen, flip every remaining card
-      const anyAtMid = cards.some((card) => {
-        if (card.classList.contains('is-flipped')) return false;
-        return card.getBoundingClientRect().top <= mid;
-      });
-      if (anyAtMid) flipAllRemaining();
-    };
-
-    // Mobile: card is ~50% on screen → flip that card only
-    let mobileObserver = null;
-    const setupMobileObserver = () => {
+    const teardownMobile = () => {
       if (mobileObserver) {
         mobileObserver.disconnect();
         mobileObserver = null;
       }
+    };
+
+    const setupMobile = () => {
+      teardownMobile();
       if (!('IntersectionObserver' in window)) return;
+
+      // Per-card only — never flip siblings
       mobileObserver = new IntersectionObserver(
         (entries) => {
+          if (!isMobile()) return;
           entries.forEach((entry) => {
-            if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (!entry.isIntersecting) return;
+            // ≥50% of this card visible
+            if (entry.intersectionRatio >= 0.5) {
               flipCard(entry.target);
             }
           });
         },
-        { threshold: [0.5, 0.6, 0.75, 1] }
+        {
+          root: null,
+          rootMargin: '0px',
+          threshold: [0, 0.25, 0.5, 0.75, 1],
+        }
       );
       cards.forEach((card) => mobileObserver.observe(card));
     };
 
-    const onScrollOrResize = () => {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(() => {
-        ticking = false;
-        if (isMobileLayout()) {
-          // Observer handles mobile; still run once for cards already mid-screen
-          cards.forEach((card) => {
-            if (card.classList.contains('is-flipped')) return;
-            const r = card.getBoundingClientRect();
-            const vh = window.innerHeight || document.documentElement.clientHeight;
-            const visible = Math.min(r.bottom, vh) - Math.max(r.top, 0);
-            if (visible >= r.height * 0.5) flipCard(card);
-          });
-        } else {
-          onScrollDesktop();
+    const runDesktopScroll = () => {
+      if (isMobile() || allFlipped()) return;
+      const mid = (window.innerHeight || document.documentElement.clientHeight) * 0.5;
+      const anyTopAtMid = cards.some((card) => {
+        if (card.classList.contains('is-flipped')) {
+          // already flipped cards still count for "any card top past mid" if we want
+          // only unflipped? Spec: when their card top hits 50% — then flip any not flipped
+          return false;
         }
-        if (allFlipped()) {
-          window.removeEventListener('scroll', onScrollOrResize);
-          window.removeEventListener('resize', onModeChange);
+        return card.getBoundingClientRect().top <= mid;
+      });
+      // Also: if a flipped card's top already passed mid and others remain, flip them
+      const anyCardTopPastMid = cards.some((card) => card.getBoundingClientRect().top <= mid);
+      if (anyTopAtMid || (anyCardTopPastMid && cards.some((c) => !c.classList.contains('is-flipped')))) {
+        flipAllRemaining();
+      }
+    };
+
+    const runMobileScrollFallback = () => {
+      if (!isMobile() || allFlipped()) return;
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      cards.forEach((card) => {
+        if (card.classList.contains('is-flipped')) return;
+        const r = card.getBoundingClientRect();
+        const visible = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+        // Only this card — 50% of its own height visible
+        if (r.height > 0 && visible / r.height >= 0.5) {
+          flipCard(card);
         }
       });
     };
 
-    let wasMobile = isMobileLayout();
-    const onModeChange = () => {
-      const nowMobile = isMobileLayout();
-      if (nowMobile !== wasMobile) {
-        wasMobile = nowMobile;
-        if (nowMobile) setupMobileObserver();
-        else if (mobileObserver) {
-          mobileObserver.disconnect();
-          mobileObserver = null;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        ticking = false;
+        if (isMobile()) runMobileScrollFallback();
+        else runDesktopScroll();
+        if (allFlipped()) {
+          window.removeEventListener('scroll', onScroll);
+          teardownMobile();
         }
-      }
-      onScrollOrResize();
+      });
     };
 
-    if (isMobileLayout()) setupMobileObserver();
-    window.addEventListener('scroll', onScrollOrResize, { passive: true });
-    window.addEventListener('resize', onModeChange);
-    onScrollOrResize();
+    const onResize = () => {
+      if (isMobile()) {
+        if (!mobileObserver) setupMobile();
+      } else {
+        teardownMobile();
+      }
+      onScroll();
+    };
+
+    if (isMobile()) setupMobile();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+    onScroll();
   }
 
   function initFaqRollout() {
