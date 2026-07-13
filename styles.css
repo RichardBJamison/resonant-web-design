@@ -1772,13 +1772,13 @@
       gap: 0;
     }
 
-    /* Back: stacked layout — pill → copy → price → button (no overlap) */
+    /* Back: pill + copy on top; price + button grouped at bottom with tight gap */
     .pricing-card-face--back {
       display: flex;
       flex-direction: column;
       align-items: stretch;
       justify-content: flex-start;
-      gap: 1.15rem;
+      gap: 0;
       transform: rotateY(180deg) translateZ(1px);
       z-index: 1;
     }
@@ -1786,7 +1786,7 @@
     .pricing-card-face--back .pricing-pill {
       align-self: flex-start;
       flex: 0 0 auto;
-      margin: 0;
+      margin: 0 0 1.35rem;
     }
 
     .pricing-card-face--back .pricing-copy {
@@ -1803,29 +1803,32 @@
       margin: 0;
     }
 
-    /* Price block owns its space; never sits on body copy or button */
+    /* Footer cluster: price then button, close together at bottom of card */
     .pricing-card-face--back .pricing-price {
       flex: 0 0 auto;
-      margin: 0;
-      padding-top: 0.35rem;
+      margin: auto 0 0.85rem;
+      padding-top: 1.25rem;
       position: relative;
       z-index: 1;
       line-height: 1;
     }
 
     .pricing-card-face--back .pricing-price span {
-      margin-bottom: 0.35rem;
+      display: block;
+      margin: 0 0 0.3rem;
     }
 
     .pricing-card-face--back .pricing-price strong {
-      display: block;
-      line-height: 0.95;
+      display: inline-block;
+      line-height: 0.92;
+      vertical-align: bottom;
     }
 
     .pricing-card-face--back .pricing-price em {
       display: inline-block;
-      margin-left: 0.15rem;
-      vertical-align: baseline;
+      margin-left: 0.2rem;
+      vertical-align: bottom;
+      line-height: 1;
     }
 
     .pricing-card-face--back .pricing-button {
@@ -1833,7 +1836,6 @@
       align-self: stretch;
       width: 100%;
       margin: 0;
-      margin-top: auto;
       position: relative;
       z-index: 1;
     }

@@ -201,23 +201,22 @@
     observer.observe(root);
   }
 
-  /** Services pricing tiles: hover/tap flip once; scroll auto-flip so nothing is skipped.
-   *  Desktop: when 70% of the row is visible, flip remaining.
-   *  Mobile/stacked: when each card’s top reaches 50% viewport height, that card flips.
+  /**
+   * Services pricing flip:
+   * - Desktop: mouseover flips that card; when any card’s top hits 50vh, flip ALL remaining.
+   * - Mobile: each card flips when ~50% of it is visible in the viewport.
    */
   function initPricingCardFlip() {
     const cards = Array.from(document.querySelectorAll('[data-pricing-flip]'));
     if (!cards.length) return;
-    const grid = document.getElementById('pricing-card-flip') || cards[0].parentElement;
 
-    // Always start on the whisper face (hard refresh / navigation)
     cards.forEach((card) => {
       card.classList.remove('is-flipped');
       card.removeAttribute('data-flipped');
     });
 
     const flipCard = (card) => {
-      if (card.classList.contains('is-flipped')) return;
+      if (!card || card.classList.contains('is-flipped')) return;
       card.classList.add('is-flipped');
       card.setAttribute('data-flipped', 'true');
     };
@@ -226,16 +225,26 @@
       cards.forEach((card) => flipCard(card));
     };
 
-    const allFlipped = () => cards.every((card) => card.classList.contains('is-flipped'));
+    const allFlipped = () => cards.every((c) => c.classList.contains('is-flipped'));
 
+    const isMobileLayout = () =>
+      window.matchMedia('(max-width: 768px), (hover: none) and (pointer: coarse)').matches;
+
+    // Desktop pointer
     cards.forEach((card) => {
-      card.addEventListener('mouseenter', () => flipCard(card), { once: true });
-      // Tap still works as a manual override; does not block scroll auto-flip
+      card.addEventListener('mouseenter', () => {
+        if (isMobileLayout()) return;
+        flipCard(card);
+      });
+    });
+
+    // Mobile: optional tap if they want it early (does not replace scroll rule)
+    cards.forEach((card) => {
       card.addEventListener(
         'click',
         (event) => {
+          if (!isMobileLayout()) return;
           if (card.classList.contains('is-flipped')) return;
-          // Only intercept if they tapped the card body, not an already-visible CTA
           if (event.target.closest('a')) return;
           event.preventDefault();
           flipCard(card);
@@ -244,47 +253,82 @@
       );
     });
 
-    // Desktop row guard (side-by-side): 70% of grid visible → flip any left
-    if (grid && 'IntersectionObserver' in window) {
-      const rowGuard = new IntersectionObserver(
+    let ticking = false;
+
+    const onScrollDesktop = () => {
+      if (allFlipped()) return;
+      const mid = (window.innerHeight || document.documentElement.clientHeight) * 0.5;
+      // When any card’s top reaches mid-screen, flip every remaining card
+      const anyAtMid = cards.some((card) => {
+        if (card.classList.contains('is-flipped')) return false;
+        return card.getBoundingClientRect().top <= mid;
+      });
+      if (anyAtMid) flipAllRemaining();
+    };
+
+    // Mobile: card is ~50% on screen → flip that card only
+    let mobileObserver = null;
+    const setupMobileObserver = () => {
+      if (mobileObserver) {
+        mobileObserver.disconnect();
+        mobileObserver = null;
+      }
+      if (!('IntersectionObserver' in window)) return;
+      mobileObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting && entry.intersectionRatio >= 0.7) {
-              flipAllRemaining();
-              rowGuard.disconnect();
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+              flipCard(entry.target);
             }
           });
         },
-        { threshold: [0.7, 0.85, 1] }
+        { threshold: [0.5, 0.6, 0.75, 1] }
       );
-      rowGuard.observe(grid);
-    }
+      cards.forEach((card) => mobileObserver.observe(card));
+    };
 
-    // Per-card mid-screen flip (critical on mobile where cards stack and 70% never hits)
-    // When the top of a card reaches 50% of viewport height, flip it.
-    let scrollTicking = false;
-    const flipAtMidViewport = () => {
-      scrollTicking = false;
-      if (allFlipped()) {
-        window.removeEventListener('scroll', onScroll, { passive: true });
-        window.removeEventListener('resize', onScroll);
-        return;
-      }
-      const mid = (window.innerHeight || document.documentElement.clientHeight) * 0.5;
-      cards.forEach((card) => {
-        if (card.classList.contains('is-flipped')) return;
-        const top = card.getBoundingClientRect().top;
-        if (top <= mid) flipCard(card);
+    const onScrollOrResize = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        ticking = false;
+        if (isMobileLayout()) {
+          // Observer handles mobile; still run once for cards already mid-screen
+          cards.forEach((card) => {
+            if (card.classList.contains('is-flipped')) return;
+            const r = card.getBoundingClientRect();
+            const vh = window.innerHeight || document.documentElement.clientHeight;
+            const visible = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+            if (visible >= r.height * 0.5) flipCard(card);
+          });
+        } else {
+          onScrollDesktop();
+        }
+        if (allFlipped()) {
+          window.removeEventListener('scroll', onScrollOrResize);
+          window.removeEventListener('resize', onModeChange);
+        }
       });
     };
-    const onScroll = () => {
-      if (scrollTicking) return;
-      scrollTicking = true;
-      window.requestAnimationFrame(flipAtMidViewport);
+
+    let wasMobile = isMobileLayout();
+    const onModeChange = () => {
+      const nowMobile = isMobileLayout();
+      if (nowMobile !== wasMobile) {
+        wasMobile = nowMobile;
+        if (nowMobile) setupMobileObserver();
+        else if (mobileObserver) {
+          mobileObserver.disconnect();
+          mobileObserver = null;
+        }
+      }
+      onScrollOrResize();
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    flipAtMidViewport();
+
+    if (isMobileLayout()) setupMobileObserver();
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onModeChange);
+    onScrollOrResize();
   }
 
   function initFaqRollout() {
