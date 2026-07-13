@@ -270,7 +270,8 @@
       if (row) roll(row);
 
       if (queue.length) {
-        queueTimer = window.setTimeout(drainQueue, 170);
+        // Slightly longer beat between rows so each roll is readable
+        queueTimer = window.setTimeout(drainQueue, 240);
       } else {
         queueTimer = 0;
       }
@@ -287,25 +288,35 @@
       letter.classList.add('is-in-place');
     }
 
+    /** One FAQ line-height — delay each roll by ~1 line of scroll. */
+    function lineSpace() {
+      const sample = rows[0];
+      if (!sample) return 56;
+      const h = sample.getBoundingClientRect().height;
+      return h > 0 ? h : 56;
+    }
+
     function update() {
       ticking = false;
       const vh = window.innerHeight || document.documentElement.clientHeight;
+      // Require one more line of scroll before a row is allowed to roll
+      const triggerLine = vh - lineSpace();
 
       rows.forEach((row, index) => {
         const trigger = rows[index + 1] || row;
-        if (trigger.getBoundingClientRect().bottom <= vh) {
+        if (trigger.getBoundingClientRect().bottom <= triggerLine) {
           queueRoll(row);
         }
       });
 
       if (titleLetters) {
-        if (rows[1]?.getBoundingClientRect().bottom <= vh) {
+        if (rows[1]?.getBoundingClientRect().bottom <= triggerLine) {
           revealTitleLetter(titleLetters.q);
         }
-        if (rows[3]?.getBoundingClientRect().bottom <= vh) {
+        if (rows[3]?.getBoundingClientRect().bottom <= triggerLine) {
           revealTitleLetter(titleLetters.a);
         }
-        if (rows[5]?.getBoundingClientRect().bottom <= vh) {
+        if (rows[5]?.getBoundingClientRect().bottom <= triggerLine) {
           revealTitleLetter(titleLetters.f);
         }
       }
