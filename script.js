@@ -201,10 +201,14 @@
     observer.observe(root);
   }
 
-  /** Services pricing tiles: first hover/tap flips once and stays (like FAQ once). */
+  /** Services pricing tiles: first hover/tap flips once and stays (like FAQ once).
+   *  When the last ~30% of the card row is on screen, any still-unflipped card flips
+   *  so visitors cannot scroll past without seeing the offer face.
+   */
   function initPricingCardFlip() {
     const cards = Array.from(document.querySelectorAll('[data-pricing-flip]'));
     if (!cards.length) return;
+    const grid = document.getElementById('pricing-card-flip') || cards[0].parentElement;
 
     // Always start on the whisper face (hard refresh / navigation)
     cards.forEach((card) => {
@@ -212,25 +216,45 @@
       card.removeAttribute('data-flipped');
     });
 
-    cards.forEach((card) => {
-      const flipOnce = () => {
-        if (card.classList.contains('is-flipped')) return;
-        card.classList.add('is-flipped');
-        card.setAttribute('data-flipped', 'true');
-      };
+    const flipCard = (card) => {
+      if (card.classList.contains('is-flipped')) return;
+      card.classList.add('is-flipped');
+      card.setAttribute('data-flipped', 'true');
+    };
 
-      card.addEventListener('mouseenter', flipOnce, { once: true });
+    const flipAllRemaining = () => {
+      cards.forEach((card) => flipCard(card));
+    };
+
+    cards.forEach((card) => {
+      card.addEventListener('mouseenter', () => flipCard(card), { once: true });
       // Mobile: first tap flips; later taps reach the CTA on the back
       card.addEventListener(
         'click',
         (event) => {
           if (card.classList.contains('is-flipped')) return;
           event.preventDefault();
-          flipOnce();
+          flipCard(card);
         },
         { capture: true }
       );
     });
+
+    // Scroll guard: once ≥70% of the three-card row is visible (last 30% on screen), flip rest
+    if (grid && 'IntersectionObserver' in window) {
+      const guard = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.7) {
+              flipAllRemaining();
+              guard.disconnect();
+            }
+          });
+        },
+        { threshold: [0.7, 0.85, 1] }
+      );
+      guard.observe(grid);
+    }
   }
 
   function initFaqRollout() {
