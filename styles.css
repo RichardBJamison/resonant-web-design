@@ -4360,8 +4360,9 @@
 }
 
 .seo-hero {
-  min-height: 88vh;
-  padding: 9.5rem 3rem 5rem;
+  /* ~20% less vertical chrome than prior 88vh / 9.5rem top */
+  min-height: 70vh;
+  padding: 7.6rem 3rem 4rem;
   display: flex;
   align-items: end;
   background: var(--bg-light);
