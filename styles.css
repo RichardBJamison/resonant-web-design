@@ -3022,8 +3022,8 @@
       object-fit: contain;
     }
 
-    /* Full-card systems video with live CTA over the painted button */
-    .systems-showcase--video {
+    /* Full-card systems video — entire frame is the live link (painted button included) */
+    a.systems-showcase--video {
       position: relative;
       display: block;
       width: min(100%, 1120px);
@@ -3034,6 +3034,22 @@
       line-height: 0;
       background: #070b12;
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    a.systems-showcase--video:hover,
+    a.systems-showcase--video:focus-visible {
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(90, 220, 230, 0.35);
+      outline: none;
+    }
+
+    a.systems-showcase--video:focus-visible {
+      outline: 2px solid rgba(90, 220, 230, 0.7);
+      outline-offset: 3px;
     }
 
     .systems-showcase--video .systems-control-video {
@@ -3044,62 +3060,7 @@
       vertical-align: top;
       object-fit: contain;
       background: #070b12;
-    }
-
-    /* Hit target mapped to painted CTA in the 1280×720 video frame */
-    .systems-video-cta {
-      position: absolute;
-      z-index: 3;
-      /* Measured from poster: text ~7.8–28.7% × 61–64.7%; pad to pill chrome */
-      left: 7.6%;
-      top: 60.2%;
-      width: 21.8%;
-      height: 5.4%;
-      min-width: 0;
-      min-height: 0;
-      max-width: none;
-      max-height: none;
-      border-radius: 999px;
-      text-decoration: none;
-      background: transparent;
-      border: 1px solid transparent;
-      box-sizing: border-box;
-      box-shadow: none;
-    }
-
-    .systems-video-cta-label {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    /* Subtle focus only — no oversized orange halo */
-    .systems-video-cta:hover {
-      border-color: rgba(90, 220, 230, 0.55);
-      box-shadow: 0 0 10px rgba(56, 210, 230, 0.25);
-      outline: none;
-    }
-
-    .systems-video-cta:focus-visible {
-      border-color: rgba(90, 220, 230, 0.85);
-      box-shadow: 0 0 0 1px rgba(90, 220, 230, 0.5);
-      outline: 1px solid rgba(255, 255, 255, 0.55);
-      outline-offset: 2px;
-    }
-
-    @media (max-width: 720px) {
-      .systems-video-cta {
-        left: 7.4%;
-        top: 60%;
-        width: 24%;
-        height: 5.8%;
-      }
+      pointer-events: none;
     }
 
     .systems-comms {
