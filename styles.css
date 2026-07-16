@@ -3046,24 +3046,25 @@
       background: #070b12;
     }
 
-    /* Transparent hit area aligned to “Explore Systems Integration” in the video */
+    /* Hit target mapped to painted CTA in the 1280×720 video frame */
     .systems-video-cta {
       position: absolute;
       z-index: 3;
-      left: 5.2%;
-      bottom: 11.5%;
-      width: 29%;
-      max-width: 300px;
-      min-width: 168px;
-      min-height: 48px;
-      height: 9.5%;
-      max-height: 58px;
+      /* Measured from poster: text ~7.8–28.7% × 61–64.7%; pad to pill chrome */
+      left: 7.6%;
+      top: 60.2%;
+      width: 21.8%;
+      height: 5.4%;
+      min-width: 0;
+      min-height: 0;
+      max-width: none;
+      max-height: none;
       border-radius: 999px;
       text-decoration: none;
-      /* Keep the painted button visible; real link sits on top */
       background: transparent;
-      border: 2px solid transparent;
+      border: 1px solid transparent;
       box-sizing: border-box;
+      box-shadow: none;
     }
 
     .systems-video-cta-label {
@@ -3078,28 +3079,26 @@
       border: 0;
     }
 
-    .systems-video-cta:hover,
-    .systems-video-cta:focus-visible {
-      border-color: rgba(232, 93, 48, 0.85);
-      box-shadow:
-        0 0 0 1px rgba(232, 93, 48, 0.35),
-        0 0 22px rgba(232, 93, 48, 0.35);
+    /* Subtle focus only — no oversized orange halo */
+    .systems-video-cta:hover {
+      border-color: rgba(90, 220, 230, 0.55);
+      box-shadow: 0 0 10px rgba(56, 210, 230, 0.25);
       outline: none;
     }
 
     .systems-video-cta:focus-visible {
-      outline: 2px solid rgba(255, 255, 255, 0.75);
-      outline-offset: 3px;
+      border-color: rgba(90, 220, 230, 0.85);
+      box-shadow: 0 0 0 1px rgba(90, 220, 230, 0.5);
+      outline: 1px solid rgba(255, 255, 255, 0.55);
+      outline-offset: 2px;
     }
 
     @media (max-width: 720px) {
       .systems-video-cta {
-        left: 4.5%;
-        bottom: 10.5%;
-        width: 48%;
-        max-width: none;
-        min-height: 44px;
-        height: 11%;
+        left: 7.4%;
+        top: 60%;
+        width: 24%;
+        height: 5.8%;
       }
     }
 
