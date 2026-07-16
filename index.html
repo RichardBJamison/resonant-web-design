@@ -48,9 +48,9 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="assets/fonts/rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqYu28qmR9A.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/8vIH7w4qzmVxq2JB80z-.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="styles.css?v=20260716-offer-paths" as="style">
+  <link rel="preload" href="styles.css?v=20260716-offer-paths-v2" as="style">
   <link rel="stylesheet" href="assets/fonts/fonts.css">
-  <link rel="stylesheet" href="styles.css?v=20260716-offer-paths">
+  <link rel="stylesheet" href="styles.css?v=20260716-offer-paths-v2">
   <link rel="stylesheet" href="assets/css/hero-cap-flip.css?v=20260711-capflip2">
   <script type="application/ld+json">
   {
@@ -140,22 +140,22 @@
         "offers": [
           {
             "@type": "Offer",
-            "name": "Build — Website and Market Position",
+            "name": "Build — Stronger Digital Foundation",
             "price": "999",
             "priceCurrency": "USD",
-            "description": "Focused website projects: clearer positioning, custom site, conversion paths, and stronger ownership of infrastructure."
+            "description": "Focused custom website engagements: brand and message clarity, custom design and development, conversion-focused structure, analytics, and maintainable infrastructure."
           },
           {
             "@type": "Offer",
-            "name": "Grow — Search, Leads, and Follow-Up",
+            "name": "Grow — Visibility Into Qualified Opportunities",
             "price": "699",
             "priceCurrency": "USD",
-            "description": "Growth and search engagements: SEO and local search, qualified inquiries, AI phone support, CRM and follow-up."
+            "description": "Search and growth engagements: SEO and local search, conversion improvements, AI phone support, CRM, lead routing, follow-up automation, and reporting."
           },
           {
             "@type": "Offer",
-            "name": "Connect — Connected Systems",
-            "description": "Automation, integrations, reporting, dashboards and APIs, hospitality or multi-location operations. Scoped after a conversation."
+            "name": "Connect — Systems Behind the Business",
+            "description": "Connected systems scoped after process and technical needs are understood: CRM and workflow integration, APIs, automation, dashboards, hospitality operations, and multi-location workflows."
           }
         ]
       },
@@ -176,7 +176,7 @@
             "name": "What do Resonant projects start at?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Focused website projects from $999. Growth and search engagements from $699/month. Connected systems are scoped after a conversation."
+              "text": "Focused custom website engagements from $999. Search and growth engagements from $699/month. Connected systems are scoped after the business process and technical needs are understood."
             }
           },
           {
@@ -204,19 +204,23 @@
     </div>
             <ul class="nav-links">
       <li class="nav-dropdown">
-        <a href="/services/seo-foundations/" class="nav-dropdown-trigger" aria-haspopup="true">Services</a>
-        <div class="nav-dropdown-menu" role="menu" aria-label="Services">
-          <a href="/services/seo-foundations/" role="menuitem">SEO Foundations</a>
-          <a href="/services/system-integrations/" role="menuitem">System Integrations</a>
-          <a href="/services/system-integrations/ai-phone/" role="menuitem">AI Phone</a>
+        <a href="/#pricing" class="nav-dropdown-trigger" aria-haspopup="true">What We Build</a>
+        <div class="nav-dropdown-menu" role="menu" aria-label="What We Build">
+          <a href="/#path-build" role="menuitem">Build</a>
+          <a href="/#path-grow" role="menuitem">Grow</a>
+          <a href="/#path-connect" role="menuitem">Connect</a>
           <a href="https://impulsebydesign.com" role="menuitem">Starter Sites</a>
-          <a href="/industries/landscaping-web-design/" role="menuitem">Landscaping</a>
-          <a href="/industries/restaurants-hospitality-web-design/" role="menuitem">Restaurants + Hospitality</a>
         </div>
       </li>
-      <li><a href="/services/system-integrations/">Integrations</a></li>
-      <li><a href="/insights/">Insights</a></li>
+      <li class="nav-dropdown">
+        <a href="/industries/restaurants-hospitality-web-design/" class="nav-dropdown-trigger" aria-haspopup="true">Industries</a>
+        <div class="nav-dropdown-menu" role="menu" aria-label="Industries">
+          <a href="/industries/restaurants-hospitality-web-design/" role="menuitem">Restaurants + Hospitality</a>
+          <a href="/industries/landscaping-web-design/" role="menuitem">Landscaping</a>
+        </div>
+      </li>
       <li><a href="/work/">Work</a></li>
+      <li><a href="/insights/">Insights</a></li>
       <li><a href="/start/#fit-review" class="nav-cta">Show Me the Right Build</a></li>
     </ul>
     <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -225,14 +229,14 @@
   </nav>
 
       <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-    <a href="/services/seo-foundations/">SEO Foundations</a>
-    <a href="/services/system-integrations/">Integrations</a>
-    <a href="/services/system-integrations/ai-phone/">AI Phone</a>
+    <a href="/#path-build">Build</a>
+    <a href="/#path-grow">Grow</a>
+    <a href="/#path-connect">Connect</a>
     <a href="https://impulsebydesign.com">Starter Sites</a>
-    <a href="/industries/landscaping-web-design/">Landscaping</a>
     <a href="/industries/restaurants-hospitality-web-design/">Restaurants + Hospitality</a>
-    <a href="/insights/">Insights</a>
+    <a href="/industries/landscaping-web-design/">Landscaping</a>
     <a href="/work/">Work</a>
+    <a href="/insights/">Insights</a>
     <a href="/start/#fit-review" class="nav-cta">Show Me the Right Build</a>
   </div>
 
@@ -508,81 +512,74 @@
         <a href="/work/" class="btn btn-secondary">Explore Selected Work</a>
       </div>
 
-      <div class="pricing-section pricing-section--in-work" id="pricing">
-        <h2 class="pricing-title reveal">Where You Fit</h2>
-        <p class="pricing-lead reveal">Three paths based on what the business needs—not internal package names. Recognize the problem. We’ll map the right build after a conversation.</p>
-        <div class="pricing-grid" id="pricing-card-flip">
-          <!-- L→R: Build | Grow | Connect — customer-need paths, not Impulse/Resonate/Dominate -->
-          <article class="pricing-card pricing-card--flip reveal reveal-delay-1" data-pricing-flip>
-            <div class="pricing-card-inner">
-              <div class="pricing-card-face pricing-card-face--front">
-                <p class="pricing-flip-whisper">Build</p>
-                <h3 class="pricing-flip-title">A stronger website<br>and market position</h3>
-              </div>
-              <div class="pricing-card-face pricing-card-face--back">
-                <span class="pricing-pill pricing-pill--dark">Website</span>
-                <div class="pricing-copy">
-                  <h3>Build</h3>
-                  <p>Clearer positioning, a custom website, better conversion paths, and stronger ownership of your infrastructure—built around how the business actually sells.</p>
-                </div>
-                <div class="pricing-price">
-                  <span>Focused website projects from</span>
-                  <strong>$999</strong>
-                </div>
-                <a href="/start/?plan=build#fit-review" class="pricing-button">Discuss a Website Build</a>
-              </div>
-            </div>
+      <div class="pricing-section pricing-section--in-work" id="pricing" data-offer-section>
+        <h2 class="pricing-title reveal">What does the business need to do next?</h2>
+        <p class="pricing-lead reveal">You do not need to choose the perfect service or understand the technology. Start with the business problem. We will help identify the most useful path.</p>
+
+        <div class="path-grid" id="offer-paths">
+          <article class="path-card reveal reveal-delay-1" id="path-build" data-offer-path="build">
+            <p class="path-label">Build</p>
+            <h3 class="path-headline">Build a stronger digital foundation</h3>
+            <p class="path-for">For businesses that need clearer positioning, a custom website, stronger conversion paths, and infrastructure they can own and build on.</p>
+            <ul class="path-caps">
+              <li>Brand and message clarity</li>
+              <li>Custom website design and development</li>
+              <li>Conversion-focused page structure</li>
+              <li>Mobile performance</li>
+              <li>Analytics and lead capture</li>
+              <li>Search-ready architecture</li>
+              <li>Ownership and maintainable infrastructure</li>
+            </ul>
+            <p class="path-outcome">A website that explains the business clearly, earns trust, and creates a stronger path to action.</p>
+            <p class="path-price">Focused custom website engagements from <strong>$999</strong>.</p>
+            <a href="/start/?interest=build#fit-review" class="pricing-button" data-offer-cta="build">Talk About a Website Build</a>
           </article>
 
-          <article class="pricing-card pricing-card--flip reveal reveal-delay-2" data-pricing-flip>
-            <div class="pricing-card-inner">
-              <div class="pricing-card-face pricing-card-face--front">
-                <p class="pricing-flip-whisper">Grow</p>
-                <h3 class="pricing-flip-title">Search, leads,<br>calls, and follow-up</h3>
-              </div>
-              <div class="pricing-card-face pricing-card-face--back">
-                <span class="pricing-pill">Growth</span>
-                <div class="pricing-copy">
-                  <h3>Grow</h3>
-                  <p>SEO and local search, more qualified inquiries, AI phone support, CRM and follow-up, and lead handling that does not drop the ball after the first click.</p>
-                </div>
-                <div class="pricing-price">
-                  <span>Growth and search engagements from</span>
-                  <strong>$699</strong>
-                  <em>/mo</em>
-                </div>
-                <a href="/start/?plan=grow#fit-review" class="pricing-button">Talk About Growth</a>
-              </div>
-            </div>
+          <article class="path-card path-card--grow reveal reveal-delay-2" id="path-grow" data-offer-path="grow">
+            <p class="path-label">Grow</p>
+            <h3 class="path-headline">Turn visibility into qualified opportunities</h3>
+            <p class="path-for">For businesses that need stronger search presence, better lead generation, faster response, and more consistent follow-up.</p>
+            <ul class="path-caps">
+              <li>SEO and local search</li>
+              <li>Service and location pages</li>
+              <li>Conversion improvements</li>
+              <li>AI phone support</li>
+              <li>CRM setup</li>
+              <li>Lead routing</li>
+              <li>Follow-up automation</li>
+              <li>Reporting and attribution</li>
+            </ul>
+            <p class="path-outcome">More qualified inquiries, fewer missed opportunities, and a clearer view of what is producing business.</p>
+            <p class="path-price">Search and growth engagements from <strong>$699</strong><span class="path-price-unit">/mo</span>.</p>
+            <a href="/start/?interest=grow#fit-review" class="pricing-button" data-offer-cta="grow">Talk About Growth</a>
           </article>
 
-          <article class="pricing-card pricing-card--flip reveal reveal-delay-3" data-pricing-flip>
-            <div class="pricing-card-inner">
-              <div class="pricing-card-face pricing-card-face--front">
-                <p class="pricing-flip-whisper">Connect</p>
-                <h3 class="pricing-flip-title">Systems that<br>work together</h3>
-              </div>
-              <div class="pricing-card-face pricing-card-face--back">
-                <span class="pricing-pill pricing-pill--accent">Systems</span>
-                <div class="pricing-copy">
-                  <h3>Connect</h3>
-                  <p>Automation, integrations, reporting, dashboards and APIs—plus hospitality or multi-location operations where tools, teams, and locations need one coherent layer.</p>
-                </div>
-                <div class="pricing-price pricing-price--scoped">
-                  <span>Connected systems</span>
-                  <strong>Scoped after a conversation</strong>
-                </div>
-                <a href="/start/?plan=connect#fit-review" class="pricing-button">Explore Connected Systems</a>
-              </div>
-            </div>
+          <article class="path-card path-card--connect reveal reveal-delay-3" id="path-connect" data-offer-path="connect">
+            <p class="path-label">Connect</p>
+            <h3 class="path-headline">Connect the systems behind the business</h3>
+            <p class="path-for">For operators dealing with disconnected tools, repeated work, missed information, multiple locations, or operational complexity.</p>
+            <ul class="path-caps">
+              <li>CRM and workflow integration</li>
+              <li>APIs and automation</li>
+              <li>Dashboards and reporting</li>
+              <li>AI phone and communications</li>
+              <li>Booking and lead systems</li>
+              <li>Hospitality operations</li>
+              <li>Inventory and management systems</li>
+              <li>Multi-location workflows</li>
+              <li>Connected business controls</li>
+            </ul>
+            <p class="path-outcome">Less repetitive work, fewer dropped handoffs, and better visibility across the operation.</p>
+            <p class="path-price path-price--scoped">Connected systems are scoped after the business process and technical needs are understood.</p>
+            <a href="/start/?interest=connect#fit-review" class="pricing-button" data-offer-cta="connect">Explore Connected Systems</a>
           </article>
         </div>
 
-        <p class="pricing-impulse-soft reveal">
-          Need a simple starter website?
-          <a href="https://impulsebydesign.com">ImpulseByDesign</a>
-          offers a straightforward local website option for Cleveland-area small businesses.
-        </p>
+        <div class="pricing-impulse-soft reveal" data-offer-impulse>
+          <p class="pricing-impulse-kicker">Need a simple starter website?</p>
+          <p>ImpulseByDesign.com offers a straightforward website path for Cleveland-area small businesses that are not ready for a custom Resonant engagement.</p>
+          <a href="https://impulsebydesign.com" class="pricing-impulse-cta" data-offer-cta="impulse" target="_blank" rel="noopener">See the Starter Option</a>
+        </div>
 
         <div class="partner-banner reveal reveal-delay-2">
           <div>
@@ -649,7 +646,7 @@
         </details>
         <details>
           <summary>What is the cost?</summary>
-          <p>Focused website projects from $999. Growth and search engagements from $699/month. Connected systems are scoped after a conversation—so the proposal matches the actual problem, not a fixed package menu.</p>
+          <p>Focused custom website engagements from $999. Search and growth engagements from $699/month. Connected systems are scoped after the business process and technical needs are understood—so the proposal matches the problem, not a fixed package menu.</p>
         </details>
         <details>
           <summary>Do you offer ongoing support?</summary>
@@ -742,13 +739,12 @@
         <p class="footer-tagline">Custom web development, SEO, and connected business systems. Based in Cleveland. Built for businesses everywhere.</p>
       </div>
       <div class="footer-col">
-        <h4>Services</h4>
+        <h4>What We Build</h4>
         <ul>
-          <li><a href="/services/seo-foundations/">SEO Foundations</a></li>
-          <li><a href="/services/system-integrations/">System Integrations</a></li>
-          <li><a href="/services/system-integrations/ai-phone/">AI Phone</a></li>
-          <li><a href="/industries/restaurants-hospitality-web-design/">Hospitality</a></li>
-          <li><a href="https://impulsebydesign.com">Starter Sites (Impulse)</a></li>
+          <li><a href="/#path-build">Build</a></li>
+          <li><a href="/#path-grow">Grow</a></li>
+          <li><a href="/#path-connect">Connect</a></li>
+          <li><a href="https://impulsebydesign.com">Starter Sites</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -786,6 +782,54 @@
   </script>
 <script src="assets/js/robot-chat.js?v=RC5" defer></script>
   <script src="assets/js/hero-cap-flip.js?v=20260711-capflip2" defer></script>
+  <script>
+    (function () {
+      function track(name, params) {
+        try {
+          if (typeof gtag === "function") gtag("event", name, params || {});
+        } catch (e) {}
+      }
+
+      var section = document.querySelector("[data-offer-section]");
+      if (section && "IntersectionObserver" in window) {
+        var sectionSeen = false;
+        var pathSeen = { build: false, grow: false, connect: false };
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              var el = entry.target;
+              if (el === section && !sectionSeen) {
+                sectionSeen = true;
+                track("pricing_section_viewed", { section: "offer_paths" });
+              }
+              var path = el.getAttribute("data-offer-path");
+              if (path && !pathSeen[path]) {
+                pathSeen[path] = true;
+                track(path + "_path_viewed", { path: path });
+              }
+            });
+          },
+          { threshold: 0.35 }
+        );
+        io.observe(section);
+        section.querySelectorAll("[data-offer-path]").forEach(function (card) {
+          io.observe(card);
+        });
+      }
+
+      document.querySelectorAll("[data-offer-cta]").forEach(function (link) {
+        link.addEventListener("click", function () {
+          var cta = link.getAttribute("data-offer-cta") || "unknown";
+          if (cta === "impulse") {
+            track("impulse_link_clicked", { location: "homepage_offer" });
+          } else {
+            track(cta + "_cta_clicked", { path: cta, location: "homepage_offer" });
+          }
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>

@@ -1704,11 +1704,14 @@
 
       var params = new URLSearchParams(window.location.search);
       var source = params.get("source") || "resonant";
-      var plan = params.get("plan") || "";
+      var interest = params.get("interest") || params.get("plan") || "";
       var from = params.get("from") || "";
       var contextInput = document.getElementById("fit-entry-context");
       if (contextInput) {
-        contextInput.value = [source, plan ? "plan-" + plan : "", from].filter(Boolean).join(" | ");
+        contextInput.value = [source, interest ? "interest-" + interest : "", from].filter(Boolean).join(" | ");
+      }
+      if (interest) {
+        track("contact_page_reached_from_path", { interest: interest, page_path: "/start/" });
       }
 
       var mobileToggle = document.querySelector(".mobile-toggle");
