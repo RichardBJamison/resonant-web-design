@@ -5176,38 +5176,28 @@
   line-clamp: 9;
 }
 
-/* White back, same type system as front */
+/* White back — punch line only as heading */
 .insight-flip-face--back {
   transform: rotateY(180deg);
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   background: #ffffff;
   border-color: rgba(12, 15, 20, 0.1);
   box-shadow: inset 0 0 0 1px rgba(12, 15, 20, 0.04);
-}
-
-.insight-flip-face--back span {
-  color: var(--cyan);
-}
-
-.insight-flip-face--back h3 {
-  margin: 0 0 0.7rem;
-  font-family: var(--font-display);
-  font-size: clamp(1.05rem, 1.3vw, 1.3rem);
-  line-height: 1.1;
-  color: #0c0f14;
+  padding: 1.5rem 1.2rem;
 }
 
 .insight-flip-punch {
   margin: 0 !important;
   font-family: var(--font-display);
-  font-size: clamp(1.05rem, 1.3vw, 1.3rem);
+  font-size: clamp(1.35rem, 1.8vw, 1.85rem);
   font-weight: 700;
   line-height: 1.15;
-  letter-spacing: 0;
+  letter-spacing: -0.02em;
   color: #0c0f14 !important;
   text-transform: none;
-  max-width: 100%;
+  max-width: 12ch;
   word-break: break-word;
   overflow-wrap: anywhere;
 }
