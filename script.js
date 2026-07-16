@@ -154,11 +154,12 @@
       if (!cobrand) {
         cobrand = document.createElement('a');
         cobrand.className = 'ihs-cobrand';
-        cobrand.href = 'https://intelligenthospitalitysystems.com/';
-        cobrand.setAttribute('aria-label', 'Intelligent Hospitality Systems');
-        cobrand.title = 'Intelligent Hospitality Systems';
         cobrand.innerHTML = '<img src="' + globeUrl + '" alt="" width="38" height="38">';
       }
+      // Globe is Resonant home only (not IHS)
+      cobrand.href = '/';
+      cobrand.setAttribute('aria-label', 'Resonant Web Design home');
+      cobrand.title = 'Home';
       if (!lockup.contains(cobrand) || cobrand.nextElementSibling !== logo) {
         lockup.insertBefore(cobrand, logo);
       }
@@ -282,8 +283,11 @@
   function initFaqRollout() {
     if (prefersReducedMotion) return;
 
-    const rows = Array.from(document.querySelectorAll('.home-faq-list details'));
-    if (rows.length < 2) return;
+    // Homepage FAQ rows + SEO Foundations demand steps (same scroll flip)
+    const rows = Array.from(
+      document.querySelectorAll('.home-faq-list details, .seo-problem-list .seo-problem-row')
+    );
+    if (rows.length < 1) return;
     const faqTitle = document.querySelector('.home-faq-title');
     const titleLetters = faqTitle
       ? {
@@ -535,6 +539,13 @@
   let currentY = 0;
   let hasPosition = false;
   let frameId = 0;
+  // Robot Chat follow stage hides the ambient dot until the bot is closed
+  let pausedByRobotChat = false;
+
+  const setVisible = (on) => {
+    if (on && !pausedByRobotChat) cursor.classList.add("is-visible");
+    else cursor.classList.remove("is-visible");
+  };
 
   const render = () => {
     currentX += (targetX - currentX) * 0.25;
@@ -560,7 +571,7 @@
         currentX = targetX;
         currentY = targetY;
         hasPosition = true;
-        cursor.classList.add("is-visible");
+        setVisible(true);
         frameId = window.requestAnimationFrame(render);
       }
 
@@ -570,10 +581,22 @@
     { passive: true }
   );
 
-  document.addEventListener("mouseleave", () => cursor.classList.remove("is-visible"));
+  document.addEventListener("mouseleave", () => setVisible(false));
   document.addEventListener("mouseenter", () => {
-    if (hasPosition) cursor.classList.add("is-visible");
+    if (hasPosition) setVisible(true);
   });
+
+  window.addEventListener("robot-chat:cursor-pause", () => {
+    pausedByRobotChat = true;
+    cursor.classList.add("is-paused");
+    setVisible(false);
+  });
+  window.addEventListener("robot-chat:cursor-resume", () => {
+    pausedByRobotChat = false;
+    cursor.classList.remove("is-paused");
+    if (hasPosition) setVisible(true);
+  });
+
   window.addEventListener("scroll", updateProgress, { passive: true });
   window.addEventListener(
     "pagehide",
