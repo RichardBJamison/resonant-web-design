@@ -27,7 +27,7 @@
   <link rel="preload" href="/assets/fonts/rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqYu28qmR9A.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/8vIH7w4qzmVxq2JB80z-.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
-  <link rel="stylesheet" href="/styles.css?v=20260716-insight-flips4">
+  <link rel="stylesheet" href="/styles.css?v=20260716-insight-wave">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -186,65 +186,60 @@
         <p class="section-eyebrow">Category hubs</p>
         <h2 class="section-title">Five lanes for building topical authority.</h2>
         <div class="insights-grid" id="insights-lane-flips">
-          <article class="insight-card insight-card--flip" id="website-strategy" tabindex="0" role="button" aria-pressed="false" aria-label="Website Strategy. Tap to flip.">
+          <article class="insight-card insight-card--flip" id="website-strategy" tabindex="0" role="button" aria-pressed="false" aria-label="Website Strategy.">
             <div class="insight-flip-inner">
               <div class="insight-flip-face insight-flip-face--front">
                 <span>01</span>
                 <h3>Website Strategy</h3>
                 <p>Page maps, offer architecture, conversion paths, proof strategy, redesign planning, and the decisions that make a site useful before design starts.</p>
-                <p class="insight-flip-hint">Hover to flip</p>
               </div>
               <div class="insight-flip-face insight-flip-face--back" aria-hidden="true">
                 <h2 class="insight-flip-punch">It Makes Sense.</h2>
               </div>
             </div>
           </article>
-          <article class="insight-card insight-card--flip" id="seo-local-search" tabindex="0" role="button" aria-pressed="false" aria-label="SEO and Local Search. Tap to flip.">
+          <article class="insight-card insight-card--flip" id="seo-local-search" tabindex="0" role="button" aria-pressed="false" aria-label="SEO and Local Search.">
             <div class="insight-flip-inner">
               <div class="insight-flip-face insight-flip-face--front">
                 <span>02</span>
                 <h3>SEO + Local Search</h3>
                 <p>Technical foundations, local intent, Google Business Profile support, service pages, internal links, structured data, and content that earns relevance without becoming filler.</p>
-                <p class="insight-flip-hint">Hover to flip</p>
               </div>
               <div class="insight-flip-face insight-flip-face--back" aria-hidden="true">
                 <h2 class="insight-flip-punch">They Find You.</h2>
               </div>
             </div>
           </article>
-          <article class="insight-card insight-card--flip" id="ai-connected-systems" tabindex="0" role="button" aria-pressed="false" aria-label="AI and Connected Systems. Tap to flip.">
+          <article class="insight-card insight-card--flip" id="ai-connected-systems" tabindex="0" role="button" aria-pressed="false" aria-label="AI and Connected Systems.">
             <div class="insight-flip-inner">
               <div class="insight-flip-face insight-flip-face--front">
                 <span>03</span>
                 <h3>AI + Connected Systems</h3>
                 <p>AI phone intake, chat workflows, CRM routing, analytics, automations, and the system layer that turns a website from brochure into operating surface.</p>
-                <p class="insight-flip-hint">Hover to flip</p>
               </div>
               <div class="insight-flip-face insight-flip-face--back" aria-hidden="true">
                 <h2 class="insight-flip-punch">It All Connects.</h2>
               </div>
             </div>
           </article>
-          <article class="insight-card insight-card--flip" id="hospitality-growth" tabindex="0" role="button" aria-pressed="false" aria-label="Hospitality Growth. Tap to flip.">
+          <article class="insight-card insight-card--flip" id="hospitality-growth" tabindex="0" role="button" aria-pressed="false" aria-label="Hospitality Growth.">
             <div class="insight-flip-inner">
               <div class="insight-flip-face insight-flip-face--front">
                 <span>04</span>
                 <h3>Hospitality Growth</h3>
                 <p>Restaurant, bar, hotel, and venue websites with booking paths, ordering paths, menu structure, local proof, review signals, and operational systems behind the marketing.</p>
-                <p class="insight-flip-hint">Hover to flip</p>
               </div>
               <div class="insight-flip-face insight-flip-face--back" aria-hidden="true">
                 <h2 class="insight-flip-punch">They Come Back.</h2>
               </div>
             </div>
           </article>
-          <article class="insight-card insight-card--flip" id="service-business-growth" tabindex="0" role="button" aria-pressed="false" aria-label="Service-Business Growth. Tap to flip.">
+          <article class="insight-card insight-card--flip" id="service-business-growth" tabindex="0" role="button" aria-pressed="false" aria-label="Service-Business Growth.">
             <div class="insight-flip-inner">
               <div class="insight-flip-face insight-flip-face--front">
                 <span>05</span>
                 <h3>Service-Business Growth</h3>
                 <p>Landscaping, trades, professional services, and local operators who need better quote flow, stronger service pages, clearer proof, and faster follow-up.</p>
-                <p class="insight-flip-hint">Hover to flip</p>
               </div>
               <div class="insight-flip-face insight-flip-face--back" aria-hidden="true">
                 <h2 class="insight-flip-punch">They Choose You.</h2>
@@ -336,31 +331,143 @@
       if (!root) return;
       var cards = Array.prototype.slice.call(root.querySelectorAll(".insight-card--flip"));
       if (!cards.length) return;
+      var n = cards.length;
+      var lastIndex = -1;
+      var lastDir = null;
+      var leaveTimer = null;
 
-      function flipOnce(card) {
-        if (card.classList.contains("is-flipped")) return;
-        card.classList.add("is-flipped");
-        card.setAttribute("aria-pressed", "true");
+      function setCard(i, showBack, dir) {
+        if (i < 0 || i >= n) return;
+        var card = cards[i];
+        var on = !!showBack;
+        card.classList.toggle("is-flipped", on);
+        card.classList.toggle("is-turn-right", dir === "right");
+        card.classList.toggle("is-turn-left", dir === "left");
+        card.setAttribute("aria-pressed", on ? "true" : "false");
         var front = card.querySelector(".insight-flip-face--front");
         var back = card.querySelector(".insight-flip-face--back");
-        if (front) front.setAttribute("aria-hidden", "true");
-        if (back) back.setAttribute("aria-hidden", "false");
+        if (front) front.setAttribute("aria-hidden", on ? "true" : "false");
+        if (back) back.setAttribute("aria-hidden", on ? "false" : "true");
       }
 
-      cards.forEach(function (card) {
-        // Hover (desktop): flip once to the right and stay
-        card.addEventListener("mouseenter", function () {
-          flipOnce(card);
+      function indexFromPoint(clientX, clientY) {
+        var el = document.elementFromPoint(clientX, clientY);
+        if (!el || !root.contains(el)) return -1;
+        var card = el.closest(".insight-card--flip");
+        if (!card) return -1;
+        return cards.indexOf(card);
+      }
+
+      function onTravel(index) {
+        if (index < 0) return;
+        var dir = lastDir || "right";
+        if (lastIndex >= 0 && index !== lastIndex) {
+          dir = index > lastIndex ? "right" : "left";
+        }
+
+        var reversed =
+          lastDir &&
+          dir &&
+          lastDir !== dir &&
+          lastIndex >= 0 &&
+          Math.abs(index - lastIndex) === 1;
+
+        // Right → back face; left → original front
+        setCard(index, dir === "right", dir);
+
+        // Reverse one seat: card two to the right turns with travel direction
+        if (reversed) {
+          var extra = index + 2;
+          if (extra < n) setCard(extra, dir === "right", dir);
+        }
+
+        lastIndex = index;
+        lastDir = dir;
+      }
+
+      function settleMajority() {
+        var backs = 0;
+        cards.forEach(function (c) {
+          if (c.classList.contains("is-flipped")) backs += 1;
         });
-        // Touch / click / keyboard: same one-way flip
-        card.addEventListener("click", function (e) {
-          e.preventDefault();
-          flipOnce(card);
+        var fronts = n - backs;
+        var toBack = backs >= 3;
+        if (fronts >= 3) toBack = false;
+        if (backs >= 3) toBack = true;
+        if (backs < 3 && fronts < 3) {
+          // tie: follow last travel direction
+          toBack = lastDir !== "left";
+        }
+
+        var pending = [];
+        cards.forEach(function (c, i) {
+          if (c.classList.contains("is-flipped") !== toBack) pending.push(i);
         });
+        pending.forEach(function (i, k) {
+          window.setTimeout(function () {
+            setCard(i, toBack, toBack ? "right" : "left");
+          }, 75 * k);
+        });
+      }
+
+      root.addEventListener("mousemove", function (e) {
+        if (leaveTimer) {
+          window.clearTimeout(leaveTimer);
+          leaveTimer = null;
+        }
+        var i = indexFromPoint(e.clientX, e.clientY);
+        if (i < 0 || i === lastIndex) return;
+        onTravel(i);
+      });
+
+      root.addEventListener("mouseenter", function (e) {
+        if (leaveTimer) {
+          window.clearTimeout(leaveTimer);
+          leaveTimer = null;
+        }
+        var i = indexFromPoint(e.clientX, e.clientY);
+        if (i < 0) return;
+        if (lastIndex < 0) {
+          setCard(i, true, "right");
+          lastIndex = i;
+          lastDir = "right";
+        } else {
+          onTravel(i);
+        }
+      });
+
+      root.addEventListener("mouseleave", function () {
+        leaveTimer = window.setTimeout(function () {
+          settleMajority();
+          lastIndex = -1;
+        }, 50);
+      });
+
+      root.addEventListener(
+        "touchmove",
+        function (e) {
+          if (!e.touches || !e.touches[0]) return;
+          var t = e.touches[0];
+          var i = indexFromPoint(t.clientX, t.clientY);
+          if (i < 0 || i === lastIndex) return;
+          onTravel(i);
+        },
+        { passive: true }
+      );
+
+      root.addEventListener("touchend", function () {
+        settleMajority();
+        lastIndex = -1;
+      });
+
+      cards.forEach(function (card, i) {
         card.addEventListener("keydown", function (e) {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            flipOnce(card);
+            var showBack = !card.classList.contains("is-flipped");
+            setCard(i, showBack, showBack ? "right" : "left");
+            lastIndex = i;
+            lastDir = showBack ? "right" : "left";
           }
         });
       });
