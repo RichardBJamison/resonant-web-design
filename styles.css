@@ -4983,8 +4983,9 @@
   align-items: flex-end;
   padding: 7.5rem 1.5rem 3.25rem;
   background:
-    linear-gradient(180deg, rgba(7, 11, 19, 0.22), rgba(7, 11, 19, 0.88)),
-    url("/assets/img/resonant-studio-hero.webp") center / cover;
+    linear-gradient(105deg, rgba(7, 11, 19, 0.72) 0%, rgba(7, 11, 19, 0.35) 48%, rgba(7, 11, 19, 0.45) 100%),
+    linear-gradient(180deg, rgba(7, 11, 19, 0.2) 0%, rgba(7, 11, 19, 0.78) 100%),
+    url("/assets/img/insights-valley-hero.webp") center / cover no-repeat;
   color: var(--text-light);
 }
 
