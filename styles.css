@@ -5114,6 +5114,97 @@
   line-height: 1.65;
 }
 
+/* Category lane flips — touch/click to flip */
+.insight-card--flip {
+  padding: 0;
+  perspective: 1100px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  touch-action: manipulation;
+}
+
+.insight-card--flip:focus-visible {
+  box-shadow: 0 0 0 2px rgba(31, 247, 242, 0.55);
+}
+
+.insight-flip-inner {
+  position: relative;
+  width: 100%;
+  min-height: 20rem;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.4, 0.05, 0.2, 1);
+}
+
+.insight-card--flip.is-flipped .insight-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.insight-flip-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 1.35rem;
+  border-radius: 0.5rem;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: rgba(255, 255, 255, 0.055);
+  box-sizing: border-box;
+}
+
+.insight-flip-face--front {
+  transform: rotateY(0deg);
+}
+
+.insight-flip-face--back {
+  transform: rotateY(180deg);
+  justify-content: center;
+  background:
+    linear-gradient(160deg, rgba(31, 247, 242, 0.1), transparent 55%),
+    rgba(12, 16, 22, 0.92);
+  border: 1px solid rgba(31, 247, 242, 0.18);
+}
+
+.insight-flip-face--back h3 {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1.05rem;
+  margin-bottom: 0.85rem;
+}
+
+.insight-flip-punch {
+  margin: 0 !important;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  color: #1ff7f2 !important;
+  text-transform: uppercase;
+}
+
+.insight-flip-hint {
+  margin-top: auto !important;
+  padding-top: 1rem;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .insight-flip-inner {
+    transition: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .insight-flip-inner {
+    min-height: 16rem;
+  }
+}
+
 .insights-checklist {
   display: grid;
   gap: 0.8rem;
@@ -5176,6 +5267,10 @@
 
   .insight-card {
     min-height: 0;
+  }
+
+  .insight-card--flip .insight-flip-inner {
+    min-height: 16rem;
   }
 }
 
