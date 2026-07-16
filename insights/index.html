@@ -192,12 +192,12 @@
                 <span>01</span>
                 <h3>Website Strategy</h3>
                 <p>Page maps, offer architecture, conversion paths, proof strategy, redesign planning, and the decisions that make a site useful before design starts.</p>
-                <p class="insight-flip-hint">Tap to flip</p>
+                <p class="insight-flip-hint">Hover to flip</p>
               </div>
               <div class="insight-flip-face insight-flip-face--back" aria-hidden="true">
                 <span>01</span>
                 <h3>Website Strategy</h3>
-                <p class="insight-flip-punch">IT MAKES SENSE.</p>
+                <p class="insight-flip-punch">It makes sense.</p>
               </div>
             </div>
           </article>
@@ -207,12 +207,12 @@
                 <span>02</span>
                 <h3>SEO + Local Search</h3>
                 <p>Technical foundations, local intent, Google Business Profile support, service pages, internal links, structured data, and content that earns relevance without becoming filler.</p>
-                <p class="insight-flip-hint">Tap to flip</p>
+                <p class="insight-flip-hint">Hover to flip</p>
               </div>
               <div class="insight-flip-face insight-flip-face--back" aria-hidden="true">
                 <span>02</span>
                 <h3>SEO + Local Search</h3>
-                <p class="insight-flip-punch">THEY FIND YOU.</p>
+                <p class="insight-flip-punch">They find you.</p>
               </div>
             </div>
           </article>
@@ -222,12 +222,12 @@
                 <span>03</span>
                 <h3>AI + Connected Systems</h3>
                 <p>AI phone intake, chat workflows, CRM routing, analytics, automations, and the system layer that turns a website from brochure into operating surface.</p>
-                <p class="insight-flip-hint">Tap to flip</p>
+                <p class="insight-flip-hint">Hover to flip</p>
               </div>
               <div class="insight-flip-face insight-flip-face--back" aria-hidden="true">
                 <span>03</span>
                 <h3>AI + Connected Systems</h3>
-                <p class="insight-flip-punch">IT ALL CONNECTS.</p>
+                <p class="insight-flip-punch">It all connects.</p>
               </div>
             </div>
           </article>
@@ -237,12 +237,12 @@
                 <span>04</span>
                 <h3>Hospitality Growth</h3>
                 <p>Restaurant, bar, hotel, and venue websites with booking paths, ordering paths, menu structure, local proof, review signals, and operational systems behind the marketing.</p>
-                <p class="insight-flip-hint">Tap to flip</p>
+                <p class="insight-flip-hint">Hover to flip</p>
               </div>
               <div class="insight-flip-face insight-flip-face--back" aria-hidden="true">
                 <span>04</span>
                 <h3>Hospitality Growth</h3>
-                <p class="insight-flip-punch">THEY COME BACK.</p>
+                <p class="insight-flip-punch">They come back.</p>
               </div>
             </div>
           </article>
@@ -252,12 +252,12 @@
                 <span>05</span>
                 <h3>Service-Business Growth</h3>
                 <p>Landscaping, trades, professional services, and local operators who need better quote flow, stronger service pages, clearer proof, and faster follow-up.</p>
-                <p class="insight-flip-hint">Tap to flip</p>
+                <p class="insight-flip-hint">Hover to flip</p>
               </div>
               <div class="insight-flip-face insight-flip-face--back" aria-hidden="true">
                 <span>05</span>
                 <h3>Service-Business Growth</h3>
-                <p class="insight-flip-punch">THEY CHOOSE YOU.</p>
+                <p class="insight-flip-punch">They choose you.</p>
               </div>
             </div>
           </article>
@@ -347,32 +347,30 @@
       var cards = Array.prototype.slice.call(root.querySelectorAll(".insight-card--flip"));
       if (!cards.length) return;
 
-      function setFlipped(card, on) {
-        card.classList.toggle("is-flipped", on);
-        card.setAttribute("aria-pressed", on ? "true" : "false");
+      function flipOnce(card) {
+        if (card.classList.contains("is-flipped")) return;
+        card.classList.add("is-flipped");
+        card.setAttribute("aria-pressed", "true");
         var front = card.querySelector(".insight-flip-face--front");
         var back = card.querySelector(".insight-flip-face--back");
-        if (front) front.setAttribute("aria-hidden", on ? "true" : "false");
-        if (back) back.setAttribute("aria-hidden", on ? "false" : "true");
-      }
-
-      function toggle(card) {
-        var on = !card.classList.contains("is-flipped");
-        // one open at a time keeps the grid readable
-        cards.forEach(function (c) {
-          setFlipped(c, c === card ? on : false);
-        });
+        if (front) front.setAttribute("aria-hidden", "true");
+        if (back) back.setAttribute("aria-hidden", "false");
       }
 
       cards.forEach(function (card) {
+        // Hover (desktop): flip once to the right and stay
+        card.addEventListener("mouseenter", function () {
+          flipOnce(card);
+        });
+        // Touch / click / keyboard: same one-way flip
         card.addEventListener("click", function (e) {
           e.preventDefault();
-          toggle(card);
+          flipOnce(card);
         });
         card.addEventListener("keydown", function (e) {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            toggle(card);
+            flipOnce(card);
           }
         });
       });
