@@ -4687,6 +4687,26 @@
   color: var(--text-muted);
 }
 
+/* Centered story band (e.g. growth-path callout without price ladder) */
+.seo-story-inner--center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 38rem;
+}
+
+.seo-story-inner--center h2 {
+  max-width: 18ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.seo-story-inner--center p {
+  max-width: 42ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .seo-proof-chips {
   display: flex;
   flex-wrap: wrap;
