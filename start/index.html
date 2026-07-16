@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Start a Project | Resonant Web Design</title>
-  <meta name="description" content="Choose the right website path: $69/month starter sites through Impulse by Design, or custom Resonant web design, integrations, automation, AI workflows, dashboards, and growth systems.">
+  <title>Show Me the Right Build | Resonant Web Design</title>
+  <meta name="description" content="Tell us what you are trying to improve. Resonant reviews your business and recommends the most useful path—custom systems, a simpler starter option, or an honest next step.">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="author" content="Richard B. Jamison">
   <meta name="theme-color" content="#FAFAF8">
@@ -12,13 +12,13 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
   <meta property="og:site_name" content="Resonant Web Design">
-  <meta property="og:title" content="Start a Project | Resonant Web Design">
-  <meta property="og:description" content="Choose the right lane: $69/month starter sites, or custom Resonant web design, integrations, automation, AI, and growth systems.">
+  <meta property="og:title" content="Show Me the Right Build | Resonant Web Design">
+  <meta property="og:description" content="A short fit review—not a long application. Get a clear recommendation for the most useful path.">
   <meta property="og:url" content="https://resonantwebdesign.com/start/">
   <meta property="og:image" content="https://resonantwebdesign.com/assets/img/og-image.jpg?v=20260714-share1">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Start a Project | Resonant Web Design">
-  <meta name="twitter:description" content="Simple site or custom system — pick the right lane. Transparent pricing from $69/month to $6,999+ systems work.">
+  <meta name="twitter:title" content="Show Me the Right Build | Resonant Web Design">
+  <meta name="twitter:description" content="Tell us what you are trying to improve. Get a clear recommendation—no pressure, no oversized agency process.">
   <meta name="twitter:image" content="https://resonantwebdesign.com/assets/img/og-image.jpg?v=20260714-share1">
   <link rel="icon" href="/ihs-favicon-48.png" type="image/png" sizes="48x48">
   <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
@@ -897,7 +897,239 @@
       padding: 0.8rem 0.95rem;
       border: 1px solid rgba(240, 160, 111, 0.35);
       background: rgba(240, 160, 111, 0.08);
+    }
+
+    .form input[type="tel"] {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.25);
+      color: #fff;
+      font: inherit;
+      font-size: 1rem;
+      padding: 0.9rem 0.95rem;
+      outline: none;
+      min-height: 48px;
+    }
+
+    .form input[type="tel"]:focus {
+      border-color: rgba(240, 160, 111, 0.55);
+    }
+
+    .form-step-indicator {
+      font-family: var(--font-m);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .form-step[hidden] { display: none !important; }
+
+    .form-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .form-field-error {
+      border-color: rgba(255, 120, 100, 0.75) !important;
+    }
+
+    .form-error-msg {
+      color: #ffb4a8;
+      font-size: 0.82rem;
+      margin: 0.15rem 0 0;
+    }
+
+    .form-layout {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .form-layout {
+        grid-template-columns: minmax(0, 1.35fr) minmax(240px, 0.75fr);
+        align-items: start;
+        gap: 2rem;
+      }
+    }
+
+    .next-panel {
+      padding: 1.25rem 1.35rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+    }
+
+    .next-panel h3 {
+      margin: 0 0 0.65rem;
+      font-size: 1.05rem;
+      color: #fff;
+    }
+
+    .next-panel p {
+      margin: 0 0 0.75rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .next-panel p:last-child { margin-bottom: 0; }
+
+    .impulse-nudge {
+      margin-top: 1rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid rgba(240, 160, 111, 0.28);
+      background: rgba(240, 160, 111, 0.08);
+      border-radius: 10px;
+    }
+
+    .impulse-nudge[hidden] { display: none !important; }
+
+    .impulse-nudge p {
+      margin: 0 0 0.85rem;
       color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .form-success {
+      padding: 1.5rem;
+      border: 1px solid rgba(240, 160, 111, 0.35);
+      background: rgba(240, 160, 111, 0.08);
+      border-radius: 12px;
+    }
+
+    .form-success[hidden] { display: none !important; }
+
+    .form-success h3 {
+      margin: 0 0 0.75rem;
+      color: #fff;
+      font-size: 1.45rem;
+    }
+
+    .form-success p {
+      margin: 0 0 1rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .form-success-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .form-nav-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--text-light);
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .support-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    @media (min-width: 800px) {
+      .support-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .support-card {
+      padding: 1.15rem 1.2rem;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      border-radius: 10px;
+    }
+
+    .support-card h3 {
+      margin: 0 0 0.6rem;
+      font-size: 1.05rem;
+    }
+
+    .support-card ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--text-2);
+      line-height: 1.55;
+      font-size: 0.95rem;
+    }
+
+    .support-card li { margin-bottom: 0.35rem; }
+
+    .process-steps {
+      display: grid;
+      gap: 0.65rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: step;
+    }
+
+    .process-steps li {
+      counter-increment: step;
+      padding: 0.85rem 1rem 0.85rem 3rem;
+      position: relative;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--text-2);
+      font-size: 0.98rem;
+    }
+
+    .process-steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      background: var(--bg-dark);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+    }
+
+    .form .form-grid {
+      gap: 1rem;
+    }
+
+    .form input[type="text"],
+    .form input[type="email"],
+    .form input[type="url"],
+    .form textarea {
+      min-height: 48px;
+      font-size: 1rem;
+    }
+
+    .choice {
+      min-height: 48px;
+    }
+
+    .optional-tag {
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0;
+      opacity: 0.75;
     }
 
     /* Final */
@@ -1139,8 +1371,8 @@
         "@type": "WebPage",
         "@id": "https://resonantwebdesign.com/start/#webpage",
         "url": "https://resonantwebdesign.com/start/",
-        "name": "Start a Project | Resonant Web Design",
-        "description": "Choose the right website path: $69/month starter sites through Impulse by Design, or custom Resonant web design, integrations, automation, AI workflows, dashboards, and growth systems.",
+        "name": "Show Me the Right Build | Resonant Web Design",
+        "description": "Short fit review to recommend the most useful path: Resonant custom systems, Impulse starter presence, a conversation, or wait.",
         "isPartOf": { "@id": "https://resonantwebdesign.com/#website" },
         "publisher": { "@id": "https://resonantwebdesign.com/#organization" }
       },
@@ -1150,7 +1382,7 @@
         "name": "Resonant Web Design Project Fit Review",
         "serviceType": "Web design consultation and project scoping",
         "url": "https://resonantwebdesign.com/start/",
-        "description": "Fit review to route businesses into the right lane: Impulse starter sites or custom Resonant websites, system integrations, automation, AI phone/chat, and growth systems.",
+        "description": "Personal fit review recommending Resonant custom work, Impulse starter presence, a conversation, or no project yet.",
         "provider": { "@id": "https://resonantwebdesign.com/#organization" },
         "areaServed": { "@type": "Country", "name": "United States" },
         "hasOfferCatalog": {
@@ -1162,7 +1394,7 @@
               "name": "Starter Sites (Impulse by Design)",
               "price": "69",
               "priceCurrency": "USD",
-              "url": "https://resonantwebdesign.com/services/starter-sites/"
+              "url": "https://impulsebydesign.com/"
             },
             {
               "@type": "Offer",
@@ -1185,7 +1417,7 @@
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Start a Project",
+            "name": "Show Me the Right Build",
             "item": "https://resonantwebdesign.com/start/"
           }
         ]
@@ -1197,7 +1429,7 @@
 <body>
   <nav class="nav" id="nav">
     <div class="nav-brand-lockup">
-      <a class="ihs-cobrand" href="https://intelligenthospitalitysystems.com/" aria-label="Intelligent Hospitality Systems" title="Intelligent Hospitality Systems"><img src="/ihs-globe-nav.png" alt="" width="38" height="38"></a>
+      <a class="ihs-cobrand" href="/" aria-label="Resonant Web Design home" title="Home"><img src="/ihs-globe-nav.png" alt="" width="38" height="38"></a>
       <a href="/" class="nav-logo">Resonant <span>Web Design</span></a>
     </div>
             <ul class="nav-links">
@@ -1207,15 +1439,15 @@
           <a href="/services/seo-foundations/" role="menuitem">SEO Foundations</a>
           <a href="/services/system-integrations/" role="menuitem">System Integrations</a>
           <a href="/services/system-integrations/ai-phone/" role="menuitem">AI Phone</a>
-          <a href="/services/starter-sites/" role="menuitem">Starter Sites</a>
+          <a href="https://impulsebydesign.com" role="menuitem">Starter Sites</a>
           <a href="/industries/landscaping-web-design/" role="menuitem">Landscaping</a>
           <a href="/industries/restaurants-hospitality-web-design/" role="menuitem">Restaurants + Hospitality</a>
         </div>
       </li>
       <li><a href="/services/system-integrations/">Integrations</a></li>
       <li><a href="/insights/">Insights</a></li>
-      <li><a href="/#work">Work</a></li>
-      <li><a href="#fit-review" class="nav-cta" aria-current="page">Let&rsquo;s Talk</a></li>
+      <li><a href="/work/">Work</a></li>
+      <li><a href="#fit-review" class="nav-cta" aria-current="page">Show Me the Right Build</a></li>
     </ul>
     <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -1226,363 +1458,293 @@
     <a href="/services/seo-foundations/">SEO Foundations</a>
     <a href="/services/system-integrations/">Integrations</a>
     <a href="/services/system-integrations/ai-phone/">AI Phone</a>
-    <a href="/services/starter-sites/">Starter Sites</a>
+    <a href="https://impulsebydesign.com">Starter Sites</a>
     <a href="/industries/landscaping-web-design/">Landscaping</a>
     <a href="/industries/restaurants-hospitality-web-design/">Restaurants + Hospitality</a>
     <a href="/insights/">Insights</a>
-    <a href="/#work">Work</a>
-    <a href="#fit-review" class="nav-cta" aria-current="page">Let&rsquo;s Talk</a>
+    <a href="/work/">Work</a>
+    <a href="#fit-review" class="nav-cta" aria-current="page">Show Me the Right Build</a>
   </div>
 
   <main>
     <!-- Hero -->
-    <section class="hero">
+    <section class="hero" id="top">
       <div class="hero-inner">
         <div>
-          <p class="breadcrumb"><a href="/">Home</a> / Start</p>
-          <p class="eyebrow">Project gateway</p>
-          <h1>Start in the right lane.</h1>
-          <p class="hero-lead">Simple site, custom system, or something in between — the first step is choosing the right kind of build.</p>
-          <p class="hero-note">Resonant is a small senior-led studio, not a giant agency. I have spent 25 years around businesses where results have to show up in the numbers. If we work together, I need time to understand your operation, your market, and how the work is supposed to make you more money.</p>
+          <p class="breadcrumb"><a href="/">Home</a> / Show Me the Right Build</p>
+          <p class="eyebrow">Fit review</p>
+          <h1>Show Me the Right Build</h1>
+          <p class="hero-lead">Tell us what you are trying to improve. We will review the business, recommend the most useful path, and tell you honestly whether Resonant is the right fit.</p>
+          <p class="hero-note">No pressure. No oversized agency process. No recommendation for more than you need.</p>
+          <p class="hero-scale">Based in Cleveland. Reviewing projects nationwide.</p>
           <div class="hero-ctas">
-            <a href="#custom-fit" class="btn btn-primary">I need a custom system</a>
-            <a href="https://impulsebydesign.com/#start" class="btn btn-secondary" target="_blank" rel="noopener">I need the $69 site</a>
+            <a href="#fit-review" class="btn btn-primary">Start the fit review</a>
+            <a href="/work/" class="btn btn-secondary">View Selected Work</a>
           </div>
-          <p class="hero-scale">The discovery is careful. The execution does not have to be small. Once the plan is right, I can pull in trusted help quickly for larger builds, integrations, and implementation pushes.</p>
         </div>
-        <aside class="hero-panel" aria-label="What this page routes">
-          <h2>Two clear paths</h2>
-          <p>Connectivity and systems for operators who need the website tied to how money moves — or a simple starter site when that is enough.</p>
+        <aside class="hero-panel" aria-label="What you will get">
+          <h2>What you get</h2>
+          <p>A clear recommendation—not a long application and not a forced package.</p>
           <ul>
-            <li>Impulse — affordable starter presence</li>
-            <li>Resonant — custom design &amp; systems</li>
-            <li>Transparent pricing up front</li>
-            <li>Fit review before serious build work</li>
+            <li>Two short steps</li>
+            <li>Personal review by Richard</li>
+            <li>Honest path: Resonant, Impulse, or wait</li>
+            <li>No push into a larger build than you need</li>
           </ul>
-          <a href="#lanes" class="btn btn-primary">Compare lanes</a>
+          <a href="#fit-review" class="btn btn-primary">Begin step 1</a>
         </aside>
       </div>
     </section>
 
-    <!-- Lanes -->
-    <section class="section" id="lanes">
-      <div class="section-inner">
-        <p class="eyebrow">Two honest lanes</p>
-        <h2 class="section-title">Pick the path that matches the job.</h2>
-        <p class="section-sub">If you need a clean starter website, there is a cheaper lane for that — Impulse. If your website needs to connect to how the business actually runs, that is Resonant.</p>
+    <!-- Form first -->
+    <section class="section section--dark" id="fit-review">
+      <div class="section-inner form-wrap">
+        <p class="eyebrow">Fit review</p>
+        <h2 class="section-title">Tell us enough to recommend a path</h2>
+        <p class="section-sub">Step one is quick. Step two adds only what we need to review the opportunity. Uncertainty is a valid answer.</p>
 
-        <div class="lane-grid">
-          <article class="lane-card">
-            <span class="lane-label">Lane 01 · Impulse</span>
-            <h3>Impulse Starter</h3>
-            <p class="lane-price">$69<span>/month</span></p>
-            <p>For a clean starter website, fast launch, and basic web presence. Handled through the Impulse lane with assistant support — good, useful, intentionally affordable.</p>
+        <div class="form-layout">
+          <div>
+            <!-- Delivers to rbjpholdings@gmail.com (RBJP Holdings) via FormSubmit. Do not expose alternate credentials. -->
+            <form
+              class="form"
+              id="fit-review-form"
+              method="POST"
+              action="https://formsubmit.co/ajax/rbjpholdings@gmail.com"
+              novalidate
+            >
+              <input type="hidden" name="_subject" value="Resonant Web Design — Fit Review">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <input type="hidden" name="source" value="resonantwebdesign.com/start">
+              <input type="hidden" name="entry_context" id="fit-entry-context" value="direct">
+              <input type="hidden" name="form_version" value="fit-review-v2-progressive">
+
+              <div id="fit-form-success" class="form-success" hidden>
+                <h3>Your fit review is in.</h3>
+                <p>Richard will review what you submitted and identify the most useful next step. That may be a Resonant build, the simpler Impulse path, a short conversation, or a recommendation to wait until the business is ready.</p>
+                <div class="form-success-actions">
+                  <a href="/work/" class="btn btn-primary">View Selected Work</a>
+                  <a href="https://opensourcebarware.com" class="btn btn-secondary" target="_blank" rel="noopener">Visit Open Source Barware</a>
+                  <a href="/" class="btn btn-ghost">Return home</a>
+                </div>
+              </div>
+
+              <div id="fit-form-body">
+                <div class="form-step" id="fit-step-1" data-step="1">
+                  <p class="form-step-indicator" id="fit-step-label">Step 1 of 2</p>
+                  <div class="form-grid">
+                    <label>
+                      <span>Name</span>
+                      <input type="text" name="name" id="fit-name" autocomplete="name" required aria-required="true">
+                    </label>
+                    <label>
+                      <span>Business or organization</span>
+                      <input type="text" name="business" id="fit-business" autocomplete="organization" required aria-required="true">
+                    </label>
+                    <label>
+                      <span>Email</span>
+                      <input type="email" name="email" id="fit-email" autocomplete="email" inputmode="email" required aria-required="true">
+                    </label>
+                    <label>
+                      <span>Phone <span class="optional-tag">(optional)</span></span>
+                      <input type="tel" name="phone" id="fit-phone" autocomplete="tel" inputmode="tel">
+                    </label>
+                  </div>
+
+                  <label class="form-block">
+                    <span>Website <span class="optional-tag">(optional — enter “none” if you do not have one)</span></span>
+                    <input type="text" name="website" id="fit-website" autocomplete="url" placeholder="https:// or none">
+                  </label>
+
+                  <fieldset class="fieldset" id="fit-improvement-set">
+                    <legend>What are you trying to improve?</legend>
+                    <div class="choices" role="radiogroup" aria-required="true">
+                      <label class="choice"><input type="radio" name="improvement" value="Website and positioning"> Website and positioning</label>
+                      <label class="choice"><input type="radio" name="improvement" value="Search visibility and leads"> Search visibility and leads</label>
+                      <label class="choice"><input type="radio" name="improvement" value="Calls and follow-up"> Calls and follow-up</label>
+                      <label class="choice"><input type="radio" name="improvement" value="CRM, automation, or integrations"> CRM, automation, or integrations</label>
+                      <label class="choice"><input type="radio" name="improvement" value="Hospitality or multi-location operations"> Hospitality or multi-location operations</label>
+                      <label class="choice"><input type="radio" name="improvement" value="A new product or platform"> A new product or platform</label>
+                      <label class="choice"><input type="radio" name="improvement" value="Not sure yet"> Not sure yet</label>
+                    </div>
+                    <p class="form-error-msg" id="fit-improvement-error" hidden>Choose one option so we know where to start.</p>
+                  </fieldset>
+
+                  <div class="form-nav-row form-actions">
+                    <button type="button" class="btn btn-primary" id="fit-step1-next">Show Me the Right Path</button>
+                    <p class="form-status" id="fit-step1-status" role="status" hidden></p>
+                  </div>
+                </div>
+
+                <div class="form-step" id="fit-step-2" data-step="2" hidden>
+                  <p class="form-step-indicator">Step 2 of 2</p>
+
+                  <label class="form-block">
+                    <span>What is not working today, and what would a good result look like?</span>
+                    <textarea name="situation" id="fit-situation" rows="4" required aria-required="true"></textarea>
+                  </label>
+
+                  <fieldset class="fieldset">
+                    <legend>Approximate investment comfort</legend>
+                    <div class="choices" role="radiogroup" aria-required="true">
+                      <label class="choice"><input type="radio" name="budget" value="I need the simplest useful solution"> I need the simplest useful solution</label>
+                      <label class="choice"><input type="radio" name="budget" value="Under $1,000"> Under $1,000</label>
+                      <label class="choice"><input type="radio" name="budget" value="$1,000–$3,000"> $1,000–$3,000</label>
+                      <label class="choice"><input type="radio" name="budget" value="$3,000–$7,500"> $3,000–$7,500</label>
+                      <label class="choice"><input type="radio" name="budget" value="$7,500–$15,000"> $7,500–$15,000</label>
+                      <label class="choice"><input type="radio" name="budget" value="$15,000+"> $15,000+</label>
+                      <label class="choice"><input type="radio" name="budget" value="I am not sure yet"> I am not sure yet</label>
+                    </div>
+                    <p class="form-error-msg" id="fit-budget-error" hidden>Pick the range that feels closest—even if you are not sure yet.</p>
+                  </fieldset>
+
+                  <fieldset class="fieldset">
+                    <legend>Preferred timing</legend>
+                    <div class="choices" role="radiogroup" aria-required="true">
+                      <label class="choice"><input type="radio" name="timing" value="As soon as the right plan is clear"> As soon as the right plan is clear</label>
+                      <label class="choice"><input type="radio" name="timing" value="Within 30 days"> Within 30 days</label>
+                      <label class="choice"><input type="radio" name="timing" value="Within 60–90 days"> Within 60–90 days</label>
+                      <label class="choice"><input type="radio" name="timing" value="Later this year"> Later this year</label>
+                      <label class="choice"><input type="radio" name="timing" value="Still exploring"> Still exploring</label>
+                    </div>
+                    <p class="form-error-msg" id="fit-timing-error" hidden>Choose a timing option.</p>
+                  </fieldset>
+
+                  <label class="form-block">
+                    <span>Anything else we should understand? <span class="optional-tag">(optional)</span></span>
+                    <textarea name="notes" id="fit-notes" rows="3"></textarea>
+                  </label>
+
+                  <div id="impulse-nudge" class="impulse-nudge" hidden>
+                    <p>A simpler starter presence may be the better fit. ImpulseByDesign.com offers a low-cost website path for Cleveland-area small businesses.</p>
+                    <a href="https://impulsebydesign.com/#start" class="btn btn-secondary" id="impulse-nudge-cta" target="_blank" rel="noopener">Explore the Starter Option</a>
+                  </div>
+
+                  <div class="form-nav-row form-actions">
+                    <button type="button" class="btn btn-ghost" id="fit-step2-back">Back</button>
+                    <button type="submit" class="btn btn-primary" id="fit-submit">Get My Recommendation</button>
+                    <p class="form-status" id="fit-form-status" role="status" hidden></p>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <aside class="next-panel" aria-label="What happens next">
+            <h3>What happens next</h3>
+            <p>Richard reviews each submission personally. You will receive the recommended next step—whether that is a Resonant build, the simpler Impulse option, a conversation, or an honest recommendation to take a different path.</p>
+            <p>You will not be pushed into a larger build than the business needs.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Supporting content -->
+    <section class="section" id="what-we-review">
+      <div class="section-inner">
+        <p class="eyebrow">After the form</p>
+        <h2 class="section-title">What Resonant reviews</h2>
+        <p class="section-sub">Not every business needs a custom system. The fit review helps us recommend the most useful—and least wasteful—path.</p>
+        <div class="support-grid">
+          <article class="support-card">
+            <h3>1. What Resonant reviews</h3>
             <ul>
-              <li>Legitimate local business site</li>
-              <li>Predictable monthly path</li>
-              <li>Right for simple web presence</li>
+              <li>The business problem</li>
+              <li>The customer journey</li>
+              <li>Existing systems</li>
+              <li>Search opportunity</li>
+              <li>Lead-response gaps</li>
+              <li>Operational needs</li>
+              <li>Whether a simpler path would solve the problem</li>
             </ul>
-            <a href="https://impulsebydesign.com/#start" class="btn btn-secondary" target="_blank" rel="noopener">Go to Impulse</a>
           </article>
-
-          <article class="lane-card lane-card--focus">
-            <span class="lane-label">Lane 02 · Resonant</span>
-            <h3>Resonant Custom</h3>
-            <p class="lane-price">From $999<span> to $6,999+</span></p>
-            <p>For businesses that need design, integrations, automations, AI workflows, dashboards, or a site that supports operations — connectivity with purpose, not decoration.</p>
+          <article class="support-card">
+            <h3>2. What we may recommend</h3>
             <ul>
-              <li>Custom design &amp; implementation</li>
-              <li>Systems tied to real workflow</li>
-              <li>Senior-led architecture</li>
+              <li>A focused website correction</li>
+              <li>A conversion-focused custom build</li>
+              <li>Search and lead-generation work</li>
+              <li>AI phone or CRM follow-up</li>
+              <li>Automation and integrations</li>
+              <li>A hospitality or multi-location system</li>
+              <li>An Impulse starter site</li>
+              <li>No project at all yet</li>
             </ul>
-            <a href="#custom-fit" class="btn btn-primary">See Custom Fit</a>
+          </article>
+          <article class="support-card">
+            <h3>3. Who Resonant is best for</h3>
+            <ul>
+              <li>Businesses with a real operational or growth problem</li>
+              <li>Operators who value ownership and maintainable infrastructure</li>
+              <li>Companies needing more than a visual refresh</li>
+              <li>Hospitality and service businesses with disconnected systems</li>
+              <li>Founders building a product, platform, or scalable digital asset</li>
+            </ul>
+          </article>
+          <article class="support-card">
+            <h3>4. When Resonant is usually not the best fit</h3>
+            <ul>
+              <li>Projects seeking a copied template</li>
+              <li>The lowest possible one-time price with no room for strategy</li>
+              <li>A large list of features without a clear business purpose</li>
+            </ul>
+            <p class="fit-route" style="margin-top:0.85rem">If you mainly need a clean starter presence, the respectful path is often <a href="https://impulsebydesign.com/#start" target="_blank" rel="noopener">ImpulseByDesign.com</a>.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Pricing -->
-    <section class="section section--dark" id="pricing">
+    <section class="section section--tint" id="process">
       <div class="section-inner">
-        <p class="eyebrow">Transparent price ladder</p>
-        <h2 class="section-title">Starting points, not mystery quotes.</h2>
-        <p class="section-sub">Entry points so you can orient before we talk. Final scope follows the operation, the numbers, and the work required.</p>
-
-        <div class="price-grid">
-          <article class="price-card">
-            <span class="price-tag">Impulse</span>
-            <h3>Starter Site</h3>
-            <p class="price-amount">$69<em>/month</em></p>
-            <p>Clean starter website, fast launch, basic presence. Built for small local businesses that need a legitimate site without custom systems work.</p>
-            <a href="https://impulsebydesign.com/#start" target="_blank" rel="noopener">Start Impulse →</a>
-          </article>
-          <article class="price-card">
-            <span class="price-tag">Resonant</span>
-            <h3>SEO / Marketing Foundation</h3>
-            <p class="price-amount">$699<em>/month</em></p>
-            <p>Search structure, content direction, local visibility, analytics, and practical growth work for operators who need demand, not just a page.</p>
-          </article>
-          <article class="price-card price-card--featured">
-            <span class="price-tag">Resonant</span>
-            <h3>Growth Web Development</h3>
-            <p class="price-amount">$999<em>+</em></p>
-            <p>Serious design updates, conversion pages, campaign pages, industry pages, and higher-quality builds than the starter lane.</p>
-          </article>
-          <article class="price-card price-card--featured">
-            <span class="price-tag">Systems</span>
-            <h3>High-Level Development Systems</h3>
-            <p class="price-amount">$6,999<em>+</em></p>
-            <p>Integrations, AI phone/chat, CRM workflows, dashboards, operational software, automation, and custom implementation work.</p>
-            <a href="#custom-fit">Review custom fit →</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Small on purpose -->
-    <section class="section section--tint" id="studio">
-      <div class="section-inner split">
-        <div class="split-copy">
-          <p class="eyebrow">How this studio works</p>
-          <h2 class="section-title">Resonant is small on purpose.</h2>
-          <p>I am not selling a 20-person agency machine. I like custom work, real operational problems, and projects where the website is connected to the business behind it. I also do not pretend we can skip the hard part. Before we build, I need to understand the operation, the offer, the buyer, the market, and the numbers that decide whether the project worked.</p>
-          <p>When a project needs more hands, I can pull in trusted help quickly. The difference is that the strategy and build direction stay close to the person responsible for the outcome.</p>
-        </div>
-        <ul class="advantage-list">
-          <li>
-            <span>01</span>
-            <div>
-              <strong>Direct senior attention</strong>
-              <p>Architecture, design direction, and implementation decisions stay close to the work.</p>
-            </div>
-          </li>
-          <li>
-            <span>02</span>
-            <div>
-              <strong>Less agency bloat</strong>
-              <p>No account-manager theater. Clear ownership and faster signal.</p>
-            </div>
-          </li>
-          <li>
-            <span>03</span>
-            <div>
-              <strong>Custom, not packaged templates</strong>
-              <p>Built around your operation instead of a fixed product box.</p>
-            </div>
-          </li>
-          <li>
-            <span>04</span>
-            <div>
-              <strong>Scale execution when needed</strong>
-              <p>Trusted collaborators can join quickly once the plan is right.</p>
-            </div>
-          </li>
-          <li>
-            <span>05</span>
-            <div>
-              <strong>Built for serious operators</strong>
-              <p>Better fit for money and market goals than bargain shopping.</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- How we start -->
-    <section class="section" id="how-we-start">
-      <div class="section-inner">
-        <p class="eyebrow">How we start</p>
-        <h2 class="section-title">The first job is understanding the business.</h2>
-        <p class="section-sub">I do not want to build blind. The fastest way to waste money is to design pages before we understand the operation, the customer, the margin, the bottlenecks, and the market you are trying to take.</p>
-        <p class="section-sub">That discovery is personal and intense. We look at how the business actually works, where the money comes from, what customers are worth, where leads drop off, which systems are already in place, and what would have to change for the site to produce measurable results.</p>
-        <p class="section-sub">Once that is clear, we can move fast. For larger jobs, I can bring in trusted help quickly. The careful part is deciding what should be built. The build itself can scale.</p>
-
-        <ol class="process">
-          <li>
-            <span class="process-num">01</span>
-            <h3>Know the operation</h3>
-            <p>Offers, customers, internal workflow, current systems, bottlenecks.</p>
-          </li>
-          <li>
-            <span class="process-num">02</span>
-            <h3>Find the numbers</h3>
-            <p>Revenue goals, lead value, conversion points, market share opportunity.</p>
-          </li>
-          <li>
-            <span class="process-num">03</span>
-            <h3>Design the system</h3>
-            <p>Pages, funnels, CRM, automation, AI, dashboards, analytics.</p>
-          </li>
-          <li>
-            <span class="process-num">04</span>
-            <h3>Build with force</h3>
-            <p>Senior-led execution, trusted help when needed, fast implementation once the plan is right.</p>
-          </li>
+        <p class="eyebrow">Process</p>
+        <h2 class="section-title">How it works</h2>
+        <ol class="process-steps">
+          <li>Fit review</li>
+          <li>Recommendation</li>
+          <li>Short conversation when useful</li>
+          <li>Scope and price</li>
+          <li>Build and launch</li>
         </ol>
       </div>
     </section>
 
-    <!-- Results -->
-    <section class="section section--tint" id="results">
+    <section class="section" id="investment">
       <div class="section-inner">
-        <p class="eyebrow">Win condition</p>
-        <h2 class="section-title">Pretty is not the finish line.</h2>
-        <p class="section-sub">After 25 years around businesses, I am sensitive to the need to produce results. Design matters, but the result has to show up somewhere real: more qualified leads, better close rate, less missed follow-up, cleaner operations, stronger search position, higher revenue, or more market share.</p>
-        <p class="results-line">We do not win unless the client can make more money and take more of the market they are built to serve.</p>
-        <ul class="metrics" aria-label="Numbers that matter">
-          <li>Qualified leads</li>
-          <li>Booked calls</li>
-          <li>Quote requests</li>
-          <li>Close rate</li>
-          <li>Average job value</li>
-          <li>Follow-up speed</li>
-          <li>Search visibility</li>
-          <li>Market share</li>
-          <li>Revenue lift</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Custom fit -->
-    <section class="section" id="custom-fit">
-      <div class="section-inner">
-        <p class="eyebrow">Custom fit</p>
-        <h2 class="section-title">Is Resonant the right room?</h2>
-        <p class="section-sub">I do not build serious custom work without first understanding the operation, the numbers, and the market you are trying to win. If the cheaper lane is a better fit, I will say so.</p>
-
-        <div class="fit-grid">
-          <article class="fit-card fit-card--yes">
-            <h3>Best fit</h3>
-            <ul>
-              <li>You need the website connected to sales, intake, scheduling, CRM, calls, analytics, or internal operations.</li>
-              <li>You already have a real business and need a sharper system.</li>
-              <li>You care about clarity, implementation, and ownership.</li>
-              <li>You want someone senior thinking through the problem.</li>
-              <li>You are willing to spend time helping us understand the operation before the build starts.</li>
-              <li>You care about numbers, money, and market position more than surface-level design alone.</li>
-              <li>You may have a large job and need confidence that a senior-led team can scale up when the work demands it.</li>
-            </ul>
+        <p class="eyebrow">Investment context</p>
+        <h2 class="section-title">Stages, not package pressure</h2>
+        <p class="section-sub">Pricing depends on the job. The fit review places you in a stage before any hard quote.</p>
+        <div class="lane-grid">
+          <article class="lane-card">
+            <span class="lane-label">Starter presence</span>
+            <h3>Simple useful site</h3>
+            <p>When a clean online identity is enough—often the Impulse path for Cleveland-area small businesses.</p>
+            <a href="https://impulsebydesign.com/#start" class="btn btn-secondary" target="_blank" rel="noopener">Explore Impulse</a>
           </article>
-          <article class="fit-card fit-card--no">
-            <h3>Not best fit</h3>
-            <ul>
-              <li>You only need the cheapest possible website.</li>
-              <li>You want unlimited revisions for a tiny budget.</li>
-              <li>You want a large agency with many account managers.</li>
-              <li>You are not ready to discuss budget, workflow, or business goals.</li>
-              <li>You want to skip discovery and jump straight to production on a serious custom build.</li>
-              <li>You judge success only by whether the site looks nice, not whether it moves the business.</li>
-            </ul>
-            <p class="fit-route">If you mainly need a clean starter site, the respectful path is <a href="https://impulsebydesign.com/#start" target="_blank" rel="noopener">Impulse at $69/month</a>.</p>
+          <article class="lane-card lane-card--focus">
+            <span class="lane-label">Conversion &amp; growth</span>
+            <h3>Custom Resonant build</h3>
+            <p>When the website needs to earn inquiries, clarify the offer, and support how the business actually sells.</p>
+            <a href="#fit-review" class="btn btn-primary">Start the fit review</a>
+          </article>
+          <article class="lane-card">
+            <span class="lane-label">Connected systems</span>
+            <h3>Operations layer</h3>
+            <p>When search, AI phone, CRM, automation, hospitality tools, or multi-location workflows need to work together.</p>
+            <a href="#fit-review" class="btn btn-secondary">Describe the system</a>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Form -->
-    <section class="section section--dark" id="fit-review">
-      <div class="section-inner form-wrap">
-        <p class="eyebrow">Fit review</p>
-        <h2 class="section-title">Request a fit review</h2>
-        <p class="section-sub">Tell me enough about the business that I can recommend the right lane — and whether Resonant should be in the room at all.</p>
-
-        <!-- Delivers to rbjpholdings@gmail.com (RBJP Holdings) via FormSubmit until a dedicated inbox is ready. -->
-        <form
-          class="form"
-          id="fit-review-form"
-          method="POST"
-          action="https://formsubmit.co/ajax/rbjpholdings@gmail.com"
-          novalidate
-        >
-          <input type="hidden" name="_subject" value="Resonant Web Design — Fit Review">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-          <input type="hidden" name="source" value="resonantwebdesign.com/start">
-          <input type="hidden" name="entry_context" id="fit-entry-context" value="direct">
-
-          <div class="form-grid">
-            <label>
-              <span>Name</span>
-              <input type="text" name="name" autocomplete="name" required>
-            </label>
-            <label>
-              <span>Business</span>
-              <input type="text" name="business" autocomplete="organization" required>
-            </label>
-            <label>
-              <span>Email</span>
-              <input type="email" name="email" autocomplete="email" required>
-            </label>
-            <label>
-              <span>Website (if any)</span>
-              <input type="url" name="website" autocomplete="url" placeholder="https://">
-            </label>
-          </div>
-
-          <fieldset class="fieldset">
-            <legend>Which lane fits?</legend>
-            <div class="choices">
-              <label class="choice"><input type="radio" name="lane" value="$69/month starter site"> $69/month starter site</label>
-              <label class="choice"><input type="radio" name="lane" value="SEO / marketing foundation"> SEO / marketing foundation</label>
-              <label class="choice"><input type="radio" name="lane" value="Growth web development"> Growth web development</label>
-              <label class="choice"><input type="radio" name="lane" value="High-level systems / integrations" checked> High-level systems / integrations</label>
-              <label class="choice"><input type="radio" name="lane" value="Not sure yet"> Not sure yet</label>
-            </div>
-          </fieldset>
-
-          <fieldset class="fieldset">
-            <legend>Budget comfort</legend>
-            <div class="choices">
-              <label class="choice"><input type="radio" name="budget" value="$69/month"> $69/month</label>
-              <label class="choice"><input type="radio" name="budget" value="$699/month+"> $699/month+</label>
-              <label class="choice"><input type="radio" name="budget" value="$999+"> $999+</label>
-              <label class="choice"><input type="radio" name="budget" value="$6,999+"> $6,999+</label>
-              <label class="choice"><input type="radio" name="budget" value="Need help scoping" checked> Need help scoping</label>
-            </div>
-          </fieldset>
-
-          <label class="form-block">
-            <span>What needs to happen?</span>
-            <textarea name="needs" rows="3" required></textarea>
-          </label>
-
-          <label class="form-block">
-            <span>What systems are involved?</span>
-            <textarea name="systems" rows="2" placeholder="CRM, POS, phones, forms, booking, dashboards, etc."></textarea>
-          </label>
-
-          <label class="form-block">
-            <span>What result would make this project a win?</span>
-            <textarea name="win_result" rows="2" required></textarea>
-          </label>
-
-          <label class="form-block">
-            <span>What numbers matter most right now?</span>
-            <textarea name="numbers" rows="2" placeholder="Leads, booked calls, close rate, revenue, market share…"></textarea>
-          </label>
-
-          <label class="form-block">
-            <span>What should we understand about how your operation actually works?</span>
-            <textarea name="operation" rows="3"></textarea>
-          </label>
-
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary" id="fit-submit">Request a fit review</button>
-            <p class="form-status" id="fit-form-status" role="status" hidden></p>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <!-- Final -->
     <section class="final">
       <div class="final-inner">
-        <h2>Two clean next steps.</h2>
-        <p>Starter presence through Impulse, or a serious Resonant fit review for custom design and systems work.</p>
+        <h2>Ready when you are.</h2>
+        <p>Two short steps. A clear recommendation. No pressure to buy more than the business needs.</p>
         <div class="final-ctas">
-          <a href="https://impulsebydesign.com/#start" class="btn btn-secondary" target="_blank" rel="noopener">Start with Impulse — $69/month</a>
-          <a href="#fit-review" class="btn btn-primary">Request a Resonant fit review</a>
+          <a href="#fit-review" class="btn btn-primary">Show Me the Right Build</a>
+          <a href="/work/" class="btn btn-secondary">View Selected Work</a>
         </div>
       </div>
     </section>
@@ -1592,33 +1754,43 @@
     <div class="footer-inner">
       <div>
         <div class="footer-brand">Resonant <span>Web Design</span></div>
-        <p class="footer-tag">Small senior-led studio. Connectivity, clarity, and results that show up in the numbers.</p>
+        <p class="footer-tag">Custom web development, SEO, and connected systems. Based in Cleveland. Built for businesses everywhere.</p>
       </div>
       <div class="footer-col">
         <h4>Services</h4>
         <ul>
-          <li><a href="/services/starter-sites/">Starter Sites</a></li>
+          <li><a href="https://impulsebydesign.com">Starter Sites</a></li>
           <li><a href="/services/seo-foundations/">SEO Foundations</a></li>
           <li><a href="/services/system-integrations/">System Integrations</a></li>
-          <li><a href="/start/">Start a Project</a></li>
+          <li><a href="/start/#fit-review">Show Me the Right Build</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Connect</h4>
         <ul>
-          <li><a href="/start/#fit-review">Request a fit review</a></li>
+          <li><a href="/start/#fit-review">Show Me the Right Build</a></li>
           <li><a href="https://richardbjamison.com/rbj-portfolio.html" target="_blank" rel="noopener">RichardBJamison.com</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Resonant Web Design. All rights reserved.</span>
-      <span>Built with intention in Ohio.</span>
+      <span>Based in Cleveland. Working nationally.</span>
     </div>
   </footer>
 
   <script>
     (function () {
+      function track(name, params) {
+        try {
+          if (typeof gtag === "function") {
+            gtag("event", name, params || {});
+          }
+        } catch (e) {}
+      }
+
+      track("fit_review_page_viewed", { page_path: "/start/" });
+
       var params = new URLSearchParams(window.location.search);
       var source = params.get("source") || "resonant";
       var plan = params.get("plan") || "";
@@ -1629,57 +1801,225 @@
       }
 
       if (source === "impulse" || plan === "69") {
-        var lane = document.querySelector('input[name="lane"][value="$69/month starter site"]');
-        var budget = document.querySelector('input[name="budget"][value="$69/month"]');
-        if (lane) lane.checked = true;
-        if (budget) budget.checked = true;
+        var simpleBudget = document.querySelector('input[name="budget"][value="I need the simplest useful solution"]');
+        var improve = document.querySelector('input[name="improvement"][value="Website and positioning"]');
+        if (simpleBudget) simpleBudget.checked = true;
+        if (improve) improve.checked = true;
       }
 
-      document.querySelectorAll("a.btn").forEach(function (link) {
-        link.href = "#fit-review";
-        link.removeAttribute("target");
-        link.removeAttribute("rel");
-      });
-    })();
-
-    (function () {
       var mobileToggle = document.querySelector(".mobile-toggle");
       var mobileMenu = document.getElementById("mobile-menu");
-      if (!mobileToggle || !mobileMenu) return;
+      if (mobileToggle && mobileMenu) {
+        mobileToggle.addEventListener("click", function () {
+          var isOpen = mobileMenu.classList.toggle("open");
+          mobileToggle.classList.toggle("open", isOpen);
+          document.body.classList.toggle("menu-open", isOpen);
+          mobileToggle.setAttribute("aria-expanded", String(isOpen));
+          mobileMenu.setAttribute("aria-hidden", String(!isOpen));
+        });
+        mobileMenu.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.remove("open");
+            mobileToggle.classList.remove("open");
+            document.body.classList.remove("menu-open");
+            mobileToggle.setAttribute("aria-expanded", "false");
+            mobileMenu.setAttribute("aria-hidden", "true");
+          });
+        });
+      }
 
-      mobileToggle.addEventListener("click", function () {
-        var isOpen = mobileMenu.classList.toggle("open");
-        mobileToggle.classList.toggle("open", isOpen);
-        document.body.classList.toggle("menu-open", isOpen);
-        mobileToggle.setAttribute("aria-expanded", String(isOpen));
-        mobileMenu.setAttribute("aria-hidden", String(!isOpen));
+      var form = document.getElementById("fit-review-form");
+      var step1 = document.getElementById("fit-step-1");
+      var step2 = document.getElementById("fit-step-2");
+      var step1Next = document.getElementById("fit-step1-next");
+      var step2Back = document.getElementById("fit-step2-back");
+      var submitBtn = document.getElementById("fit-submit");
+      var statusEl = document.getElementById("fit-form-status");
+      var formBody = document.getElementById("fit-form-body");
+      var successEl = document.getElementById("fit-form-success");
+      var impulseNudge = document.getElementById("impulse-nudge");
+      var step1Status = document.getElementById("fit-step1-status");
+      var step1Started = false;
+      var step2Started = false;
+
+      if (!form || !step1 || !step2) return;
+
+      function clearErrors(root) {
+        (root || form).querySelectorAll(".form-field-error").forEach(function (el) {
+          el.classList.remove("form-field-error");
+        });
+        ["fit-improvement-error", "fit-budget-error", "fit-timing-error"].forEach(function (id) {
+          var msg = document.getElementById(id);
+          if (msg) msg.hidden = true;
+        });
+        if (step1Status) {
+          step1Status.hidden = true;
+          step1Status.classList.remove("is-on");
+        }
+      }
+
+      function markError(el) {
+        if (el) el.classList.add("form-field-error");
+      }
+
+      function validEmail(v) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      }
+
+      function selectedRadio(name) {
+        var el = form.querySelector('input[name="' + name + '"]:checked');
+        return el ? el.value : "";
+      }
+
+      function maybeShowImpulse() {
+        if (!impulseNudge) return;
+        var budget = selectedRadio("budget");
+        var improvement = selectedRadio("improvement");
+        var simple =
+          budget === "I need the simplest useful solution" ||
+          budget === "Under $1,000" ||
+          improvement === "Website and positioning";
+        impulseNudge.hidden = !simple;
+      }
+
+      form.addEventListener("focusin", function () {
+        if (!step1Started && step1 && !step1.hidden) {
+          step1Started = true;
+          track("fit_review_step1_started");
+        }
+        if (!step2Started && step2 && !step2.hidden) {
+          step2Started = true;
+          track("fit_review_step2_started");
+        }
       });
 
-      mobileMenu.querySelectorAll("a").forEach(function (link) {
-        link.addEventListener("click", function () {
-          mobileMenu.classList.remove("open");
-          mobileToggle.classList.remove("open");
-          document.body.classList.remove("menu-open");
-          mobileToggle.setAttribute("aria-expanded", "false");
-          mobileMenu.setAttribute("aria-hidden", "true");
+      form.querySelectorAll('input[name="improvement"]').forEach(function (input) {
+        input.addEventListener("change", function () {
+          track("fit_review_improvement_selected", { value: input.value });
+          maybeShowImpulse();
         });
       });
-    })();
 
-    (function () {
-      var form = document.getElementById("fit-review-form");
-      var statusEl = document.getElementById("fit-form-status");
-      var submitBtn = document.getElementById("fit-submit");
-      if (!form || !statusEl || !submitBtn) return;
+      form.querySelectorAll('input[name="budget"]').forEach(function (input) {
+        input.addEventListener("change", function () {
+          track("fit_review_budget_selected", { value: input.value });
+          maybeShowImpulse();
+        });
+      });
+
+      var impulseCta = document.getElementById("impulse-nudge-cta");
+      if (impulseCta) {
+        impulseCta.addEventListener("click", function () {
+          track("fit_review_impulse_recommendation_clicked");
+        });
+      }
+
+      function validateStep1() {
+        clearErrors(step1);
+        var ok = true;
+        var name = document.getElementById("fit-name");
+        var business = document.getElementById("fit-business");
+        var email = document.getElementById("fit-email");
+        if (!name.value.trim()) { markError(name); ok = false; }
+        if (!business.value.trim()) { markError(business); ok = false; }
+        if (!email.value.trim() || !validEmail(email.value.trim())) { markError(email); ok = false; }
+        if (!selectedRadio("improvement")) {
+          var err = document.getElementById("fit-improvement-error");
+          if (err) err.hidden = false;
+          ok = false;
+        }
+        if (!ok) {
+          track("fit_review_validation_error", { step: 1 });
+          if (step1Status) {
+            step1Status.hidden = false;
+            step1Status.classList.add("is-on");
+            step1Status.textContent = "Please complete the required fields above.";
+          }
+        }
+        return ok;
+      }
+
+      function validateStep2() {
+        clearErrors(step2);
+        var ok = true;
+        var situation = document.getElementById("fit-situation");
+        if (!situation.value.trim()) { markError(situation); ok = false; }
+        if (!selectedRadio("budget")) {
+          var bErr = document.getElementById("fit-budget-error");
+          if (bErr) bErr.hidden = false;
+          ok = false;
+        }
+        if (!selectedRadio("timing")) {
+          var tErr = document.getElementById("fit-timing-error");
+          if (tErr) tErr.hidden = false;
+          ok = false;
+        }
+        if (!ok) {
+          track("fit_review_validation_error", { step: 2 });
+          if (statusEl) {
+            statusEl.hidden = false;
+            statusEl.classList.add("is-on");
+            statusEl.textContent = "Please complete the required fields above.";
+          }
+        }
+        return ok;
+      }
+
+      if (step1Next) {
+        step1Next.addEventListener("click", function () {
+          if (!validateStep1()) return;
+          track("fit_review_step1_completed");
+          step1.hidden = true;
+          step2.hidden = false;
+          maybeShowImpulse();
+          step2.scrollIntoView({ behavior: "smooth", block: "start" });
+          var sit = document.getElementById("fit-situation");
+          if (sit) sit.focus();
+          if (!step2Started) {
+            step2Started = true;
+            track("fit_review_step2_started");
+          }
+        });
+      }
+
+      if (step2Back) {
+        step2Back.addEventListener("click", function () {
+          step2.hidden = true;
+          step1.hidden = false;
+          clearErrors();
+          step1.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+
+      var abandoned = true;
+      window.addEventListener("pagehide", function () {
+        if (abandoned && step1Started && formBody && !formBody.hidden) {
+          track("fit_review_form_abandoned", {
+            step: step2 && !step2.hidden ? 2 : 1
+          });
+        }
+      });
 
       form.addEventListener("submit", function (e) {
         e.preventDefault();
-        statusEl.hidden = false;
-        statusEl.classList.add("is-on");
-        statusEl.textContent = "Sending your fit review…";
-        submitBtn.disabled = true;
+        if (step2.hidden) {
+          if (validateStep1()) step1Next.click();
+          return;
+        }
+        if (!validateStep2()) return;
+
+        if (statusEl) {
+          statusEl.hidden = false;
+          statusEl.classList.add("is-on");
+          statusEl.textContent = "Sending your fit review…";
+        }
+        if (submitBtn) submitBtn.disabled = true;
 
         var data = new FormData(form);
+        // Normalize website blank
+        var site = (data.get("website") || "").toString().trim();
+        if (!site) data.set("website", "none");
+
         fetch(form.action, {
           method: "POST",
           body: data,
@@ -1688,27 +2028,47 @@
           .then(function (res) {
             return res.json().then(function (payload) {
               return { ok: res.ok, payload: payload };
+            }).catch(function () {
+              return { ok: res.ok, payload: null };
             });
           })
           .then(function (result) {
             if (result.ok) {
-              statusEl.textContent =
-                "Got it. Your details were sent to the Resonant desk. I’ll review and follow up.";
-              form.reset();
+              abandoned = false;
+              track("fit_review_form_submitted", {
+                improvement: selectedRadio("improvement"),
+                budget: selectedRadio("budget"),
+                timing: selectedRadio("timing")
+              });
+              if (formBody) formBody.hidden = true;
+              if (successEl) {
+                successEl.hidden = false;
+                successEl.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+              if (statusEl) statusEl.hidden = true;
             } else {
+              track("fit_review_validation_error", { step: "submit" });
+              if (statusEl) {
+                statusEl.textContent =
+                  "Could not send through the form just now. Email rbjpholdings@gmail.com with your details so we do not miss you.";
+              }
+            }
+          })
+          .catch(function () {
+            track("fit_review_validation_error", { step: "network" });
+            if (statusEl) {
+              statusEl.hidden = false;
+              statusEl.classList.add("is-on");
               statusEl.textContent =
                 "Could not send through the form just now. Email rbjpholdings@gmail.com with your details so we do not miss you.";
             }
           })
-          .catch(function () {
-            statusEl.textContent =
-              "Could not send through the form just now. Email rbjpholdings@gmail.com with your details so we do not miss you.";
-          })
           .finally(function () {
-            submitBtn.disabled = false;
+            if (submitBtn) submitBtn.disabled = false;
           });
       });
     })();
   </script>
+
 </body>
 </html>
