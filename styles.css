@@ -1769,6 +1769,19 @@
       line-height: 1.5;
     }
 
+    .path-for--value {
+      margin-top: -0.35rem;
+      margin-bottom: 1rem;
+      color: #2a2a2a;
+      font-size: 0.94rem;
+      line-height: 1.45;
+    }
+
+    /* Grow has no price line — keep CTA anchored like sibling tiles */
+    .path-card--grow .pricing-button {
+      margin-top: auto;
+    }
+
     .path-caps {
       margin: 0 0 1.15rem;
       padding: 0;
