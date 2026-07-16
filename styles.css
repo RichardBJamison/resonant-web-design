@@ -4728,12 +4728,29 @@
   margin-right: auto;
 }
 
+/* Demand band: paragraph left, + steps right */
+.seo-story-inner--split {
+  width: min(100%, 1100px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 2.5rem 3rem;
+  align-items: center;
+}
+
+.seo-story-inner--split .seo-story-copy h2 {
+  max-width: 16ch;
+}
+
+.seo-story-inner--split .seo-story-copy p {
+  max-width: 42ch;
+}
+
 /* Demand steps — FAQ + lines, no dividers, scroll flip (faq-roll-once) */
 .seo-problem-list {
   list-style: none;
-  margin: 1.25rem 0 0;
+  margin: 0;
   padding: 0;
-  max-width: 40rem;
+  max-width: none;
   display: grid;
   perspective: 900px;
   perspective-origin: 50% 45%;
@@ -4783,6 +4800,17 @@
 @media (prefers-reduced-motion: reduce) {
   .seo-problem-row.faq-roll-once {
     animation: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .seo-story-inner--split {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .seo-problem-list {
+    margin-top: 0.25rem;
   }
 }
 
