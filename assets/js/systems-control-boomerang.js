@@ -8,10 +8,10 @@
   var v = document.querySelector(".systems-control-video");
   if (!v) return;
 
-  // Tuned 2026-07-16: cruise +15% over baseline 0.72; end-cap window −50% vs 0.9s
+  // Tuned 2026-07-16: cruise +15% over 0.72; CAP stepped 0.9 → 0.45 → 0.225
   var CRUISE = 0.828;
   var FLOOR = 0.23; // never fully stop
-  var CAP = 0.45; // soft slow zone (seconds) at start / mid / end turnarounds
+  var CAP = 0.225; // soft slow zone (seconds) at start / mid / end turnarounds
   var D = 0;
   var MID = 0;
   var ready = false;
