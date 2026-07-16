@@ -48,9 +48,9 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="assets/fonts/rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqYu28qmR9A.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/8vIH7w4qzmVxq2JB80z-.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="styles.css?v=20260716-no-netfx" as="style">
+  <link rel="preload" href="styles.css?v=20260716-systems-video" as="style">
   <link rel="stylesheet" href="assets/fonts/fonts.css">
-  <link rel="stylesheet" href="styles.css?v=20260716-no-netfx">
+  <link rel="stylesheet" href="styles.css?v=20260716-systems-video">
   <link rel="stylesheet" href="assets/css/hero-cap-flip.css?v=20260711-capflip2">
   <script type="application/ld+json">
   {
@@ -457,9 +457,28 @@
   <!-- Systems / communications control layer — above Selected Work samples -->
   <section class="systems-comms section" id="systems" aria-label="Systems and communications">
     <div class="section-inner">
-      <a class="systems-showcase systems-showcase--art reveal" href="/services/system-integrations/" aria-label="Explore systems integration">
-        <img src="assets/img/operations-control-layer.png" alt="One control layer connecting web, messaging, bookings, reporting, staffing, inventory, vendor systems, and on-site controls" loading="lazy" decoding="async" width="1672" height="941">
-      </a>
+      <div class="systems-showcase systems-showcase--art systems-showcase--video reveal">
+        <video
+          class="systems-control-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="assets/img/systems-control-layer-poster.jpg"
+          width="1280"
+          height="720"
+          aria-label="One control layer for the whole business — operations and communications connected through Resonant"
+        >
+          <source src="assets/video/systems-control-layer.mp4" type="video/mp4">
+        </video>
+        <!-- Real hit-target over the painted button in the video -->
+        <a
+          class="systems-video-cta"
+          href="/services/system-integrations/"
+          aria-label="Explore Systems Integration"
+        ><span class="systems-video-cta-label">Explore Systems Integration →</span></a>
+      </div>
     </div>
   </section>
 
