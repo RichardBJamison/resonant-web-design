@@ -4785,6 +4785,30 @@
   margin-right: auto;
 }
 
+.seo-growth-copy {
+  margin-bottom: 0.85rem;
+}
+
+.seo-growth-impulse {
+  margin: 0;
+  text-align: center;
+}
+
+.seo-growth-impulse a {
+  display: inline-block;
+  font-size: 2em; /* double the surrounding body measure */
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.seo-story-band--dark .seo-growth-impulse a {
+  color: #c4b5fd; /* keep readable on dark; accent-like link weight */
+  color: var(--accent);
+}
+
 /* Demand band: paragraph left, + steps right */
 .seo-story-inner--split {
   width: min(100%, 1100px);
