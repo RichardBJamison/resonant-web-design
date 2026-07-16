@@ -2790,11 +2790,25 @@
     }
 
     .portfolio .systems-showcase--art > img,
-    .selected-work .systems-showcase--art > img {
+    .selected-work .systems-showcase--art > img,
+    .systems-comms .systems-showcase--art > img {
       width: 100%;
       max-width: 100%;
       height: auto;
       object-fit: contain;
+    }
+
+    .systems-comms {
+      background: var(--bg-dark);
+      padding: 2.5rem 0 1rem;
+    }
+
+    .systems-comms .section-inner {
+      max-width: 1120px;
+    }
+
+    .systems-comms .systems-showcase {
+      margin: 0 auto;
     }
 
     .systems-showcase::before {
