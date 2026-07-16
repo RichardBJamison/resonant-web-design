@@ -8,9 +8,9 @@
   var v = document.querySelector(".systems-control-video");
   if (!v) return;
 
-  var CRUISE = 0.72;
-  var FLOOR = 0.2; // never fully stop
-  var CAP = 0.9; // seconds of soft end-cap on each side of turnarounds
+  var CRUISE = 0.828; // was 0.72 — +15% overall cruise
+  var FLOOR = 0.23; // never fully stop; keeps pace with cruise bump
+  var CAP = 0.45; // was 0.9 — end-cap slow zones shortened 50%
   var D = 0;
   var MID = 0;
   var ready = false;
