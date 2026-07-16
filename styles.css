@@ -63,10 +63,11 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      padding: 1rem 2.65rem;
+      /* Pre-scroll: ~50% larger chrome */
+      padding: 1.5rem 2.65rem;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       transition: background 0.4s, backdrop-filter 0.4s, padding 0.4s;
     }
 
@@ -83,12 +84,13 @@
       align-items: center;
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: 1.2rem;
+      font-size: 1.8rem; /* was 1.2 — +50% pre-scroll */
       line-height: 1;
       color: var(--text-light);
       text-decoration: none;
       letter-spacing: 0;
       text-shadow: 0 0 14px rgba(31, 247, 242, 0.12);
+      transition: font-size 0.35s var(--ease-out-expo), color 0.3s;
     }
 
     .nav-logo .by {
@@ -97,36 +99,58 @@
     }
 
     .nav-brand-lockup {
+      position: absolute;
+      left: 2.65rem;
+      top: 50%;
+      transform: translateY(-50%);
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 24px; /* was 16 */
       flex: 0 0 auto;
       line-height: 1;
+      z-index: 2;
     }
 
     .nav.scrolled .nav-logo {
       color: var(--text-primary);
+      font-size: 1.2rem; /* shrink back on scroll */
     }
 
     .nav.scrolled .nav-logo .by {
       color: var(--text-secondary);
     }
 
+    .nav.scrolled .nav-brand-lockup {
+      left: 3rem;
+      gap: 16px;
+    }
+
     .nav-links {
       display: flex;
-      gap: 2.15rem;
+      gap: 3.225rem; /* was 2.15 — +50% pre-scroll */
       list-style: none;
       align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      transition: gap 0.35s var(--ease-out-expo);
+    }
+
+    .nav.scrolled .nav-links {
+      gap: 2.15rem;
     }
 
     .nav-links a {
       font-family: var(--font-body);
-      font-size: 0.875rem;
+      font-size: 1.3125rem; /* was 0.875 — +50% pre-scroll */
       font-weight: 500;
       color: rgba(244, 251, 255, 0.92);
       text-decoration: none;
-      transition: color 0.3s;
+      transition: color 0.3s, font-size 0.35s var(--ease-out-expo);
       letter-spacing: 0.01em;
+    }
+
+    .nav.scrolled .nav-links a {
+      font-size: 0.875rem;
     }
 
     .nav-links a:hover { color: var(--text-light); }
@@ -162,20 +186,28 @@
 
     .nav-dropdown-trigger::after {
       content: "";
-      width: 0.36rem;
-      height: 0.36rem;
-      border-right: 1px solid currentColor;
-      border-bottom: 1px solid currentColor;
+      width: 0.54rem; /* +50% pre-scroll */
+      height: 0.54rem;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
       transform: rotate(45deg) translateY(-1px);
       opacity: 0.72;
+      transition: width 0.35s var(--ease-out-expo), height 0.35s var(--ease-out-expo);
+    }
+
+    .nav.scrolled .nav-dropdown-trigger::after {
+      width: 0.36rem;
+      height: 0.36rem;
+      border-right-width: 1px;
+      border-bottom-width: 1px;
     }
 
     .nav-dropdown-menu {
       position: absolute;
       top: calc(100% + 0.8rem);
       left: 50%;
-      min-width: 13.75rem;
-      padding: 0.5rem;
+      min-width: 16.5rem; /* +50% feel */
+      padding: 0.65rem;
       background: rgba(7, 11, 19, 0.96);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 0.5rem;
@@ -184,6 +216,11 @@
       visibility: hidden;
       transform: translate(-50%, -0.35rem);
       transition: opacity 0.18s var(--ease), transform 0.18s var(--ease), visibility 0.18s;
+    }
+
+    .nav.scrolled .nav-dropdown-menu {
+      min-width: 13.75rem;
+      padding: 0.5rem;
     }
 
     .nav-dropdown:hover .nav-dropdown-menu,
@@ -195,10 +232,16 @@
 
     .nav-dropdown-menu a {
       display: block;
-      padding: 0.66rem 0.75rem;
+      padding: 0.85rem 0.95rem;
       border-radius: 0.35rem;
       color: rgba(255, 255, 255, 0.88);
       white-space: nowrap;
+      font-size: 1.05rem;
+    }
+
+    .nav.scrolled .nav-dropdown-menu a {
+      padding: 0.66rem 0.75rem;
+      font-size: 0.875rem;
     }
 
     .nav-dropdown-menu a:hover,
@@ -217,14 +260,14 @@
     .nav-links .nav-cta {
       background: rgba(7, 15, 24, 0.38);
       color: #f4fbff;
-      padding: 0.68rem 1.45rem;
+      padding: 1.02rem 2.175rem; /* +50% pre-scroll */
       border: 1px solid rgba(31, 247, 242, 0.82);
       border-radius: 100px;
       box-shadow:
         0 0 0 1px rgba(31, 247, 242, 0.18) inset,
         0 0 18px rgba(31, 247, 242, 0.38),
         0 0 34px rgba(240, 82, 216, 0.12);
-      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s, padding 0.35s var(--ease-out-expo);
     }
 
     .nav-links .nav-cta:hover {
@@ -238,15 +281,18 @@
     }
 
     .nav.scrolled .nav-links .nav-cta {
+      padding: 0.68rem 1.45rem;
       background: var(--text-primary);
       color: var(--bg-light);
+      border-color: transparent;
+      box-shadow: none;
     }
 
     .nav .ihs-cobrand {
       display: grid;
       flex: 0 0 auto;
-      width: 38px;
-      height: 38px;
+      width: 57px; /* +50% pre-scroll from 38 */
+      height: 57px;
       padding: 0;
       place-items: center;
       overflow: hidden;
@@ -255,6 +301,7 @@
       background: transparent;
       box-shadow: 0 0 14px rgba(31, 247, 242, 0.16);
       transform: none;
+      transition: width 0.35s var(--ease-out-expo), height 0.35s var(--ease-out-expo);
     }
 
     .nav .ihs-cobrand img {
@@ -3900,10 +3947,20 @@
     }
 
     @media (max-width: 768px) {
-      .nav { padding: 1rem 1.5rem; }
+      .nav {
+        padding: 1rem 1.5rem;
+        justify-content: space-between;
+      }
       .nav.scrolled { padding: 0.75rem 1.5rem; }
+      .nav-brand-lockup {
+        position: static;
+        transform: none;
+        left: auto;
+      }
       .nav .ihs-cobrand { display: none; }
       .nav-links { display: none; }
+      .nav-logo { font-size: 1.35rem; }
+      .nav.scrolled .nav-logo { font-size: 1.2rem; }
       .mobile-toggle { display: block; }
 
       .hero {
