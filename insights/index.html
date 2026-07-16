@@ -27,7 +27,7 @@
   <link rel="preload" href="/assets/fonts/rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqYu28qmR9A.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/8vIH7w4qzmVxq2JB80z-.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
-  <link rel="stylesheet" href="/styles.css?v=20260716-insight-wave">
+  <link rel="stylesheet" href="/styles.css?v=20260716-insight-string3">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -325,179 +325,12 @@
     };
   </script>
   <script src="/assets/js/robot-chat.js?v=RC5" defer></script>
+  <script src="/assets/js/insights-lane-wave.js?v=20260716-string3"></script>
   <script>
     (function () {
-      var root = document.getElementById("insights-lane-flips");
-      if (!root) return;
-      var cards = Array.prototype.slice.call(root.querySelectorAll(".insight-card--flip"));
-      if (!cards.length) return;
-      var n = cards.length;
-      // Cumulative degrees — string tug: right −180, left +180
-      var rotations = cards.map(function () { return 0; });
-      var lastIndex = -1;
-      var lastDir = null;
-      var leaveTimer = null;
-
-      function showingBack(deg) {
-        var norm = ((Math.round(deg) % 360) + 360) % 360;
-        return norm === 180;
+      if (window.InsightsLaneWave) {
+        window.InsightsLaneWave.mount("#insights-lane-flips");
       }
-
-      function applyRotation(i) {
-        var card = cards[i];
-        var deg = rotations[i];
-        card.style.setProperty("--flip", deg + "deg");
-        var on = showingBack(deg);
-        card.classList.toggle("is-flipped", on);
-        card.setAttribute("aria-pressed", on ? "true" : "false");
-        var front = card.querySelector(".insight-flip-face--front");
-        var back = card.querySelector(".insight-flip-face--back");
-        if (front) front.setAttribute("aria-hidden", on ? "true" : "false");
-        if (back) back.setAttribute("aria-hidden", on ? "false" : "true");
-      }
-
-      /** Tug the string: right = flip right (−180), left = flip left (+180) */
-      function tug(i, dir) {
-        if (i < 0 || i >= n) return;
-        rotations[i] += dir === "right" ? -180 : 180;
-        applyRotation(i);
-      }
-
-      function indexFromPoint(clientX, clientY) {
-        var el = document.elementFromPoint(clientX, clientY);
-        if (!el || !root.contains(el)) return -1;
-        var card = el.closest(".insight-card--flip");
-        if (!card) return -1;
-        return cards.indexOf(card);
-      }
-
-      function onTravel(index) {
-        if (index < 0) return;
-
-        var dir = lastDir || "right";
-        if (lastIndex >= 0 && index !== lastIndex) {
-          dir = index > lastIndex ? "right" : "left";
-        }
-
-        var step = lastIndex >= 0 ? Math.abs(index - lastIndex) : 1;
-        var reversed =
-          lastDir && dir && lastDir !== dir && lastIndex >= 0 && step === 1;
-
-        // Primary: the card you moved onto turns in travel direction
-        // (right → flips right to back; left → flips left to front/next face)
-        tug(index, dir);
-
-        // Also tug the neighbor you are moving toward — string pull
-        if (dir === "right" && index + 1 < n && step === 1) {
-          // already on the right card; the one further right can sync lightly
-        }
-        if (dir === "left" && index - 1 >= 0 && step === 1) {
-          // left neighbor already was previous
-        }
-
-        // Reverse one seat: card two to the right joins the string tug
-        if (reversed) {
-          var extra = index + 2;
-          if (extra < n) tug(extra, dir);
-        }
-
-        lastIndex = index;
-        lastDir = dir;
-      }
-
-      function settleMajority() {
-        var backs = 0;
-        for (var i = 0; i < n; i++) {
-          if (showingBack(rotations[i])) backs += 1;
-        }
-        var fronts = n - backs;
-        var wantBack = backs >= 3;
-        if (fronts >= 3) wantBack = false;
-        if (backs >= 3) wantBack = true;
-        if (backs < 3 && fronts < 3) {
-          wantBack = lastDir !== "left";
-        }
-
-        var dir = wantBack ? "right" : "left";
-        var k = 0;
-        for (var j = 0; j < n; j++) {
-          if (showingBack(rotations[j]) === wantBack) continue;
-          (function (idx, delay) {
-            window.setTimeout(function () {
-              // tug once in settle direction so animation matches string side
-              tug(idx, dir);
-              // if still wrong face (already was mid-turn), tug again
-              if (showingBack(rotations[idx]) !== wantBack) {
-                tug(idx, dir);
-              }
-            }, 80 * delay);
-          })(j, k);
-          k += 1;
-        }
-      }
-
-      root.addEventListener("mousemove", function (e) {
-        if (leaveTimer) {
-          window.clearTimeout(leaveTimer);
-          leaveTimer = null;
-        }
-        var i = indexFromPoint(e.clientX, e.clientY);
-        if (i < 0 || i === lastIndex) return;
-        onTravel(i);
-      });
-
-      root.addEventListener("mouseenter", function (e) {
-        if (leaveTimer) {
-          window.clearTimeout(leaveTimer);
-          leaveTimer = null;
-        }
-        var i = indexFromPoint(e.clientX, e.clientY);
-        if (i < 0) return;
-        if (lastIndex < 0) {
-          tug(i, "right");
-          lastIndex = i;
-          lastDir = "right";
-        } else {
-          onTravel(i);
-        }
-      });
-
-      root.addEventListener("mouseleave", function () {
-        leaveTimer = window.setTimeout(function () {
-          settleMajority();
-          lastIndex = -1;
-        }, 50);
-      });
-
-      root.addEventListener(
-        "touchmove",
-        function (e) {
-          if (!e.touches || !e.touches[0]) return;
-          var t = e.touches[0];
-          var i = indexFromPoint(t.clientX, t.clientY);
-          if (i < 0 || i === lastIndex) return;
-          onTravel(i);
-        },
-        { passive: true }
-      );
-
-      root.addEventListener("touchend", function () {
-        settleMajority();
-        lastIndex = -1;
-      });
-
-      cards.forEach(function (card, i) {
-        applyRotation(i);
-        card.addEventListener("keydown", function (e) {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            var dir = showingBack(rotations[i]) ? "left" : "right";
-            tug(i, dir);
-            lastIndex = i;
-            lastDir = dir;
-          }
-        });
-      });
     })();
   </script>
 
