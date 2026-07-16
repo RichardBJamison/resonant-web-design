@@ -4407,7 +4407,12 @@
 .seo-platform-band {
   background: linear-gradient(135deg, #12304a 0%, #0f2238 55%, #0c1a2c 100%);
   color: var(--text-light);
-  padding: 4.5rem 3rem 5rem;
+  /* Match stack panel padding + similar vertical presence as panels below */
+  padding: 3.85rem 3rem 3.3rem;
+  min-height: 22rem;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .seo-platform-inner,
