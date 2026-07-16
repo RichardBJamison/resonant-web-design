@@ -5115,14 +5115,14 @@
   font-size: 0.9rem;
 }
 
-/* Category lane flips — connected wave (direction-aware) */
+/* Category lane flips — string-connected directional wave */
 .insights-grid#insights-lane-flips {
-  /* contain 3D flip overflow without creating a page scrollbar */
   overflow: visible;
   perspective: 1400px;
 }
 
 .insight-card--flip {
+  --flip: 0deg;
   padding: 0;
   min-height: 22rem;
   height: 22rem;
@@ -5144,23 +5144,10 @@
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.22, 0.8, 0.28, 1);
-  transform: rotateY(0deg);
+  /* Cumulative --flip: right travel subtracts 180, left adds 180 */
+  transform: rotateY(var(--flip));
+  transition: transform 0.62s cubic-bezier(0.22, 0.82, 0.25, 1);
   will-change: transform;
-}
-
-/* Right travel → back face (rotate right) */
-.insight-card--flip.is-flipped .insight-flip-inner {
-  transform: rotateY(-180deg);
-}
-
-/* Optional leftward travel cue while landing on front */
-.insight-card--flip.is-turn-left:not(.is-flipped) .insight-flip-inner {
-  transform: rotateY(0deg);
-}
-
-.insight-card--flip.is-turn-right.is-flipped .insight-flip-inner {
-  transform: rotateY(-180deg);
 }
 
 .insight-flip-face {

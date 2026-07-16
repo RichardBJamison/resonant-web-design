@@ -332,22 +332,35 @@
       var cards = Array.prototype.slice.call(root.querySelectorAll(".insight-card--flip"));
       if (!cards.length) return;
       var n = cards.length;
+      // Cumulative degrees — string tug: right −180, left +180
+      var rotations = cards.map(function () { return 0; });
       var lastIndex = -1;
       var lastDir = null;
       var leaveTimer = null;
 
-      function setCard(i, showBack, dir) {
-        if (i < 0 || i >= n) return;
+      function showingBack(deg) {
+        var norm = ((Math.round(deg) % 360) + 360) % 360;
+        return norm === 180;
+      }
+
+      function applyRotation(i) {
         var card = cards[i];
-        var on = !!showBack;
+        var deg = rotations[i];
+        card.style.setProperty("--flip", deg + "deg");
+        var on = showingBack(deg);
         card.classList.toggle("is-flipped", on);
-        card.classList.toggle("is-turn-right", dir === "right");
-        card.classList.toggle("is-turn-left", dir === "left");
         card.setAttribute("aria-pressed", on ? "true" : "false");
         var front = card.querySelector(".insight-flip-face--front");
         var back = card.querySelector(".insight-flip-face--back");
         if (front) front.setAttribute("aria-hidden", on ? "true" : "false");
         if (back) back.setAttribute("aria-hidden", on ? "false" : "true");
+      }
+
+      /** Tug the string: right = flip right (−180), left = flip left (+180) */
+      function tug(i, dir) {
+        if (i < 0 || i >= n) return;
+        rotations[i] += dir === "right" ? -180 : 180;
+        applyRotation(i);
       }
 
       function indexFromPoint(clientX, clientY) {
@@ -360,25 +373,32 @@
 
       function onTravel(index) {
         if (index < 0) return;
+
         var dir = lastDir || "right";
         if (lastIndex >= 0 && index !== lastIndex) {
           dir = index > lastIndex ? "right" : "left";
         }
 
+        var step = lastIndex >= 0 ? Math.abs(index - lastIndex) : 1;
         var reversed =
-          lastDir &&
-          dir &&
-          lastDir !== dir &&
-          lastIndex >= 0 &&
-          Math.abs(index - lastIndex) === 1;
+          lastDir && dir && lastDir !== dir && lastIndex >= 0 && step === 1;
 
-        // Right → back face; left → original front
-        setCard(index, dir === "right", dir);
+        // Primary: the card you moved onto turns in travel direction
+        // (right → flips right to back; left → flips left to front/next face)
+        tug(index, dir);
 
-        // Reverse one seat: card two to the right turns with travel direction
+        // Also tug the neighbor you are moving toward — string pull
+        if (dir === "right" && index + 1 < n && step === 1) {
+          // already on the right card; the one further right can sync lightly
+        }
+        if (dir === "left" && index - 1 >= 0 && step === 1) {
+          // left neighbor already was previous
+        }
+
+        // Reverse one seat: card two to the right joins the string tug
         if (reversed) {
           var extra = index + 2;
-          if (extra < n) setCard(extra, dir === "right", dir);
+          if (extra < n) tug(extra, dir);
         }
 
         lastIndex = index;
@@ -387,27 +407,33 @@
 
       function settleMajority() {
         var backs = 0;
-        cards.forEach(function (c) {
-          if (c.classList.contains("is-flipped")) backs += 1;
-        });
+        for (var i = 0; i < n; i++) {
+          if (showingBack(rotations[i])) backs += 1;
+        }
         var fronts = n - backs;
-        var toBack = backs >= 3;
-        if (fronts >= 3) toBack = false;
-        if (backs >= 3) toBack = true;
+        var wantBack = backs >= 3;
+        if (fronts >= 3) wantBack = false;
+        if (backs >= 3) wantBack = true;
         if (backs < 3 && fronts < 3) {
-          // tie: follow last travel direction
-          toBack = lastDir !== "left";
+          wantBack = lastDir !== "left";
         }
 
-        var pending = [];
-        cards.forEach(function (c, i) {
-          if (c.classList.contains("is-flipped") !== toBack) pending.push(i);
-        });
-        pending.forEach(function (i, k) {
-          window.setTimeout(function () {
-            setCard(i, toBack, toBack ? "right" : "left");
-          }, 75 * k);
-        });
+        var dir = wantBack ? "right" : "left";
+        var k = 0;
+        for (var j = 0; j < n; j++) {
+          if (showingBack(rotations[j]) === wantBack) continue;
+          (function (idx, delay) {
+            window.setTimeout(function () {
+              // tug once in settle direction so animation matches string side
+              tug(idx, dir);
+              // if still wrong face (already was mid-turn), tug again
+              if (showingBack(rotations[idx]) !== wantBack) {
+                tug(idx, dir);
+              }
+            }, 80 * delay);
+          })(j, k);
+          k += 1;
+        }
       }
 
       root.addEventListener("mousemove", function (e) {
@@ -428,7 +454,7 @@
         var i = indexFromPoint(e.clientX, e.clientY);
         if (i < 0) return;
         if (lastIndex < 0) {
-          setCard(i, true, "right");
+          tug(i, "right");
           lastIndex = i;
           lastDir = "right";
         } else {
@@ -461,13 +487,14 @@
       });
 
       cards.forEach(function (card, i) {
+        applyRotation(i);
         card.addEventListener("keydown", function (e) {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            var showBack = !card.classList.contains("is-flipped");
-            setCard(i, showBack, showBack ? "right" : "left");
+            var dir = showingBack(rotations[i]) ? "left" : "right";
+            tug(i, dir);
             lastIndex = i;
-            lastDir = showBack ? "right" : "left";
+            lastDir = dir;
           }
         });
       });
