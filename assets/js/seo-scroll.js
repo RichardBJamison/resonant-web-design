@@ -112,10 +112,11 @@
     const cards = grid.querySelectorAll('.seo-service-card');
     gsap.from(cards, {
       opacity: 0,
-      y: 36,
-      duration: 0.65,
-      stagger: 0.08,
+      y: 28,
+      duration: 0.55,
+      stagger: 0.06,
       ease: 'power2.out',
+      clearProps: 'transform',
       scrollTrigger: {
         trigger: grid,
         start: 'top 78%',
