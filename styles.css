@@ -465,6 +465,16 @@
       white-space: nowrap;
     }
 
+    /* Multi-line operational H1 — wraps in left column, not full-bleed banner */
+    .hero-title--statement {
+      font-size: clamp(1.7rem, 2.85vw, 2.55rem);
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      max-width: 16.5ch;
+      white-space: normal;
+      margin-bottom: 1.1rem;
+    }
+
     .hero-title .accent {
       color: var(--hero-amber);
       position: relative;
@@ -480,9 +490,18 @@
       color: rgba(244, 251, 255, 0.88);
       max-width: 530px;
       line-height: 1.62;
-      margin-bottom: 2.05rem;
+      margin-bottom: 0.85rem;
       opacity: 1;
       transform: none;
+    }
+
+    .hero-trust {
+      font-size: clamp(0.9rem, 1.4vw, 1.02rem);
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 480px;
+      line-height: 1.45;
+      margin: 0 0 1.5rem;
     }
 
     .hero-ctas {
@@ -3616,6 +3635,11 @@
       .hero-title {
         font-size: clamp(3.2rem, 14vw, 4.4rem);
       }
+      .hero-title--statement {
+        font-size: clamp(1.55rem, 6.2vw, 2.1rem);
+        max-width: 100%;
+        line-height: 1.2;
+      }
       .hero-subtitle {
         font-size: 1rem;
       }
@@ -3880,6 +3904,10 @@
 
       .hero-title {
         font-size: clamp(3rem, 17vw, 3.8rem);
+      }
+      .hero-title--statement {
+        font-size: clamp(1.45rem, 7vw, 1.9rem);
+        max-width: 100%;
       }
 
       .ticker {
@@ -5204,6 +5232,13 @@
 
 .ambient-cursor.is-visible {
   opacity: 1;
+}
+
+/* Robot Chat follow stage — hide ambient dot until bot is closed */
+.ambient-cursor.is-paused {
+  opacity: 0 !important;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .ambient-cursor.is-interactive::after {
