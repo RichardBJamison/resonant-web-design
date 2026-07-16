@@ -4728,54 +4728,6 @@
   margin-right: auto;
 }
 
-/* Demand problem steps — FAQ-style + lines, no divider rules, tighter gap */
-.seo-problem-list {
-  list-style: none;
-  margin: 1.35rem 0 0;
-  padding: 0;
-  max-width: 40rem;
-}
-
-.seo-problem-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.55rem;
-  padding: 0.45rem 0;
-  border: 0;
-  margin: 0;
-}
-
-.seo-problem-mark {
-  flex: 0 0 auto;
-  width: 1.15em;
-  font-family: var(--font-body);
-  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-  font-weight: 600;
-  line-height: 1.35;
-  color: var(--text-primary);
-}
-
-.seo-problem-text {
-  flex: 1 1 auto;
-  font-family: var(--font-body);
-  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-  font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: 0;
-  color: var(--text-primary);
-}
-
-.seo-problem-text strong {
-  font-weight: 700;
-  margin-right: 0.2em;
-}
-
-.seo-problem-text a {
-  color: var(--accent);
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-}
-
 .seo-proof-chips {
   display: flex;
   flex-wrap: wrap;
