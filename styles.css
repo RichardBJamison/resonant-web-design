@@ -4460,11 +4460,11 @@
 .seo-stack-panel {
   position: sticky;
   top: 0;
-  /* Content-height panels — no full-viewport min-height (was 100vh) */
+  /* Content-height panels; +10% top/bottom padding from 3.5rem / 3rem */
   min-height: 0;
   display: flex;
   align-items: center;
-  padding: 3.5rem 3rem 3rem;
+  padding: 3.85rem 3rem 3.3rem;
   overflow: hidden;
   transform-origin: center top;
   will-change: transform, opacity;
