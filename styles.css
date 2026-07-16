@@ -5078,11 +5078,11 @@
 
 .insights-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(13rem, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1rem;
   margin-top: 2.2rem;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
+  overflow: visible;
+  padding-bottom: 0;
 }
 
 .insight-card {
@@ -5095,33 +5095,38 @@
 
 .insight-card span {
   display: inline-flex;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--cyan);
 }
 
 .insight-card h3 {
-  margin: 0 0 0.8rem;
+  margin: 0 0 0.7rem;
   font-family: var(--font-display);
-  font-size: 1.35rem;
-  line-height: 1.05;
+  font-size: clamp(1.05rem, 1.3vw, 1.3rem);
+  line-height: 1.1;
 }
 
 .insight-card p {
   margin: 0;
   color: rgba(255, 255, 255, 0.68);
-  line-height: 1.65;
+  line-height: 1.55;
+  font-size: 0.9rem;
 }
 
 /* Category lane flips — touch/click to flip */
 .insight-card--flip {
   padding: 0;
-  perspective: 1100px;
+  min-height: 22rem;
+  height: 22rem;
+  perspective: 1200px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   outline: none;
   touch-action: manipulation;
+  overflow: hidden;
+  background: transparent;
 }
 
 .insight-card--flip:focus-visible {
@@ -5131,7 +5136,6 @@
 .insight-flip-inner {
   position: relative;
   width: 100%;
-  min-height: 20rem;
   height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.55s cubic-bezier(0.4, 0.05, 0.2, 1);
@@ -5146,48 +5150,65 @@
   inset: 0;
   display: flex;
   flex-direction: column;
-  padding: 1.35rem;
+  padding: 1.15rem 1.1rem 1rem;
   border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.13);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   background: rgba(255, 255, 255, 0.055);
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .insight-flip-face--front {
   transform: rotateY(0deg);
 }
 
+.insight-flip-face--front > p:not(.insight-flip-hint) {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 9;
+  line-clamp: 9;
+}
+
 .insight-flip-face--back {
   transform: rotateY(180deg);
   justify-content: center;
+  align-items: flex-start;
   background:
     linear-gradient(160deg, rgba(31, 247, 242, 0.1), transparent 55%),
-    rgba(12, 16, 22, 0.92);
-  border: 1px solid rgba(31, 247, 242, 0.18);
+    rgba(12, 16, 22, 0.96);
+  border-color: rgba(31, 247, 242, 0.2);
 }
 
 .insight-flip-face--back h3 {
   color: rgba(255, 255, 255, 0.72);
-  font-size: 1.05rem;
-  margin-bottom: 0.85rem;
+  font-size: 0.98rem;
+  margin-bottom: 0.75rem;
 }
 
 .insight-flip-punch {
   margin: 0 !important;
   font-family: var(--font-display);
-  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  font-size: clamp(1.15rem, 1.5vw, 1.45rem);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: 0.02em;
   color: #1ff7f2 !important;
   text-transform: uppercase;
+  max-width: 100%;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .insight-flip-hint {
-  margin-top: auto !important;
-  padding-top: 1rem;
-  font-size: 0.72rem !important;
+  flex: 0 0 auto;
+  margin-top: 0.75rem !important;
+  padding-top: 0.5rem;
+  font-size: 0.68rem !important;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.38) !important;
@@ -5199,9 +5220,15 @@
   }
 }
 
-@media (max-width: 768px) {
-  .insight-flip-inner {
-    min-height: 16rem;
+@media (max-width: 1200px) {
+  .insights-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 820px) {
+  .insights-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -5269,8 +5296,9 @@
     min-height: 0;
   }
 
-  .insight-card--flip .insight-flip-inner {
-    min-height: 16rem;
+  .insight-card--flip {
+    min-height: 18rem;
+    height: 18rem;
   }
 }
 
