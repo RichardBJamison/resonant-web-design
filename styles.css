@@ -4395,6 +4395,15 @@
   margin-bottom: 2rem;
 }
 
+.seo-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  justify-content: center;
+  width: 100%;
+}
+
 .seo-platform-band {
   background: linear-gradient(135deg, #12304a 0%, #0f2238 55%, #0c1a2c 100%);
   color: var(--text-light);
@@ -4412,12 +4421,17 @@
   margin: 0 auto;
 }
 
+/* Same column as .seo-hero-inner so platform copy lines up with hero lead */
+.seo-platform-inner--align-hero {
+  width: min(100%, 920px);
+}
+
 .seo-platform-band h2 {
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 3.6vw, 3rem);
   line-height: 1.12;
-  max-width: 22ch;
-  margin-bottom: 2.5rem;
+  max-width: 58ch; /* match hero lead measure */
+  margin: 0;
 }
 
 .seo-logo-grid {
