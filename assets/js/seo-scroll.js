@@ -41,8 +41,13 @@
 
     gsap.registerPlugin(ScrollTrigger);
 
+    // Next section after the stack — so the last panel also falls/fades
+    const afterStack = stack.nextElementSibling;
+
     panels.forEach((panel, index) => {
-      if (index === panels.length - 1) return;
+      const isLast = index === panels.length - 1;
+      const trigger = isLast ? afterStack : panels[index + 1];
+      if (!trigger) return;
 
       gsap.to(panel, {
         scale: 0.92,
@@ -50,7 +55,7 @@
         borderRadius: '24px',
         ease: 'none',
         scrollTrigger: {
-          trigger: panels[index + 1],
+          trigger: trigger,
           start: 'top bottom',
           end: 'top top',
           scrub: 0.6,
@@ -67,7 +72,7 @@
           y: -48,
           ease: 'none',
           scrollTrigger: {
-            trigger: panels[index + 1],
+            trigger: trigger,
             start: 'top bottom',
             end: 'top top',
             scrub: 0.6,
