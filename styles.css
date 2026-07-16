@@ -4805,7 +4805,6 @@
 }
 
 .seo-story-band--dark .seo-growth-impulse a {
-  color: #c4b5fd; /* keep readable on dark; accent-like link weight */
   color: var(--accent);
 }
 
