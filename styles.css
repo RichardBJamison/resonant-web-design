@@ -1876,6 +1876,7 @@
     .pricing-section {
       background: var(--bg-dark);
       color: #fff;
+      padding: 5.5rem 0 4rem;
     }
 
     .home-faq {
