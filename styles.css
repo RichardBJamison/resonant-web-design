@@ -488,6 +488,7 @@
       --hero-cyan: #1ff7f2;
       --hero-amber: #ffad4d;
       --hero-magenta: #f052d8;
+      --hero-tile-ticker: min(7.7vw, 10.9vh);
       flex: 1 1 auto;
       min-height: 0;
       min-width: 0;
@@ -545,6 +546,7 @@
 
     .hero-content {
       max-width: 100%;
+      min-width: 0;
       position: relative;
       z-index: 2;
       transform: none;
@@ -553,8 +555,7 @@
       flex-direction: column;
       align-items: stretch;
       justify-content: flex-end;
-      /* lift tiles so their bottom meets the wrist, not the orb fade */
-      padding-bottom: min(7.7vw, 10.9vh);
+      padding-bottom: 0.65rem;
     }
 
     .hero-scrim {
@@ -582,29 +583,73 @@
       white-space: nowrap;
     }
 
-    .hero-title--wordmark {
-      font-family: var(--font-display);
-      font-weight: 800;
-      /* ticker size; keep the previous bottom line (old 2lh + 1lh at prior size) */
-      font-size: clamp(3.6rem, 4.46vw, 4.46rem);
-      line-height: 1.05;
-      letter-spacing: 0;
-      word-spacing: -0.225em;
-      color: var(--text-light);
-      text-align: center;
-      white-space: nowrap;
-      margin-top: calc(3.15 * clamp(1.8rem, 3.15vw, 3.3rem) - 1.05em - 0.69em);
-      margin-right: auto;
-      margin-bottom: auto;
-      margin-left: auto;
-      padding-top: 0;
-      overflow: visible;
-      text-shadow: 0 0 18px rgba(31, 247, 242, 0.12);
+    .hero-lockup {
+      position: relative;
+      top: -0.9rem;
+      margin-bottom: var(--hero-tile-ticker);
+      min-width: 0;
+      width: min(38rem, 100%);
+      max-width: 100%;
     }
 
-    .hero-title--wordmark .by {
-      font-weight: 600;
+    .hero-title--wordmark {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      font-family: var(--font-display);
+      font-weight: 800;
+      line-height: 1;
+      color: var(--text-light);
+      text-align: left;
+      white-space: nowrap;
+      margin: 0;
+      padding: 1.1rem 0 0.15rem;
+      overflow: visible;
+      text-shadow: none;
+      min-width: 0;
+      max-width: 100%;
+      top: 0;
+      transform: none;
+    }
+
+    .hero-kicker {
+      margin: 0.18rem 0 0 10.25rem;
+      width: calc(100% - 10.25rem);
+      max-width: none;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.38rem, 1.52vw, 1.58rem);
+      white-space: nowrap;
+      line-height: 1.08;
+      letter-spacing: -0.05em;
+      word-spacing: -0.045em;
       color: var(--cyan);
+      text-shadow: 0 0 18px rgba(31, 247, 242, 0.2);
+    }
+
+    .hero-title--wordmark .wordmark-globe {
+      position: absolute;
+      left: -1.2rem;
+      top: 36%;
+      height: 11.2rem;
+      width: auto;
+      transform: translateY(-50%);
+      opacity: 0.75;
+      pointer-events: none;
+      z-index: 0;
+      filter: drop-shadow(0 0 18px rgba(31, 247, 242, 0.18));
+    }
+
+    .hero-title--wordmark .wordmark-img {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: min(38rem, 100%);
+      max-width: 100%;
+      min-width: 0;
+      height: auto;
+      flex: 1 1 auto;
     }
 
     /* Multi-line operational H1 — wraps in left column, not full-bleed banner */
@@ -1037,10 +1082,10 @@
     /* Waveform canvas */
     .waveform-container {
       position: absolute;
-      top: 24%;
+      top: 44%;
       left: 0;
       right: 0;
-      height: 270px;
+      height: 220px;
       z-index: 1;
       opacity: 0.48;
       mix-blend-mode: screen;
@@ -4167,11 +4212,31 @@
         max-width: 100%;
         line-height: 1.2;
       }
+      .hero-lockup {
+        top: -2.4rem;
+        margin-bottom: var(--hero-tile-ticker);
+      }
       .hero-title--wordmark {
-        font-size: clamp(1.7rem, 7.2vw, 2.4rem);
+        white-space: nowrap;
+        margin: 0;
+        text-align: left;
+        width: 100%;
+        max-width: 100%;
+      }
+      .hero-kicker {
+        margin-left: 4.6rem;
+        width: calc(100% - 4.8rem);
+        max-width: none;
+        font-size: clamp(1.05rem, 4.4vw, 1.25rem);
+        letter-spacing: -0.04em;
         white-space: normal;
-        margin: 2lh auto 1rem;
-        text-align: center;
+      }
+      .hero-title--wordmark .wordmark-globe {
+        height: 6.8rem;
+      }
+      .hero-title--wordmark .wordmark-img {
+        width: 100%;
+        max-width: 100%;
       }
       .hero-subtitle {
         font-size: 0.98rem;
@@ -4474,6 +4539,9 @@
 
       .hero-title {
         font-size: clamp(3rem, 17vw, 3.8rem);
+      }
+      .hero-title--wordmark .wordmark-globe {
+        height: 5.8rem;
       }
       .hero-title--statement {
         font-size: clamp(1.45rem, 7vw, 1.9rem);
