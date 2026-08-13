@@ -118,13 +118,12 @@
     const nav = document.getElementById('nav');
     if (!nav) return;
 
-    window.addEventListener(
-      'scroll',
-      () => {
-        nav.classList.toggle('scrolled', window.scrollY > 80);
-      },
-      { passive: true }
-    );
+    const syncNav = () => {
+      /* Taza: shrink as soon as the page leaves the top — bar stays put */
+      nav.classList.toggle('scrolled', window.scrollY > 8);
+    };
+    window.addEventListener('scroll', syncNav, { passive: true });
+    syncNav();
   }
 
   function initMobileMenu() {

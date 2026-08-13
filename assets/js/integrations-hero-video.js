@@ -10,6 +10,17 @@
   var holding = false;
   var holdTimer = null;
   var lastT = -1;
+  var started = false;
+
+  // iOS/Safari: muted + playsinline required for autoplay
+  v.muted = true;
+  v.defaultMuted = true;
+  v.setAttribute("muted", "");
+  v.setAttribute("playsinline", "");
+  v.setAttribute("webkit-playsinline", "");
+  v.playsInline = true;
+  v.controls = false;
+  v.removeAttribute("controls");
 
   function setRate(rate) {
     try {
@@ -21,8 +32,11 @@
 
   function play() {
     if (holding) return;
-    var p = v.play();
-    if (p && p.catch) p.catch(function () {});
+    try {
+      v.muted = true;
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+    } catch (e) {}
   }
 
   function clearHoldTimer() {
@@ -37,7 +51,9 @@
     holding = true;
     leg = "hold";
     clearHoldTimer();
-    v.pause();
+    try {
+      v.pause();
+    } catch (e) {}
     lastT = v.currentTime;
 
     holdTimer = window.setTimeout(function () {
@@ -50,7 +66,9 @@
   function startForwardLeg() {
     leg = "forward";
     lastT = -1;
-    if (v.currentTime > 0.2) v.currentTime = 0;
+    try {
+      if (v.currentTime > 0.2) v.currentTime = 0;
+    } catch (e) {}
     setRate(CRUISE);
     play();
   }
@@ -63,13 +81,25 @@
   }
 
   function startCycle() {
-    v.currentTime = 0;
+    try {
+      v.currentTime = 0;
+    } catch (e) {}
+    // On mobile, avoid starting paused (shows Safari play button). Play first, then cycle.
+    if (!started) {
+      started = true;
+      leg = "forward";
+      setRate(CRUISE);
+      play();
+      return;
+    }
     beginHold(startForwardLeg);
   }
 
   function finishCycle() {
     beginHold(function () {
-      v.currentTime = 0;
+      try {
+        v.currentTime = 0;
+      } catch (e) {}
       startForwardLeg();
     });
   }
@@ -79,7 +109,9 @@
 
     var t = v.currentTime;
 
+    // First pass: when we hit midpoint after initial free play, enter hold/reverse cycle
     if (leg === "forward" && lastT < D && t >= D) {
+      if (!started) started = true;
       beginHold(startReverseLeg);
       return;
     }
@@ -119,12 +151,14 @@
   if (v.readyState >= 1) setup();
   else v.addEventListener("loadedmetadata", setup);
 
+  v.addEventListener("loadeddata", play);
   v.addEventListener("canplay", function () {
     v.classList.add("ready");
     if (!BOOM) setup();
     else if (!holding && leg === "idle") startCycle();
     play();
   });
+  v.addEventListener("canplaythrough", play, { once: true });
 
   document.addEventListener("visibilitychange", function () {
     if (!document.hidden && !holding) play();
@@ -133,4 +167,22 @@
   window.addEventListener("pageshow", function () {
     if (!holding) play();
   });
+
+  // First gesture unlocks autoplay on stubborn mobile browsers
+  var unlock = function () {
+    play();
+    if (!BOOM && v.readyState >= 1) setup();
+    document.removeEventListener("touchstart", unlock, true);
+    document.removeEventListener("scroll", unlock, true);
+    document.removeEventListener("click", unlock, true);
+  };
+  document.addEventListener("touchstart", unlock, { capture: true, passive: true });
+  document.addEventListener("scroll", unlock, { capture: true, passive: true });
+  document.addEventListener("click", unlock, { capture: true, passive: true });
+
+  setTimeout(play, 400);
+  setTimeout(function () {
+    play();
+    if (!BOOM && v.readyState >= 1) setup();
+  }, 1200);
 })();

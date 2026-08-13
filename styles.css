@@ -76,15 +76,17 @@
       gap: 1.75rem;
       padding: 0.9rem clamp(1rem, 3vw, 2.25rem);
       box-sizing: border-box;
-      transition: background 0.35s, backdrop-filter 0.35s, padding 0.35s;
+      /* Taza: size shrinks in place — color stays this dark bar */
+      transition: background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out, padding 0.3s ease-in-out, gap 0.3s ease-in-out;
     }
 
     .nav.scrolled {
-      background: rgba(250, 250, 248, 0.92);
+      background: rgba(7, 11, 19, 0.92);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      padding: 0.65rem clamp(1rem, 3vw, 2.25rem);
-      border-bottom: 1px solid var(--border-light);
+      padding: 0.45rem clamp(1rem, 3vw, 2.25rem);
+      gap: 1.25rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     /* Brand always left, never absolute, never over menu */
@@ -122,25 +124,25 @@
     }
 
     .nav.scrolled .nav-logo {
-      color: var(--text-primary);
-      font-size: 1.05rem;
+      color: var(--text-light);
     }
 
     .nav.scrolled .nav-logo .by {
-      color: var(--text-secondary);
+      color: var(--cyan);
     }
 
     .nav .ihs-cobrand {
       display: grid;
       flex: 0 0 auto;
-      width: 36px;
-      height: 36px;
+      width: 56px;
+      height: 56px;
       place-items: center;
       overflow: hidden;
       border: 0;
       border-radius: 50%;
       background: transparent;
       box-shadow: 0 0 12px rgba(31, 247, 242, 0.16);
+      transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
     }
 
     .nav .ihs-cobrand img {
@@ -151,8 +153,8 @@
     }
 
     .nav.scrolled .ihs-cobrand {
-      width: 32px;
-      height: 32px;
+      width: 45px;
+      height: 45px;
     }
 
     /* Menu sits immediately after logo (left side of bar) */
@@ -166,6 +168,11 @@
       padding: 0;
       flex: 0 1 auto;
       min-width: 0;
+      transition: gap 0.3s ease-in-out;
+    }
+
+    .nav.scrolled .nav-links {
+      gap: 1.1rem;
     }
 
     .nav-links > li {
@@ -176,24 +183,24 @@
 
     .nav-links a {
       font-family: var(--font-body);
-      font-size: 0.9rem;
+      font-size: 1.125rem;
       font-weight: 500;
       color: rgba(244, 251, 255, 0.92);
       text-decoration: none;
       letter-spacing: 0.01em;
       white-space: nowrap;
-      transition: color 0.25s;
+      transition: color 0.25s, font-size 0.3s ease-in-out;
     }
 
     .nav-links a:hover { color: #fff; }
 
     .nav.scrolled .nav-links a {
-      color: var(--text-secondary);
-      font-size: 0.875rem;
+      color: rgba(244, 251, 255, 0.92);
+      font-size: 0.9rem;
     }
 
     .nav.scrolled .nav-links a:hover {
-      color: var(--text-primary);
+      color: #fff;
     }
 
     .nav-dropdown {
@@ -257,7 +264,7 @@
       border-radius: 0.35rem;
       color: rgba(255, 255, 255, 0.9);
       white-space: nowrap;
-      font-size: 0.875rem;
+      font-size: 1.094rem;
     }
 
     .nav-dropdown-menu a:hover,
@@ -278,14 +285,14 @@
       border: 1px solid rgba(31, 247, 242, 0.82);
       border-radius: 100px;
       font-family: var(--font-body);
-      font-size: 0.875rem;
+      font-size: 1.094rem;
       font-weight: 600;
       text-decoration: none;
       white-space: nowrap;
       box-shadow:
         0 0 0 1px rgba(31, 247, 242, 0.18) inset,
         0 0 16px rgba(31, 247, 242, 0.32);
-      transition: background 0.25s, transform 0.25s;
+      transition: background 0.25s, padding 0.3s ease-in-out, font-size 0.3s ease-in-out;
     }
 
     .nav > .nav-cta:hover,
@@ -297,10 +304,14 @@
 
     .nav.scrolled > .nav-cta,
     .nav.scrolled a.nav-cta.nav-cta-end {
-      background: var(--text-primary);
-      color: var(--bg-light);
-      border-color: transparent;
-      box-shadow: none;
+      background: rgba(7, 15, 24, 0.38);
+      color: #f4fbff;
+      border-color: rgba(31, 247, 242, 0.82);
+      padding: 0.42rem 0.95rem;
+      font-size: 0.875rem;
+      box-shadow:
+        0 0 0 1px rgba(31, 247, 242, 0.18) inset,
+        0 0 16px rgba(31, 247, 242, 0.32);
     }
 
     /* legacy: CTA still inside ul — push that li right */
@@ -320,11 +331,12 @@
     }
 
     .nav.scrolled .nav-links .nav-cta {
-      background: var(--text-primary);
-      color: var(--bg-light);
-      border-color: transparent;
-      box-shadow: none;
-      padding: 0.55rem 1.1rem;
+      background: rgba(7, 15, 24, 0.38);
+      color: #f4fbff;
+      border-color: rgba(31, 247, 242, 0.82);
+      box-shadow:
+        0 0 0 1px rgba(31, 247, 242, 0.18) inset,
+        0 0 16px rgba(31, 247, 242, 0.32);
     }
 
     .mobile-toggle {
@@ -359,7 +371,7 @@
     .mobile-toggle span:nth-child(3) { top: 18px; }
 
     .nav.scrolled .mobile-toggle span {
-      background: var(--text-primary);
+      background: #E8E6E1;
     }
 
     .mobile-toggle.open span:nth-child(1) {
@@ -422,9 +434,9 @@
     @media (max-width: 1024px) {
       .nav { gap: 1rem; }
       .nav-links { gap: 0.85rem; }
-      .nav-links a { font-size: 0.82rem; }
+      .nav-links a { font-size: 1.025rem; }
       .nav-logo { font-size: 1.05rem; }
-      .nav > .nav-cta, a.nav-cta.nav-cta-end { padding: 0.5rem 0.9rem; font-size: 0.8rem; }
+      .nav > .nav-cta, a.nav-cta.nav-cta-end { padding: 0.5rem 0.9rem; font-size: 1rem; }
     }
 
 
@@ -518,22 +530,31 @@
     }
 
     .hero-inner {
-      max-width: 1120px;
-      margin: 0 auto;
+      max-width: none;
+      margin: 0;
       width: 100%;
       display: grid;
-      grid-template-columns: minmax(480px, 0.9fr) minmax(430px, 0.82fr);
-      gap: 2.75rem;
+      grid-template-columns: minmax(28rem, 0.92fr) minmax(0, 1.08fr);
+      gap: clamp(1.5rem, 3vw, 3.25rem);
       align-items: end;
       position: relative;
       z-index: 2;
+      padding-left: max(2.5rem, 5vw);
+      padding-right: max(1.25rem, 3vw);
     }
 
     .hero-content {
-      max-width: 620px;
+      max-width: 100%;
       position: relative;
       z-index: 2;
       transform: none;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-end;
+      /* lift tiles so their bottom meets the wrist, not the orb fade */
+      padding-bottom: min(7.7vw, 10.9vh);
     }
 
     .hero-scrim {
@@ -561,6 +582,31 @@
       white-space: nowrap;
     }
 
+    .hero-title--wordmark {
+      font-family: var(--font-display);
+      font-weight: 800;
+      /* ticker size; keep the previous bottom line (old 2lh + 1lh at prior size) */
+      font-size: clamp(3.6rem, 4.46vw, 4.46rem);
+      line-height: 1.05;
+      letter-spacing: 0;
+      word-spacing: -0.225em;
+      color: var(--text-light);
+      text-align: center;
+      white-space: nowrap;
+      margin-top: calc(3.15 * clamp(1.8rem, 3.15vw, 3.3rem) - 1.05em - 0.69em);
+      margin-right: auto;
+      margin-bottom: auto;
+      margin-left: auto;
+      padding-top: 0;
+      overflow: visible;
+      text-shadow: 0 0 18px rgba(31, 247, 242, 0.12);
+    }
+
+    .hero-title--wordmark .by {
+      font-weight: 600;
+      color: var(--cyan);
+    }
+
     /* Multi-line operational H1 — wraps in left column, not full-bleed banner */
     .hero-title--statement {
       font-size: clamp(1.7rem, 2.85vw, 2.55rem);
@@ -581,21 +627,21 @@
     }
 
     .hero-subtitle {
-      font-size: 1.05rem;
+      font-size: clamp(1.08rem, 1.15vw, 1.65rem);
       font-weight: 500;
       color: rgba(244, 251, 255, 0.88);
-      max-width: 530px;
-      line-height: 1.62;
+      max-width: none;
+      line-height: 1.58;
       margin-bottom: 0.85rem;
       opacity: 1;
       transform: none;
     }
 
     .hero-trust {
-      font-size: clamp(0.9rem, 1.4vw, 1.02rem);
+      font-size: clamp(0.98rem, 0.95vw, 1.35rem);
       font-weight: 600;
       color: rgba(255, 255, 255, 0.9);
-      max-width: 480px;
+      max-width: none;
       line-height: 1.45;
       margin: 0 0 1.5rem;
     }
@@ -606,6 +652,11 @@
       flex-wrap: wrap;
       opacity: 1;
       transform: none;
+    }
+
+    .hero .btn {
+      font-size: clamp(0.86rem, 0.7rem + 0.22vw, 1rem);
+      padding: clamp(0.88rem, 0.7rem + 0.28vw, 1.05rem) clamp(1.55rem, 1.2rem + 0.55vw, 2rem);
     }
 
     .btn {
@@ -663,7 +714,7 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 0.7rem;
-      max-width: 560px;
+      max-width: min(40rem, 100%);
       margin-top: 2rem;
       opacity: 1;
       position: relative;
@@ -947,7 +998,7 @@
 
     .hero-orb {
       position: relative;
-      width: min(100%, 520px);
+      width: min(48vw, 68vh);
       aspect-ratio: 1 / 1;
       height: auto;
       min-width: 0;
@@ -3982,6 +4033,7 @@
         transform: none;
         max-width: 100%;
         min-width: 0;
+        padding-bottom: 0;
       }
 
       .hero-visual {
@@ -4060,14 +4112,15 @@
         padding: 1rem 1.5rem;
         justify-content: space-between;
       }
-      .nav.scrolled { padding: 0.75rem 1.5rem; }
+      .nav.scrolled { padding: 0.55rem 1.5rem; }
+      .nav.scrolled .ihs-cobrand { width: 40px; height: 40px; }
       .nav-brand-lockup {
         position: relative !important;
         transform: none !important;
         left: auto !important;
         max-width: none;
       }
-      .nav .ihs-cobrand { display: none; }
+      .nav .ihs-cobrand { display: grid; }
       .nav-links { display: none !important; }
       .nav > .nav-cta,
       a.nav-cta.nav-cta-end { display: none !important; }
@@ -4108,6 +4161,12 @@
         font-size: clamp(1.55rem, 6.2vw, 2.1rem);
         max-width: 100%;
         line-height: 1.2;
+      }
+      .hero-title--wordmark {
+        font-size: clamp(1.7rem, 7.2vw, 2.4rem);
+        white-space: normal;
+        margin: 2lh auto 1rem;
+        text-align: center;
       }
       .hero-subtitle {
         font-size: 0.98rem;

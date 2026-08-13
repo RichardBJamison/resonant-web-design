@@ -1,24 +1,20 @@
 # Resonant Web Design
 
-Resonant Web Design is a selective web design and development studio led by Richard B. Jamison.
+Resonant Web Design is a selective custom web design and development studio led by Richard B. Jamison. National clientele; Ohio roots.
 
 ## What We Do
 
-- Custom website design and development
-- Starter Sites — $69/month website ownership via Impulse by Design
-- SEO foundations and content strategy
+- Custom web development built around how a business actually runs
+- SEO foundations and content architecture that ship with the site
 - System integrations, APIs, automation, and AI phone/chat workflows
 - Hosting, maintenance, and launch systems
-- Insights publishing system for website strategy, SEO, local search, AI-connected systems, hospitality growth, and service-business growth
-- Support for service businesses, SaaS, and portfolio sites
-- Landscaping website design and local SEO page architecture
-- Restaurant website design, hospitality SEO, booking flows, and operational marketing
-- Hospitality systems perspective through Open Source Barware and Intelligent Hospitality Systems
+- Insights on website strategy, SEO, local search, and connected systems
+- Industry depth: landscaping, restaurants/hospitality, roofing, service businesses
 
 ## Positioning
 
-- Fewer clients at a time
-- Deeply custom work
+- National custom work (not limited to one metro)
+- Fewer clients at a time; deeply custom
 - SEO handled in-house
 - No template assembly line
 - Operator-led strategy for real service businesses
@@ -26,16 +22,13 @@ Resonant Web Design is a selective web design and development studio led by Rich
 ## Important Pages
 
 - Home: https://resonantwebdesign.com/
-- Start a Project (sales fit router): https://resonantwebdesign.com/start/
-- Insights (publishing home): https://resonantwebdesign.com/insights/
-- Ohio service business SEO checklist: https://resonantwebdesign.com/insights/ohio-service-business-seo-checklist/
-- Starter Sites: https://resonantwebdesign.com/services/starter-sites/
-- Impulse by Design (starter product of Resonant; Cleveland small-business lane): https://impulsebydesign.com/
-- SEO Foundations (Ohio service businesses): https://resonantwebdesign.com/services/seo-foundations/
-- System Integrations: https://resonantwebdesign.com/services/system-integrations/
+- Custom Web Development: https://resonantwebdesign.com/services/custom-web-development/
+- System Integrations & Automation: https://resonantwebdesign.com/services/system-integrations/
 - AI Phone Systems: https://resonantwebdesign.com/services/system-integrations/ai-phone/
-- Landscaping Website Design (Ohio): https://resonantwebdesign.com/industries/landscaping-web-design/
-- Restaurant, Hotel & Venue Web Design (Ohio hospitality): https://resonantwebdesign.com/industries/restaurants-hospitality-web-design/
+- SEO Foundations: https://resonantwebdesign.com/services/seo-foundations/
+- Start a Project: https://resonantwebdesign.com/start/
+- Insights: https://resonantwebdesign.com/insights/
+- Work: https://resonantwebdesign.com/work/
 - Open Source Barware: https://opensourcebarware.com/
 - Intelligent Hospitality Systems: https://intelligenthospitalitysystems.com/
 
@@ -49,3 +42,6 @@ Resonant Web Design is a selective web design and development studio led by Rich
 
 - Sitemap: https://resonantwebdesign.com/sitemap.xml
 - Robots: https://resonantwebdesign.com/robots.txt
+
+## Primary service
+- Custom Web Development: /services/custom-web-development/
