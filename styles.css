@@ -480,8 +480,8 @@
       min-height: 0;
       min-width: 0;
       display: flex;
-      align-items: center;
-      padding: 7.05rem 2.25rem 2.65rem;
+      align-items: flex-end;
+      padding: 7.05rem 2.25rem 1.75rem;
       position: relative;
       overflow: hidden;
       isolation: isolate;
@@ -518,17 +518,15 @@
     }
 
     .hero-inner {
-      max-width: none;
-      margin: 0;
+      max-width: 1120px;
+      margin: 0 auto;
       width: 100%;
       display: grid;
-      grid-template-columns: minmax(460px, 0.9fr) minmax(0, 1fr);
-      gap: 2rem;
-      align-items: center;
+      grid-template-columns: minmax(480px, 0.9fr) minmax(430px, 0.82fr);
+      gap: 2.75rem;
+      align-items: end;
       position: relative;
       z-index: 2;
-      padding-left: max(2.25rem, calc((100vw - 1120px) / 2));
-      padding-right: 0;
     }
 
     .hero-content {
@@ -755,10 +753,10 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      justify-content: center;
+      justify-content: flex-end;
       gap: 0;
       min-height: 0;
-      margin-right: 0;
+      margin-right: -2.5rem;
       opacity: 1;
       transform: none;
     }
@@ -949,11 +947,11 @@
 
     .hero-orb {
       position: relative;
-      width: min(46vw, calc(100dvh - 18rem), 820px);
+      width: min(100%, 520px);
       aspect-ratio: 1 / 1;
       height: auto;
-      min-width: 280px;
-      min-height: 280px;
+      min-width: 0;
+      min-height: 0;
       overflow: hidden;
       transform: none;
       background: transparent;
@@ -3968,7 +3966,7 @@
       .hero-inner {
         grid-template-columns: minmax(0, 1fr);
         width: 100%;
-        max-width: 100%;
+        max-width: 760px;
         margin: 0 auto;
         gap: 1.5rem;
         padding-left: 0;
