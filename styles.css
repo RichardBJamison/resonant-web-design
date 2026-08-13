@@ -1876,7 +1876,7 @@
     .pricing-section {
       background: var(--bg-dark);
       color: #fff;
-      padding: 5.5rem 0 4rem;
+      padding: 7rem 0 7rem;
     }
 
     .home-faq {
@@ -2094,8 +2094,8 @@
 
     .pricing-section--in-work {
       margin-top: 0;
-      padding-top: 2.5rem;
-      padding-bottom: 1.5rem;
+      padding-top: 7rem;
+      padding-bottom: 7rem;
       background: var(--bg-dark);
     }
 
@@ -3260,7 +3260,8 @@
 
     .systems-comms {
       background: var(--bg-dark);
-      padding: 2.5rem 0 1rem;
+      /* match .section head space (trust → FAQ) */
+      padding: 7rem 0 7rem;
     }
 
     .systems-comms .section-inner {
