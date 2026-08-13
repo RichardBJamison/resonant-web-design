@@ -2093,7 +2093,7 @@
     }
 
     .pricing-section--in-work {
-      margin-top: 3.5rem;
+      margin-top: 0;
       padding-top: 2.5rem;
       padding-bottom: 1.5rem;
       background: var(--bg-dark);
