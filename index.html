@@ -48,9 +48,9 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="assets/fonts/rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqYu28qmR9A.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/8vIH7w4qzmVxq2JB80z-.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="styles.css?v=20260716-nav-scale" as="style">
+  <link rel="preload" href="styles.css?v=20260813-hero-loop23" as="style">
   <link rel="stylesheet" href="assets/fonts/fonts.css">
-  <link rel="stylesheet" href="styles.css?v=20260716-nav-scale">
+  <link rel="stylesheet" href="styles.css?v=20260813-hero-loop23">
   <link rel="stylesheet" href="assets/css/hero-cap-flip.css?v=20260711-capflip2">
   <script type="application/ld+json">
   {
@@ -96,11 +96,7 @@
           "@id": "https://resonantwebdesign.com/#organization"
         },
         "hasPart": [
-          {
-            "@type": "WebPage",
-            "name": "Starter Sites",
-            "url": "https://impulsebydesign.com/"
-          },
+          
           {
             "@type": "WebPage",
             "name": "SEO Foundations",
@@ -203,14 +199,13 @@
       <a href="/" class="nav-logo">Resonant <span class="by">Web Design</span></a>
     </div>
             <ul class="nav-links">
-            <li><a href="https://impulsebydesign.com/">Impulse Automation</a></li>
+            <li><a href="https://impulsebydesign.com/" rel="noopener">Impulse Automation</a></li>
 <li class="nav-dropdown">
         <a href="/services/seo-foundations/" class="nav-dropdown-trigger" aria-haspopup="true">Services</a>
         <div class="nav-dropdown-menu" role="menu" aria-label="Services">
           <a href="/services/seo-foundations/" role="menuitem">SEO Foundations</a>
           <a href="/services/system-integrations/" role="menuitem">System Integrations</a>
           <a href="/services/system-integrations/ai-phone/" role="menuitem">AI Phone</a>
-          <a href="https://impulsebydesign.com" role="menuitem">Starter Sites</a>
         </div>
       </li>
       <li><a href="/services/system-integrations/">Integrations</a></li>
@@ -232,11 +227,10 @@
   </nav>
 
       <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-        <a href="https://impulsebydesign.com/">Impulse Automation</a>
+        <a href="https://impulsebydesign.com/" rel="noopener">Impulse Automation</a>
 <a href="/services/seo-foundations/">SEO Foundations</a>
     <a href="/services/system-integrations/">Integrations</a>
     <a href="/services/system-integrations/ai-phone/">AI Phone</a>
-    <a href="https://impulsebydesign.com">Starter Sites</a>
     <a href="/insights/">Insights</a>
     <a href="/work/">Work</a>
     <a href="/industries/restaurants-hospitality-web-design/">Restaurant Hospitality</a>
@@ -245,13 +239,12 @@
     <a href="/start/#fit-review" class="nav-cta">Show Me the Right Build</a>
   </div>
 
+  <div class="first-screen">
   <section class="hero" id="hero">
     <div class="hero-scrim" aria-hidden="true"></div>
     <div class="hero-inner">
       <div class="hero-content">
-        <h1 class="hero-title hero-title--statement">
-          Your website should do more than represent your business. It should help run it.
-        </h1>
+        <h1 class="sr-only">Your website should do more than represent your business. It should help run it.</h1>
         <p class="hero-subtitle">
           We build conversion-focused websites, search systems, AI phone solutions, CRM workflows, automation, and operational integrations for growing companies and hospitality operators nationwide.
         </p>
@@ -311,27 +304,27 @@
       </div>
 
       <div class="hero-visual">
-        <div class="hero-device" aria-hidden="true">
-          <div class="device-bar"></div>
-          <div class="device-pane device-pane--large"></div>
-          <div class="device-pane device-pane--top"></div>
-          <div class="device-pane device-pane--left"></div>
-          <div class="device-pane device-pane--right"></div>
-          <div class="device-line device-line--one"></div>
-          <div class="device-line device-line--two"></div>
-          <div class="device-line device-line--three"></div>
+        <div class="hero-orb">
+          <video
+            class="hero-automation-video"
+            aria-hidden="true"
+            muted
+            playsinline
+            webkit-playsinline
+            loop
+            autoplay
+            preload="auto"
+            poster="assets/img/hero-automation-poster.jpg"
+            width="816"
+            height="464"
+            controlsList="nodownload nofullscreen noremoteplayback"
+            disablePictureInPicture
+            disableRemotePlayback
+          >
+            <source src="assets/video/hero-automation-loop.webm" type="video/webm">
+            <source src="assets/video/hero-automation-loop.mp4" type="video/mp4">
+          </video>
         </div>
-
-        <aside class="hero-proof" aria-label="Landing page project stack">
-          <span class="proof-kicker">Connected Business Systems</span>
-          <h2>The website is the front door. We build what happens next.</h2>
-          <ul>
-            <li>Clear offers and conversion paths</li>
-            <li>Search systems and lead generation</li>
-            <li>AI phone, CRM, and fast follow-up</li>
-            <li>Automation, APIs, and owner reporting</li>
-          </ul>
-        </aside>
       </div>
     </div>
     <div class="waveform-container">
@@ -407,6 +400,7 @@
         <span class="ticker-item ticker-item--gray">#WEBSITE CARE</span>
       </div>
     </div>
+  </div>
   </div>
 
   <section class="compact-stack section" id="services">
@@ -600,7 +594,7 @@
         <div class="pricing-impulse-soft reveal" data-offer-impulse>
           <p class="pricing-impulse-kicker">Need a simple starter website?</p>
           <p>ImpulseByDesign.com offers a straightforward website path for Cleveland-area small businesses that are not ready for a custom Resonant engagement.</p>
-          <a href="https://impulsebydesign.com" class="pricing-impulse-cta" data-offer-cta="impulse" target="_blank" rel="noopener">See the Starter Option</a>
+          <a href="https://impulsebydesign.com" class="pricing-impulse-cta" data-offer-cta="impulse" rel="noopener">See the Starter Option</a>
         </div>
 
         <div class="partner-banner reveal reveal-delay-2">
@@ -748,7 +742,7 @@
         <a href="/start/#fit-review" class="btn btn-primary" style="display:inline-flex">Show Me the Right Build</a>
         <p style="color:rgba(255,255,255,0.55);max-width:32rem;margin:1.75rem auto 0;line-height:1.55;font-size:0.95rem">
           Need a simple starter presence instead? Visit
-          <a href="https://impulsebydesign.com" style="color:rgba(255,255,255,0.85);text-decoration:underline">ImpulseByDesign.com</a>.
+          <a href="https://impulsebydesign.com" style="color:rgba(255,255,255,0.85);text-decoration:underline" rel="noopener">ImpulseByDesign.com</a>.
         </p>
       </div>
     </div>
@@ -766,7 +760,6 @@
           <li><a href="/services/seo-foundations/">SEO Foundations</a></li>
           <li><a href="/services/system-integrations/">System Integrations</a></li>
           <li><a href="/services/system-integrations/ai-phone/">AI Phone</a></li>
-          <li><a href="https://impulsebydesign.com">Starter Sites (Impulse)</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -793,7 +786,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20260715-globe-home" defer></script>
+  <script src="script.js?v=20260813-hero-loop14" defer></script>
   <script>
     window.ROBOT_CHAT_CONFIG = {
       robotSrc: "/assets/img/chatbot-robot.png",

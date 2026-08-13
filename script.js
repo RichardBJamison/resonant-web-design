@@ -1,6 +1,51 @@
 (function () {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+
+  // --- Conversion tracking (GA4 events — no layout change) ---
+  function trackEvent(name, params) {
+    try {
+      if (typeof gtag === 'function') gtag('event', name, params || {});
+    } catch (e) {}
+  }
+
+  function initConversionTracking() {
+    var form = document.getElementById('fit-review-form');
+    if (form) {
+      var started = false;
+      form.addEventListener('focusin', function () {
+        if (started) return;
+        started = true;
+        trackEvent('fit_review_start', { page_path: location.pathname, form_id: 'start-fit-review' });
+      });
+      form.addEventListener('submit', function () {
+        trackEvent('fit_review_submit', { page_path: location.pathname, form_id: 'start-fit-review' });
+      });
+    }
+    document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) {
+      a.addEventListener('click', function () {
+        trackEvent('email_click', { link_url: a.href, page_path: location.pathname });
+      });
+    });
+    document.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
+      a.addEventListener('click', function () {
+        trackEvent('phone_click', { link_url: a.href, page_path: location.pathname });
+      });
+    });
+    document.querySelectorAll('a[href*="impulsebydesign.com"]').forEach(function (a) {
+      a.addEventListener('click', function () {
+        trackEvent('impulse_referral_click', { link_url: a.href, page_path: location.pathname });
+      });
+    });
+    var path = location.pathname || '';
+    if (path.indexOf('/services/') === 0) {
+      trackEvent('service_page_view', { page_path: path });
+    }
+    if (path.indexOf('/work/') === 0 && path !== '/work/' && path !== '/work') {
+      trackEvent('case_study_view', { page_path: path });
+    }
+  }
+
   function onReady(callback) {
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', callback, { once: true });
@@ -85,12 +130,27 @@
   function initMobileMenu() {
     const mobileToggle = document.querySelector('.mobile-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu) {
+      mobileMenu.hidden = true;
+      mobileMenu.classList.remove('open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      mobileMenu.style.display = 'none';
+    }
     if (!mobileToggle || !mobileMenu) return;
 
     mobileToggle.addEventListener('click', () => {
       const isOpen = mobileMenu.classList.toggle('open');
       mobileToggle.classList.toggle('open', isOpen);
       document.body.classList.toggle('menu-open', isOpen);
+      if (isOpen) {
+        mobileMenu.hidden = false;
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        mobileMenu.style.display = 'flex';
+      } else {
+        mobileMenu.hidden = true;
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        mobileMenu.style.display = 'none';
+      }
       mobileToggle.setAttribute('aria-expanded', String(isOpen));
       mobileMenu.setAttribute('aria-hidden', String(!isOpen));
     });
@@ -100,6 +160,8 @@
         mobileMenu.classList.remove('open');
         mobileToggle.classList.remove('open');
         document.body.classList.remove('menu-open');
+        mobileMenu.hidden = true;
+        mobileMenu.setAttribute('aria-hidden', 'true');
         mobileToggle.setAttribute('aria-expanded', 'false');
         mobileMenu.setAttribute('aria-hidden', 'true');
       });
@@ -285,7 +347,7 @@
 
     // Homepage FAQ rows + SEO Foundations demand steps (same scroll flip)
     const rows = Array.from(
-      document.querySelectorAll('.home-faq-list details, .seo-problem-list .seo-problem-row')
+      document.querySelectorAll('.home-faq-list details, .seo-problem-list .seo-problem-row, .insights-checklist li')
     );
     if (rows.length < 1) return;
     const faqTitle = document.querySelector('.home-faq-title');
@@ -608,3 +670,15 @@
 
   updateProgress();
 })();
+
+onReady(function () { initConversionTracking(); });
+
+onReady(function () {
+  document.querySelectorAll('.hero-automation-video').forEach(function (video) {
+    video.muted = true;
+    video.playsInline = true;
+    var play = function () { video.play().catch(function () {}); };
+    if (video.readyState >= 2) play();
+    else video.addEventListener('canplay', play, { once: true });
+  });
+});
