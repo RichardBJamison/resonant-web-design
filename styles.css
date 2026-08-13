@@ -1874,7 +1874,7 @@
        PRICING + FAQ
        ======================================== */
     .pricing-section {
-      background: transparent;
+      background: var(--bg-dark);
       color: #fff;
     }
 
@@ -1893,6 +1893,7 @@
       text-transform: none;
       letter-spacing: 0;
       margin-bottom: 0.85rem;
+      color: #fff;
     }
 
     .pricing-lead {
@@ -2092,8 +2093,9 @@
 
     .pricing-section--in-work {
       margin-top: 3.5rem;
-      padding-top: 0.5rem;
-      background: transparent;
+      padding-top: 2.5rem;
+      padding-bottom: 1.5rem;
+      background: var(--bg-dark);
     }
 
     .pricing-grid {
@@ -2403,6 +2405,7 @@
       display: block;
       font-size: clamp(1.4rem, 2.5vw, 2.1rem);
       line-height: 1.15;
+      color: #fff;
     }
 
     .partner-banner p {
@@ -4587,7 +4590,6 @@
 
 /* === PERF: below-fold content-visibility === */
 .work-section,
-.pricing-section,
 .compact-stack,
 .systems-showcase,
 .trust-band,
