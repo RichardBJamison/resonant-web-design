@@ -2094,9 +2094,9 @@
 
     .pricing-section--in-work {
       margin-top: 0;
-      padding-top: 3.5rem;
-      padding-bottom: 4rem;
-      background: transparent;
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+      background: var(--bg-dark);
     }
 
     .pricing-grid {
